@@ -29,6 +29,7 @@ else:
         mfile = os.path.join(mpath, fstr+".md")
         if not os.path.isfile(mfile):
             try:
+                os.remove(hfile)
                 index.remove([hfile, mfile])
             except:
                 print("Fail to remove:%s." % file)

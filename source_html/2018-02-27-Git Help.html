@@ -1,0 +1,99 @@
+<h1>测试项目</h1>
+<h2>Git&amp;GitHub使用帮助</h2>
+<h3>1、切换工作目录</h3>
+<pre><code>$ cd E:/Projects/Git/test
+</code></pre>
+<h3>2、创建SSH Key</h3>
+<pre><code>$ ssh-keygen -t rsa -C "email@email.com"
+</code></pre>
+<h3>3、将SSH Key配置到GitHub的SSH keys中</h3>
+<pre><code>GitHub -&gt; Login -&gt; SSH Keys -&gt; New SSH Key
+</code></pre>
+<h3>4、测试连接是否成功</h3>
+<pre><code>$ ssh -T git@github.com
+--- You've successfully authenticated... 表示已成功连上github。
+</code></pre>
+<h3>5、设置username和email</h3>
+<pre><code>$ git config --global user.name "username"
+$ git config --global user.email "email@email.com"
+</code></pre>
+<h3>6、配置远程地址</h3>
+<pre><code>$ git remote    列出所有远程主机
+$ git remote -v     参看远程主机的网址
+$ git remote show origin    查看"origin"主机的详细信息
+$ git remote add origin git@github.com:sone92cn/test.git    添加origin主机并设置URL
+$ git remote set-url origin https://github.com/sone92cn/test.git    设置origin主机URL
+$ git remote rename origin origin_new   修改远程主机名
+$ git remote rm origin  删除远程主机origin
+--- git remote rename &lt;原主机名&gt; &lt;新主机名&gt;
+</code></pre>
+<h3>7、创建本地仓库</h3>
+<pre><code>$ git init &lt;dirname&gt;
+$ git clone https://github.com/sone92cn/test.git    HTTPS协议
+$ git clone git@github.com:sone92cn/test.git    HHS协议，通常速度更安全
+--- git clone &lt;版本库的网址&gt; &lt;本地目录名&gt;
+</code></pre>
+<h3>8、添加文件(修改)到Git本地仓库</h3>
+<pre><code>$ git add ./file/dir        添加新文件/修改的文件到本地仓库
+$ git commit -m "Comment Text"      应用更新
+$ git commit -am "Comment Text"     修改而未添加新文件时，可以用本命令代替以上两条命令
+</code></pre>
+<h3>9、取回项目文件</h3>
+<pre><code>$ git fetch &lt;远程主机名&gt;     将某个远程主机的更新，全部取回本地
+$ git fetch &lt;远程主机名&gt; &lt;分支名&gt;   取回特定分支的更新
+$ git merge &lt;远程主机名&gt;/&lt;分支名&gt;   将获取的分支更新与本地分支合并
+$ git pull  通过clone创建（唯一追踪）的项目，可以省略后面的参数
+$ git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;      取回远程分支的更新，并与本地分支合并
+$ git pull &lt;远程主机名&gt; &lt;远程分支名&gt;  远程分支与当前分支合并，省略冒号后内容
+--- fetch: 仅获取远程更新，不更改本地项目文件，通过&lt;远程主机名&gt;/&lt;分支名&gt; 查看
+--- pull: 获取远程更新，并与本地分支核对。相当于先fetch，然后再merge。
+</code></pre>
+<h3>10、提交更新到服务器</h3>
+<pre><code>$ git push      通过clone创建（唯一追踪）的项目，可以省略后面的参数
+$ git push origin master    提交本地master分支到远程同名分支
+$ git push origin master:test   创建服务器分支test，并提交代码
+$ git push origin :test     删除远程分支test
+--- git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;
+</code></pre>
+<h3>11、分支</h3>
+<pre><code>$ git branch &lt;分支名&gt;  从当前分支创建新的分支，但不选择
+$ git checkout &lt;分支名&gt;        选择已经创建的分支
+$ git checkout -b &lt;分支名&gt; 从当前分支新建分支并切换到改分支
+$ git merge &lt;分支名&gt;   将制定的分支合并到当前分支
+$ git branch -r     查看远程的分支名
+$ git branch -a     查看所有的分支名
+$ git checkout -b &lt;本地分支&gt; &lt;主机名&gt;/&lt;远程分支名&gt;  用远程分支创建本地分支
+$ git branch -d &lt;BranchName&gt;    删除本地分支
+$ git push origin --delete &lt;BranchName&gt;     删除远程分支
+</code></pre>
+<h3>12、追踪</h3>
+<pre><code>$ git branch &lt;分支名&gt; --track origin/master        创建分支并设置追踪，分支未创建
+$ git branch &lt;分支名&gt; --set-upstream-to origin/master  手动设置追踪，分支已创建
+</code></pre>
+<h2>Git Commands Help</h2>
+<h3>1.start a working area (see also: git help tutorial)</h3>
+<p>clone      :Clone a repository into a new directory
+   init       :Create an empty Git repository or reinitialize an existing one</p>
+<h3>2.work on the current change (see also: git help everyday)</h3>
+<p>add        :Add file contents to the index
+   mv         :Move or rename a file, a directory, or a symlink
+   reset      :Reset current HEAD to the specified state
+   rm         :Remove files from the working tree and from the index </p>
+<h3>3.examine the history and state (see also: git help revisions)</h3>
+<p>bisect     :Use binary search to find the commit that introduced a bug
+   grep       :Print lines matching a pattern
+   log        :Show commit logs
+   show       :Show various types of objects
+   status     :Show the working tree status</p>
+<h3>4.grow, mark and tweak your common history</h3>
+<p>branch     :List, create, or delete branches
+   checkout   :Switch branches or restore working tree files
+   commit     :Record changes to the repository
+   diff       :Show changes between commits, commit and working tree, etc
+   merge      :Join two or more development histories together
+   rebase     :Reapply commits on top of another base tip
+   tag        :Create, list, delete or verify a tag object signed with GPG</p>
+<h3>5.collaborate (see also: git help workflows)</h3>
+<p>fetch      :Download objects and refs from another repository
+   pull       :Fetch from and integrate with another repository or a local branch
+   push       :Update remote refs along with associated objects</p>
