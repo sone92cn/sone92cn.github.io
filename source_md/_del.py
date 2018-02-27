@@ -37,7 +37,7 @@ else:
                 n +=1
     if n >0:
         try:
-            index.commit('this is a test')
+            index.commit('del')
         except:
             print("Fail to remove %d files." % n)
         else:
