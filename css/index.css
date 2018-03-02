@@ -1,0 +1,44 @@
+/*
+Free Html5 Responsive Templates
+Author: Kimmy
+Author URI: http://www.zerotheme.com/
+*/
+
+/* ------------------Style--------------------- */
+html, body {width:100%; padding:0; margin:0;}
+body {background: #999999;color: #A5A5A5;font: 16px/25px 'Droid Sans',sans-serif;}
+body .wrap-body{background:#ffffff; margin: 30px auto; padding: 30px; position: relative;}
+
+/* ------------------Header-------------------- */
+header {}
+header .wrap-header{}
+
+header .top {height: 40px;}
+header .top .socials ul {list-style: none;}
+header .top .socials ul li {position: relative;float: left; margin: 5px 0 5px 5px;}
+
+header .top #search {width: 258px; float: right; position: relative; padding: 5px;}
+header .top #search input {background: #FFF;	padding: 1px 1px 1px 33px;	width: 220px;	height: 28px;	border: 1px solid #EEEEEE;}
+header .top #search .button-search {position: absolute;	left: 0px;	background: url('../images/button-search.png') center center no-repeat; width: 30px; height: 32px;	border-right: 1px solid #EEEEEE; cursor: pointer;}
+
+header #logo {background:#76D2C5; width: 100%; text-align: center; padding: 40px 0px; color : #ffffff; }
+header #logo h1{font-size: 60px; line-height: 80px; color: #ffffff;}
+
+header .wrap-nav{display: inline-block; background: #91DBD1; width: 100%;}
+header .wrap-nav ul {list-style: none;margin: 0;padding: 0;}
+header .wrap-nav ul li {position: relative;float: left;padding: 6px 5px 0px 5px;}
+header .wrap-nav ul li a {font-size: 18px; color: #ffffff;display: block;padding: 6px 30px;margin-bottom: 5px;z-index: 6;position: relative;}
+header .wrap-nav ul li:hover {background-color:#ffffff;}
+header .wrap-nav ul li:hover a {color:#000000;}
+
+@media only screen and (min-width: 960px) {
+	body .zerogrid{width:960px;}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+	body .zerogrid{width:100%;}
+}
+
+@media only screen and (max-width: 767px) {
+	body .zerogrid{width:100%;}
+}
