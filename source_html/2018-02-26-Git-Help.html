@@ -1,22 +1,22 @@
-<h2>Git基本命令</h2>
-<h3>1、切换工作目录</h3>
+<h1>Git&amp;GitHub使用帮助</h1>
+<h2>1、切换工作目录</h2>
 <pre><code>$ cd E:/Projects/Git/test
 </code></pre>
-<h3>2、创建SSH Key</h3>
+<h2>2、创建SSH Key</h2>
 <pre><code>$ ssh-keygen -t rsa -C "email@email.com"
 </code></pre>
-<h3>3、将SSH Key配置到GitHub的SSH keys中</h3>
+<h2>3、将SSH Key配置到GitHub的SSH keys中</h2>
 <pre><code>GitHub -&gt; Login -&gt; SSH Keys -&gt; New SSH Key
 </code></pre>
-<h3>4、测试连接是否成功</h3>
+<h2>4、测试连接是否成功</h2>
 <pre><code>$ ssh -T git@github.com
 --- You've successfully authenticated... 表示已成功连上github。
 </code></pre>
-<h3>5、设置username和email</h3>
+<h2>5、设置username和email</h2>
 <pre><code>$ git config --global user.name "username"
 $ git config --global user.email "email@email.com"
 </code></pre>
-<h3>6、配置远程地址</h3>
+<h2>6、配置远程地址</h2>
 <pre><code>$ git remote    列出所有远程主机
 $ git remote -v     参看远程主机的网址
 $ git remote show origin    查看"origin"主机的详细信息
@@ -25,19 +25,19 @@ $ git remote set-url origin https://github.com/sone92cn/test.git    设置origin
 $ git remote rename origin origin_new   修改远程主机名
 $ git remote rm origin  删除远程主机origin
 --- git remote rename &lt;原主机名&gt; &lt;新主机名&gt;
-</pre></code>
-<h3>7、创建本地仓库</h3>
+</code></pre>
+<h2>7、创建本地仓库</h2>
 <pre><code>$ git init &lt;dirname&gt;
 $ git clone https://github.com/sone92cn/test.git    HTTPS协议
 $ git clone git@github.com:sone92cn/test.git    HHS协议，通常速度更安全
 --- git clone &lt;版本库的网址&gt; &lt;本地目录名&gt;
 </code></pre>
-<h3>8、添加文件(修改)到Git本地仓库</h3>
+<h2>8、添加文件(修改)到Git本地仓库</h2>
 <pre><code>$ git add ./file/dir        添加新文件/修改的文件到本地仓库
 $ git commit -m "Comment Text"      应用更新
 $ git commit -am "Comment Text"     修改而未添加新文件时，可以用本命令代替以上两条命令
 </code></pre>
-<h3>9、取回项目文件</h3>
+<h2>9、取回项目文件</h2>
 <pre><code>$ git fetch &lt;远程主机名&gt;     将某个远程主机的更新，全部取回本地
 $ git fetch &lt;远程主机名&gt; &lt;分支名&gt;   取回特定分支的更新
 $ git merge &lt;远程主机名&gt;/&lt;分支名&gt;   将获取的分支更新与本地分支合并
@@ -47,14 +47,14 @@ $ git pull &lt;远程主机名&gt; &lt;远程分支名&gt;  远程分支与当�
 --- fetch: 仅获取远程更新，不更改本地项目文件，通过&lt;远程主机名&gt;/&lt;分支名&gt; 查看
 --- pull: 获取远程更新，并与本地分支核对。相当于先fetch，然后再merge。
 </code></pre>
-<h3>10、提交更新到服务器</h3>
+<h2>10、提交更新到服务器</h2>
 <pre><code>$ git push      通过clone创建（唯一追踪）的项目，可以省略后面的参数
 $ git push origin master    提交本地master分支到远程同名分支
 $ git push origin master:test   创建服务器分支test，并提交代码
 $ git push origin :test     删除远程分支test
 --- git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;
 </code></pre>
-<h3>11、分支</h3>
+<h2>11、分支</h2>
 <pre><code>$ git branch &lt;分支名&gt;  从当前分支创建新的分支，但不选择
 $ git checkout &lt;分支名&gt;        选择已经创建的分支
 $ git checkout -b &lt;分支名&gt; 从当前分支新建分支并切换到改分支
@@ -65,7 +65,7 @@ $ git checkout -b &lt;本地分支&gt; &lt;主机名&gt;/&lt;远程分支名&gt;
 $ git branch -d &lt;BranchName&gt;    删除本地分支
 $ git push origin --delete &lt;BranchName&gt;     删除远程分支
 </code></pre>
-<h3>12、追踪</h3>
+<h2>12、追踪</h2>
 <pre><code>$ git branch &lt;分支名&gt; --track origin/master        创建分支并设置追踪，分支未创建
 $ git branch &lt;分支名&gt; --set-upstream-to origin/master  手动设置追踪，分支已创建
 </code></pre>
