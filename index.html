@@ -10,12 +10,12 @@
 		<!-- CSS -->
 		<link rel="stylesheet" href="css/basic.css">
 		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="css/article.css">
 		
 		<!-- JQuery -->
-		<script src="js/jquery-3.2.1.min.js"></script>
-		
+		<script type="text/javascript" src="js/setting.js"></script>
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript">
-			var ljson = null;
 			var content_a = -1;
 			var content_s = new Array(0, 0, 0, 0, 0);
 		
@@ -33,18 +33,24 @@
 					$(".content_" + n).show();
 					content_a = n;
 					
-					$.getJSON("json/load.json",function(result){
-						$.each(result["content_" + n], function(name, value){
+					if (content_s[n] == 0) {
+						$.each(var_load["content_" + n], function(name, value){
 							$(name).load(value);
 						});
-					});
+						$.each(var_append["content_" + n], function(name, value){
+							$(name).html("");
+							$.each(value, function(i, item){
+								$.get(item, function(data, status){
+									if (status=="success"){$(name).append(data);}
+									else{alert("Fail to download " + item);};
+								});
+							});
+						});
+						content_s[n] = 1;
+					};
 				};
 			};
-			
-			
-			
 		</script>
-		
 	</head>
 	<body>
 		<div class="wrap-body zerogrid">
@@ -195,10 +201,5 @@
 		}else{
 			showContent(0);
 		};
-		
-		<!-- $("#test_article1").load("source_html/2018-02-26-Git基本命令.html");  -->
-		<!-- $("#profile").load("html/aboutm.html"); -->
-		<!-- $("#recent").load("html/recent.html"); -->
-		
 	</script>
 </html>
