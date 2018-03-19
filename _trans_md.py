@@ -22,7 +22,7 @@ def findSubStr(substr, totalstr, i):
     return index
         
 
-succ, fail = 0, 0
+succ_c, fail_c, succ_d, fail_d = 0, 0, 0, 0
 root = os.path.split(os.path.realpath(__file__))[0]
 path = os.path.join(root, "article_md")
 print("MD Path :", path)
@@ -53,8 +53,8 @@ for mfile in files:
         output_hfile = open(hfile, "w", encoding="utf-8")
         output_tfile = open(tfile, "w", encoding="utf-8")
     except:
-        fail += 1
-        print("error to translate %s." % file)
+        fail_c += 1
+        print("Fail to translate %s." % file)
     else:
         output_hfile.write("<article>")
         output_tfile.write("<article>")
@@ -67,9 +67,30 @@ for mfile in files:
 
         output_hfile.close()
         output_tfile.close()
-        succ +=1
-        print("finish to transate %s." % file)
+        succ_c +=1
+        print("Succeed to transate %s." % file)
+
+
+path = os.path.join(root, "article_head")
+files = createTreeAsPath(path, fileRegular=r'^.+\.html$', scanSubFolder=False)
+for hfile in files:
+        path, file = os.path.split(hfile)
+        fstr, fext = os.path.splitext(file)
+        tfile = os.path.join(os.path.join(root, "article_html"), fstr+".html")
+        mfile = os.path.join(os.path.join(root, "article_md"), fstr+".md")
+        if not os.path.isfile(mfile):
+            try:
+                os.remove(hfile)
+                os.remove(tfile)
+            except:
+                fail_d += 1
+                print("Fail to remove:%s." % tfile)
+            else:
+                succ_d += 1
+                print("Succeed to remove:%s." % tfile)
         
-print("Succeed:%s missions, Fail:%s missions" % (succ, fail))
+print("<Update> succeed: %s files, Fail: %s files" % (succ_c, fail_c))
+print("<Delete> succeed: %s files, Fail: %s files" % (succ_d, fail_d))
+
 os.system("pause")
     

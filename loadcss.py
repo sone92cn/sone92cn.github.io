@@ -20,8 +20,11 @@ list0 = ["article_head" + "/" + item for item in createTreeAsPath(path, fileRegu
 path = os.path.join(root, "article_html")
 list1 = ["article_html" + "/" + item for item in createTreeAsPath(path, fileRegular=r'^.+\.html$', scanSubFolder=False, relativePath=True)]
 
+"""
 print(list0)
 print(list1)
+"""
+
 
 """
 list0 = ["article_html/2018-02-26-Git-Help.html",
@@ -46,4 +49,7 @@ css_append = "var var_append=" + json.dumps(append_dt) + ";"
 file = open("js/setting.js", "w", encoding="utf-8")
 file.write(css_load + css_append)
 file.close()
+
+print("Succeed to update js/setting.js.")
+os.system("pause")
 
