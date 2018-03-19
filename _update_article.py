@@ -43,7 +43,7 @@ for mfile in files:
     text = inout_file.read()
     inout_file.close()
     
-    index = findSubStr("\n", text, 18)
+    index = findSubStr("\n", text, 10)
     if index == -1:
         head = text
     else:
