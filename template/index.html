@@ -1,21 +1,12 @@
-﻿<!DOCTYPE html>
-<html lang="zh-cn"> 
-	<head>
-		<meta charset="utf-8" />
-		<title>Felix's Page</title>
-		
-		<!-- Mobile Specific Metas -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		
-		<!-- CSS -->
-		
+﻿{% extends "base.html" %}
+
+{% block css %}
 	<link rel="stylesheet" href="css/basic.css">
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" href="css/article.css">
+{% endblock %}
 
-		
-		<!-- JS -->
-		
+{% block js_head %}
 	<script type="text/javascript" src="js/setting.js"></script>
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript">
@@ -54,10 +45,20 @@
 			};
 		};
 	</script>
+{% endblock %}
 
-	</head>
-	<body>
-		
+{% block js_tail %}
+	<script type="text/javascript">
+		page = getUrlParam("page");
+		if ((page == "0") || (page == "1") || (page == "2") || (page == "3") || (page == "4")){
+			showContent(page*1);
+		}else{
+			showContent(0);
+		};
+	</script>
+{% endblock %}
+
+{% block body %}
 	<div class="wrap-body zerogrid">
 		<!-- Header -->
 		<header>
@@ -198,16 +199,4 @@
 			</div>
 		</section>
 	</div>
-
-	</body>
-	
-	<script type="text/javascript">
-		page = getUrlParam("page");
-		if ((page == "0") || (page == "1") || (page == "2") || (page == "3") || (page == "4")){
-			showContent(page*1);
-		}else{
-			showContent(0);
-		};
-	</script>
-
-</html>
+{% endblock %}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-cn"> 
+	<head>
+		<meta charset="utf-8" />
+		<title>{{title}}</title>
+		
+		<!-- Mobile Specific Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		
+		<!-- CSS -->
+		{% block css %}
+		{% endblock %}
+		
+		<!-- JS -->
+		{% block js_head %}
+		{% endblock %}
+	</head>
+	<body>
+		{% block body %}
+		{% endblock %}
+	</body>
+	{% block js_tail %}
+	{% endblock %}
+</html>
