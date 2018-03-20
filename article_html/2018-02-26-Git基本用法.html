@@ -6,11 +6,11 @@
 <pre><code>$ ssh-keygen -t rsa -C "email@email.com"
 </code></pre>
 <h2>3、将SSH Key配置到GitHub的SSH keys中</h2>
-<pre><code>GitHub -&gt; Login -&gt; SSH Keys -&gt; New SSH Key
+<pre><code>$ GitHub -&gt; Login -&gt; SSH Keys -&gt; New SSH Key
 </code></pre>
 <h2>4、测试连接是否成功</h2>
 <pre><code>$ ssh -T git@github.com
---- You've successfully authenticated... 表示已成功连上github。
+--- You've successfully authenticated...  表示已成功连上github。
 </code></pre>
 <h2>5、设置username和email</h2>
 <pre><code>$ git config --global user.name "username"
