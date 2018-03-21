@@ -3,7 +3,6 @@
 {% block css %}
 	<link rel="stylesheet" href="css/basic.css">
 	<link rel="stylesheet" href="css/index.css">
-	<link rel="stylesheet" href="css/article.css">
 {% endblock %}
 
 {% block js_head %}
@@ -28,9 +27,6 @@
 				content_a = n;
 				
 				if (content_s[n] == 0) {
-					$.each(var_load["content_" + n], function(name, value){
-						$(name).load(value);
-					});
 					$.each(var_append["content_" + n], function(name, value){
 						$(name).html("");
 						$.each(value, function(i, item){
@@ -98,7 +94,7 @@
 				<div class="row block">
 					<div id="main-content" class="col-2-3">
 						<div class="wrap-col wrap-col-main">
-							<article id="test_article">
+							<article>
 								首页,建设中...
 							</article>
 						</div>
@@ -106,11 +102,10 @@
 					<div id="sidebar" class="col-1-3">
 						<div class="wrap-col">
 							<div class="box" id="profile">
-								建设中...
+								{% include "profile.html" %}
 							</div>
-							
 							<div class="box" id="recent">
-								建设中...
+								{% include "recent.html" %}
 							</div>
 						</div>
 					</div>
@@ -122,16 +117,16 @@
 		<section class="content content_1" id="content">
 			<div class="wrap-content">
 				<div class="row block">
-					<div id="sidebar" class="col-1-3">
+					<div id="sidebar" class="col-1-4">
 						<div class="wrap-col">
 							<div class="box" id="recent">
-								建设中...
+								{% include "content.html" %}
 							</div>
 						</div>
 					</div>
-					<div id="main-content" class="col-2-3">
+					<div id="main-content" class="col-3-4">
 						<div class="wrap-col wrap-col-main">
-							<article id="test_article">
+							<article>
 								文章，建设中...
 							</article>
 						</div>
@@ -147,13 +142,13 @@
 					<div id="sidebar" class="col-1-3">
 						<div class="wrap-col ">
 							<div class="box" id="recent">
-								建设中...
+								{% include "recent.html" %}
 							</div>
 						</div>
 					</div>
 					<div id="main-content" class="col-2-3">
 						<div class="wrap-col wrap-col-main">
-							<article id="test_article1">
+							<article>
 								项目，建设中...
 							</article>
 						</div>
@@ -168,7 +163,7 @@
 				<div class="row block">
 					<div id="main-content" class="col-2-3">
 						<div class="wrap-col wrap-col-main">
-							<article id="test_article">
+							<article>
 								下载，建设中...
 							</article>
 						</div>
@@ -176,7 +171,7 @@
 					<div id="sidebar" class="col-1-3">
 						<div class="wrap-col">
 							<div class="box" id="recent">
-								建设中...
+								{% include "recent.html" %}
 							</div>
 						</div>
 					</div>
@@ -190,7 +185,7 @@
 				<div class="row block">
 					<div id="main-content" class="col-full">
 						<div class="wrap-col wrap-col-main">
-							<article id="test_article1">
+							<article>
 								留言，建设中...
 							</article>
 						</div>

@@ -1,12 +1,8 @@
 <article><h1>PyMySQL基本用法</h1>
-<h2>导入库</h2>
-<p>import pymysql</p>
-<h2>创建连接</h2>
-<p>conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='', db='tkq1', charset='utf8')</p>
-<h2>创建游标</h2>
-<p>cursor = conn.cursor()</p>
-<h2>执行SQL，并返回收影响行数</h2>
-<p>effect_row = cursor.execute("select * from tb7")</p>
-<h2>执行SQL，并返回受影响行数</h2>
-<p>effect_row = cursor.execute("update tb7 set pass = '123' where nid = %s", (11,))</p>
-<h2>执行SQL，并返回受影响行数,执行多次</h2></article>
+<h2>1、导入库</h2>
+<p>$ import pymysql</p>
+<h2>2、设置参数</h2>
+<p>$ config = {'host':'127.0.0.1','port':3306,'user':'root','password':'zhyea.com','db':'employees','charset':'utf8mb4','cursorclass':pymysql.cursors.DictCursor}</p>
+<h2>3、创建连接</h2>
+<p>$ conn = pymysql.connect(**config)
+...</p></article>

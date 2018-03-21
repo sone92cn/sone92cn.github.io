@@ -11,7 +11,6 @@
 		
 	<link rel="stylesheet" href="css/basic.css">
 	<link rel="stylesheet" href="css/index.css">
-	<link rel="stylesheet" href="css/article.css">
 
 		
 		<!-- JS -->
@@ -37,9 +36,6 @@
 				content_a = n;
 				
 				if (content_s[n] == 0) {
-					$.each(var_load["content_" + n], function(name, value){
-						$(name).load(value);
-					});
 					$.each(var_append["content_" + n], function(name, value){
 						$(name).html("");
 						$.each(value, function(i, item){
@@ -97,7 +93,7 @@
 				<div class="row block">
 					<div id="main-content" class="col-2-3">
 						<div class="wrap-col wrap-col-main">
-							<article id="test_article">
+							<article>
 								首页,建设中...
 							</article>
 						</div>
@@ -105,11 +101,26 @@
 					<div id="sidebar" class="col-1-3">
 						<div class="wrap-col">
 							<div class="box" id="profile">
-								建设中...
+								<p>
+<img align="left" src="img/head.png" width="50%" style="margin-right:20px" />
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu posuere nunc justo tempus leo. Donec mattis</p>
 							</div>
-							
 							<div class="box" id="recent">
-								建设中...
+								<div class="heading">
+	<h2>最新上传</h2>
+</div>
+<div class="content">
+	<div class="post">
+		<img src="img/img4.jpg" width="50px"/>
+		<h4><a href="#">Git&GitHub使用帮助</a></h4>
+		<p>November 11 ,2012</p>
+	</div>
+	<div class="post">
+		<img src="img/img4.jpg" width="50px"/>
+		<h4><a href="#">PyMySQL基本用法</a></h4>
+		<p>November 10 ,2012</p>
+	</div>
+</div>
 							</div>
 						</div>
 					</div>
@@ -121,16 +132,26 @@
 		<section class="content content_1" id="content">
 			<div class="wrap-content">
 				<div class="row block">
-					<div id="sidebar" class="col-1-3">
+					<div id="sidebar" class="col-1-4">
 						<div class="wrap-col">
 							<div class="box" id="recent">
-								建设中...
+								<div class="content">
+	<div class="post">
+		<h3><a href="#">财税</a></h3>
+	</div>
+	<div class="post">
+		<h3><a href="#">ERP</a></h3>
+	</div>
+	<div class="post">
+		<h3><a href="#">数据</a></h3>
+	</div>
+</div>
 							</div>
 						</div>
 					</div>
-					<div id="main-content" class="col-2-3">
+					<div id="main-content" class="col-3-4">
 						<div class="wrap-col wrap-col-main">
-							<article id="test_article">
+							<article>
 								文章，建设中...
 							</article>
 						</div>
@@ -146,13 +167,27 @@
 					<div id="sidebar" class="col-1-3">
 						<div class="wrap-col ">
 							<div class="box" id="recent">
-								建设中...
+								<div class="heading">
+	<h2>最新上传</h2>
+</div>
+<div class="content">
+	<div class="post">
+		<img src="img/img4.jpg" width="50px"/>
+		<h4><a href="#">Git&GitHub使用帮助</a></h4>
+		<p>November 11 ,2012</p>
+	</div>
+	<div class="post">
+		<img src="img/img4.jpg" width="50px"/>
+		<h4><a href="#">PyMySQL基本用法</a></h4>
+		<p>November 10 ,2012</p>
+	</div>
+</div>
 							</div>
 						</div>
 					</div>
 					<div id="main-content" class="col-2-3">
 						<div class="wrap-col wrap-col-main">
-							<article id="test_article1">
+							<article>
 								项目，建设中...
 							</article>
 						</div>
@@ -167,7 +202,7 @@
 				<div class="row block">
 					<div id="main-content" class="col-2-3">
 						<div class="wrap-col wrap-col-main">
-							<article id="test_article">
+							<article>
 								下载，建设中...
 							</article>
 						</div>
@@ -175,7 +210,21 @@
 					<div id="sidebar" class="col-1-3">
 						<div class="wrap-col">
 							<div class="box" id="recent">
-								建设中...
+								<div class="heading">
+	<h2>最新上传</h2>
+</div>
+<div class="content">
+	<div class="post">
+		<img src="img/img4.jpg" width="50px"/>
+		<h4><a href="#">Git&GitHub使用帮助</a></h4>
+		<p>November 11 ,2012</p>
+	</div>
+	<div class="post">
+		<img src="img/img4.jpg" width="50px"/>
+		<h4><a href="#">PyMySQL基本用法</a></h4>
+		<p>November 10 ,2012</p>
+	</div>
+</div>
 							</div>
 						</div>
 					</div>
@@ -189,7 +238,7 @@
 				<div class="row block">
 					<div id="main-content" class="col-full">
 						<div class="wrap-col wrap-col-main">
-							<article id="test_article1">
+							<article>
 								留言，建设中...
 							</article>
 						</div>
