@@ -1,11 +1,14 @@
-<div class="content">
-	<div class="post">
-		<h3><a href="#">财税</a></h3>
-	</div>
-	<div class="post">
-		<h3><a href="#">ERP</a></h3>
-	</div>
-	<div class="post">
-		<h3><a href="#">数据</a></h3>
-	</div>
+<div class="content content_top">
+	{% for item in menu %}
+		{% with id = menu[item]["id"] %}
+			<div class="content_menu" id="{{ id }}">
+				<div class="head"  onclick="$('#{{ id }} .body').toggle();"> {{item}} </div>
+				{% with child = menu[item]['child'] %}
+					{% for value in child %}
+					<div class="body" onclick="$('.content_1 .wrap-col-main').load('{{child[value]}}')"> {{value}} </div>
+					{% endfor %}
+				{% endwith %}
+			</div>
+		{% endwith %}
+	{% endfor %}
 </div>

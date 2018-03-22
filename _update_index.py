@@ -23,6 +23,13 @@ else:
 	wfile.close()
 	print("Succeed to update file.")
 """
+
+menu = {
+	"大类一":{"id":"content_menu_1","child":{"小类一":"article_html/2018-02-26-Git基本用法.html", "小类二":"article_html/2018-02-27-PyMySQL基本用法.html", "小类三":"html/about.html"}},
+	"大类二":{"id":"content_menu_2","child":{"小类一":"article_html/2018-02-26-Git基本用法.html", "小类二":"article_html/2018-02-27-PyMySQL基本用法.html", "小类三":"html/about.html"}},
+	"大类三":{"id":"content_menu_3","child":{"小类一":"article_html/2018-02-26-Git基本用法.html", "小类二":"article_html/2018-02-27-PyMySQL基本用法.html", "小类三":"html/about.html"}},
+}
+
 try:
     TemplateLoader = FileSystemLoader(searchpath=os.path.join(path, "template"), encoding='utf-8')
     TemplateEnv = Environment(loader=TemplateLoader)
@@ -30,7 +37,7 @@ try:
 except:
     print("Fail to open files.")
 else:
-    html = template.render(title="Felix's Page")
+    html = template.render(title="Felix's Page", menu=menu)
     wfile = open(outputfile, "w", encoding="utf-8")
     wfile.write(html)
     wfile.close()
