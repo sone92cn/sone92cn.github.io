@@ -56,13 +56,34 @@ function showContent(n){
 	};
 };
 
-function viewHead(content){
-	$("#" + content + " #wrap-col-body").hide();
-	$("#" + content + " #wrap-col-head").show();
+function viewHead(content, action){
+	action = name||'x';
+	if (action == '0'){
+		$.each(var_append[content], function(name, value){
+			$(name).html("");
+			$.each(value, function(i, item){
+				$.get(item, function(data, status){
+					if (status=="success"){$(name).append(data);}
+					else{alert("Fail to download " + item);};
+				});
+			});
+		});
+		$(content + " #main-content .wrap-col").hide();
+		$(var_show[content]).show();
+	}else if(action == "1"){
+		$.each(var_load[content], function(name, value){
+			$(name).load(value);
+		});
+		$(content + " #main-content .wrap-col").hide();
+		$(var_show[content]).show();
+	}else{
+		$(content + " #wrap-col-body").hide();
+		$(content + " #wrap-col-head").show();
+	};
 };
 
 function viewArticle(content, article){
-	$("#" + content + " #wrap-col-head").hide();
-	$("#" + content + " #wrap-col-body").show();
-	$("#" + content + " #wrap-col-body").load(article);
+	$(content + " #wrap-col-head").hide();
+	$(content + " #wrap-col-body").show();
+	$(content + " #wrap-col-body").load(article);
 };

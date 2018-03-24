@@ -40,6 +40,7 @@ header .wrap-nav ul li:hover a{color:#000000;}
 
 #sidebar{}
 #sidebar .box {margin-bottom:20px; border: 1px solid #EEEEEE; padding: 20px;}
+#sidebar .box .head {text-align:center;}
 #sidebar .box .menu {padding:15px}
 #sidebar .box .menu img{ float:left; padding:3px; border:1px solid #EEEEEE; margin-right:10px;}
 #sidebar .box .menu .post {margin-bottom: 20px;}

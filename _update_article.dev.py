@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Feb 27 11:44:43 2018
-
 @author: Felix
 """
 
@@ -67,6 +66,8 @@ if __name__ == "__main__":
             succ_c += 1
             print("Succeed to transate %s." % mfile)
 
+    heads = {os.path.splitext(os.path.split(file)[1])[0]:file for file in files}
+    print(heads)
 
 
 
