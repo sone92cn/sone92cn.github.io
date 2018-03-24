@@ -1,39 +1,43 @@
-<div class="content content_top">
-{#
+<div class="menu">
+	<ul>
 	{% for item in menu %}
 		{% with id = menu[item]["id"] %}
-			<div class="content_menu" id="{{ id }}">
-				<div class="head"  onclick="$('#{{ id }} .body').toggle();"> {{item}} </div>
-				{% with child = menu[item]['child'] %}
-					{% for value in child %}
-					<div class="body" onclick="$('.content_1 .wrap-col-main').load('{{child[value]}}')"> {{value}} </div>
-					{% endfor %}
-				{% endwith %}
-			</div>
+			<li class="head head_{{id}}" onclick="$('.menu .body_{{ id }}').toggle();">
+				<p> {{item}} </p>
+			</li>
+			{% with child = menu[item]['child'] %}
+				{% for value in child %}
+					<li class="body body_{{id}}" onclick="$('#content_1 #wrap-col-head').load('{{child[value]}}')">
+						<p> {{value}} </p>
+					</li>
+				{% endfor %}
+			{% endwith %}
 		{% endwith %}
 	{% endfor %}
-#}
+	</ul>
+</div>
+{#
 	<ul>
-		<li style="width:150px;height:25px;position:relative;bgcolor:#FF0000;">
+		<li>
 			<p>一级菜单</p>
-			<ul style="position:absolute;left:150px;top:0px;width:150px;height:25px;bgcolor:#00FF00;">
+			<ul>
 				<li>二级菜单</li>
 				<li>二级菜单</li>
 			</ul>
 		</li>
-		<li style="width:75px;height:25px;position:relative;">
+		<li>
 			<p>一级菜单</p>
-			<ul style="position:absolute;left:75px;top:0px;width:75px;height:25px">
+			<ul>
 				<li>二级菜单</li>
 				<li>二级菜单</li>
 			</ul>
 		</li>
-		<li style="width:75px;height:25px;position:relative;">
+		<li>
 			<p>一级菜单</p>
-			<ul style="position:absolute;left:75px;top:0px;width:75px;height:25px">
+			<ul>
 				<li>二级菜单</li>
 				<li>二级菜单</li>
 			</ul>
 		</li>
 	</ul>
-</div>
+#}

@@ -6,41 +6,9 @@
 {% endblock %}
 
 {% block js_head %}
-	<script type="text/javascript" src="js/setting.js"></script>
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript">
-		var content_a = -1;
-		var content_s = new Array(0, 0, 0, 0, 0);
-	
-		function getUrlParam(name) {
-			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-			var r = window.location.search.substr(1).match(reg); //匹配目标参数
-			if (r != null) return unescape(r[2]); return null; //返回参数值
-		};
-		
-		function showContent(n){
-			if (n<5){
-				if (content_a > -1){
-					$(".content_" + content_a).hide();
-				};
-				$(".content_" + n).show();
-				content_a = n;
-				
-				if (content_s[n] == 0) {
-					$.each(var_append["content_" + n], function(name, value){
-						$(name).html("");
-						$.each(value, function(i, item){
-							$.get(item, function(data, status){
-								if (status=="success"){$(name).append(data);}
-								else{alert("Fail to download " + item);};
-							});
-						});
-					});
-					content_s[n] = 1;
-				};
-			};
-		};
-	</script>
+	<script type="text/javascript" src="js/setting.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/index.js" charset="utf-8"></script>
 {% endblock %}
 
 {% block js_tail %}
@@ -61,19 +29,19 @@
 			<div class="top">
 				<div class="socials">
 					<ul>
-						<li class="switch"><a href="#" title="baidu"><img src="img/socials/live-32x32.png" /></a></li>
-						<li class="switch"><a href="#" title="google"><img src="img/socials/google-32x32.png" /></a></li>
-						<li class="switch"><a href="#" title="rss"><img src="img/socials/rss-32x32.png" /></a></li>
-						<li class="switch"><a href="#" title="youtube"><img src="img/socials/youtube-32x32.png" /></a></li>
+						<li><a href="#" title="baidu"><img src="img/socials/live-32x32.png" /></a></li>
+						<li><a href="#" title="google"><img src="img/socials/google-32x32.png" /></a></li>
+						<li><a href="#" title="rss"><img src="img/socials/rss-32x32.png" /></a></li>
+						<li><a href="#" title="youtube"><img src="img/socials/youtube-32x32.png" /></a></li>
 					</ul>
 				</div>
-				<div id="search">
-					<div class="button-search"></div>
-					<input type="text" value="Search..." onfocus="if (this.value == &#39;Search...&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Search...&#39;;}">
+				<div class="search">
+					<div class="submit" onclick="searchResult();"></div>
+					<input id="input_search" type="text" value="Search..." onfocus="focusSearch(this);" onblur="blurSearch(this);">
 				</div>
 			</div>
 				
-			<div id="logo">
+			<div class="logo">
 				<h1>网站建设中，敬请期待...</h1>
 			</div>
 			
@@ -89,24 +57,27 @@
 		</header>
 		 
 		<!-- Content 首页 -->
-		<section class="content content_0" id="content">
-			<div class="wrap-content">
-				<div class="row block">
-					<div id="main-content" class="col-2-3">
-						<div class="wrap-col wrap-col-main">
-							<article>
-								首页,建设中...
-							</article>
-						</div>
+		<section class="content" id="content_0">
+			<div class="block">
+				<div id="main-content" class="col-2-3">
+					<div class="wrap-col" id="wrap-col-head">
+						<article>
+							首页,建设中...
+						</article>
 					</div>
-					<div id="sidebar" class="col-1-3">
-						<div class="wrap-col">
-							<div class="box" id="profile">
-								{% include "profile.html" %}
-							</div>
-							<div class="box" id="recent">
-								{% include "recent.html" %}
-							</div>
+					<div class="wrap-col" id="wrap-col-body">
+						<article>
+							首页,建设中...
+						</article>
+					</div>
+				</div>
+				<div id="sidebar" class="col-1-3">
+					<div class="wrap-col">
+						<div class="box" id="profile">
+							{% include "profile.html" %}
+						</div>
+						<div class="box" id="recent">
+							{% include "recent.html" %}
 						</div>
 					</div>
 				</div>
@@ -114,76 +85,64 @@
 		</section>
 		
 		<!-- Content 文章 -->
-		<section class="content content_1" id="content">
-			<div class="wrap-content">
-				<div class="row block">
-					<div id="sidebar" class="col-1-4">
-						<div class="wrap-col">
-							<div class="box" id="recent">
-								{% include "content.html" %}
-							</div>
+		<section class="content" id="content_1">
+			<div class="block">
+				<div id="sidebar" class="col-1-4">
+					<div class="wrap-col">
+						<div class="box" id="menu">
+							{% include "content.html" %}
 						</div>
 					</div>
-					<div id="main-content" class="col-3-4">
-						<div class="wrap-col wrap-col-main">
-							<article>
-								文章，建设中...
-							</article>
-						</div>
+				</div>
+				<div id="main-content" class="col-3-4">
+					<div class="wrap-col" id="wrap-col-head">
+						<article>
+							文章,建设中...
+						</article>
+					</div>
+					<div class="wrap-col" id="wrap-col-body">
+						<article>
+							文章,建设中...
+						</article>
 					</div>
 				</div>
 			</div>
 		</section>
 		
 		<!-- Content 项目 -->
-		<section class="content content_2" id="content">
-			<div class="wrap-content">
-				<div class="row block">
-					<div id="sidebar" class="col-1-3">
-						<div class="wrap-col ">
-							<div class="box" id="recent">
-								{% include "recent.html" %}
-							</div>
+		<section class="content" id="content_2">
+			<div class="block">
+				<div id="sidebar" class="col-1-3">
+					<div class="wrap-col">
+						<div class="box" id="menu">
+							{% include "profile.html" %}
 						</div>
 					</div>
-					<div id="main-content" class="col-2-3">
-						<div class="wrap-col wrap-col-main">
-							<article>
-								项目，建设中...
-								<ul>
-									<li style="width:150px;height:25px;position:relative;bgcolor:#FF0000;float:left;">
-										<p>菜单一</p>
-									</li>
-									<li style="width:150px;height:25px;position:relative;bgcolor:#FF0000;float:left;">
-										<p>菜单二</p>
-									</li>
-									<li style="width:150px;height:25px;position:relative;bgcolor:#FF0000;float:left;">
-										<p>菜单三</p>
-									</li>
-								</ul>
-							</article>
-						</div>
+				</div>
+				<div id="main-content" class="col-2-3">
+					<div class="wrap-col" id="wrap-col-body">
+						<article>
+							项目,建设中...
+						</article>
 					</div>
 				</div>
 			</div>
 		</section>
 		
 		<!-- Content 下载 -->
-		<section class="content content_3" id="content">
-			<div class="wrap-content">
-				<div class="row block">
-					<div id="main-content" class="col-2-3">
-						<div class="wrap-col wrap-col-main">
-							<article>
-								下载，建设中...
-							</article>
-						</div>
+		<section class="content" id="content_3">
+			<div class="block">
+				<div id="main-content" class="col-2-3">
+					<div class="wrap-col" id="wrap-col-body">
+						<article>
+							下载,建设中...
+						</article>
 					</div>
-					<div id="sidebar" class="col-1-3">
-						<div class="wrap-col">
-							<div class="box" id="recent">
-								{% include "recent.html" %}
-							</div>
+				</div>
+				<div id="sidebar" class="col-1-3">
+					<div class="wrap-col">
+						<div class="box" id="menu">
+							{% include "profile.html" %}
 						</div>
 					</div>
 				</div>
@@ -191,18 +150,17 @@
 		</section>
 		
 		<!-- Content 留言 -->
-		<section class="content content_4" id="content">
-			<div class="wrap-content">
-				<div class="row block">
-					<div id="main-content" class="col-full">
-						<div class="wrap-col wrap-col-main">
-							<article>
-								留言，建设中...
-							</article>
-						</div>
+		<section class="content" id="content_4">
+			<div class="block">
+				<div id="main-content" class="col-full">
+					<div class="wrap-col" id="wrap-col-body">
+						<article>
+							留言,建设中...
+						</article>
 					</div>
 				</div>
 			</div>
 		</section>
+		
 	</div>
 {% endblock %}

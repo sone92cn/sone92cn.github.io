@@ -25,9 +25,9 @@ else:
 """
 
 menu = {
-	"大类一":{"id":"content_menu_1","child":{"小类一":"article_html/2018-02-26-Git基本用法.html", "小类二":"article_html/2018-02-27-PyMySQL基本用法.html", "小类三":"html/about.html"}},
-	"大类二":{"id":"content_menu_2","child":{"小类一":"article_html/2018-02-26-Git基本用法.html", "小类二":"article_html/2018-02-27-PyMySQL基本用法.html", "小类三":"html/about.html"}},
-	"大类三":{"id":"content_menu_3","child":{"小类一":"article_html/2018-02-26-Git基本用法.html", "小类二":"article_html/2018-02-27-PyMySQL基本用法.html", "小类三":"html/about.html"}},
+	"财税审计":{"id":"content_menu_1","child":{"小类一":"article_html/2018-02-26-Git基本用法.html", "小类二":"article_html/2018-02-27-PyMySQL基本用法.html", "小类三":"html/about.html"}},
+	"数据分析":{"id":"content_menu_2","child":{"小类一":"article_html/2018-02-26-Git基本用法.html", "小类二":"article_html/2018-02-27-PyMySQL基本用法.html", "小类三":"html/about.html"}},
+	"信息技术":{"id":"content_menu_3","child":{"小类一":"article_html/2018-02-26-Git基本用法.html", "小类二":"article_html/2018-02-27-PyMySQL基本用法.html", "小类三":"html/about.html"}},
 }
 
 try:
