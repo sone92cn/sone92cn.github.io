@@ -6,19 +6,14 @@ path = os.path.split(os.path.realpath(__file__))[0]
 inputfile = os.path.join(path, "template\\index.html")
 outputfile = os.path.join(path, "index.html")
 
-print(inputfile)
-print(outputfile)
+print("Input:", inputfile)
+print("Output", outputfile)
 
 with open("articles.pkl", "rb") as handle:
     articles = pickle.load(handle)
 
 keys = sorted(articles.keys())[:6]
 recents = {key:articles[key] for key in keys}
-
-print(recents)
-print(articles)
-
-#path, fileRegular='', scanSubFolder=True, treeMode=False, relativePath=False, forFile=True, maxloops=100
 
 i = 0
 menu = {}
@@ -31,7 +26,6 @@ for head in heads:
     child = menu[title]["child"]
     for title in titles:
         child[title[3:]] = os.path.join(os.path.join(os.path.join("article_html", head), title), "menu.htm").replace("\\", "/")
-print(menu)
 
 """
 menu = {
@@ -51,6 +45,6 @@ else:
     wfile = open(outputfile, "w", encoding="utf-8")
     wfile.write(html)
     wfile.close()
-    print("Succeed to update file.")
+    print("Succeed to update index page.")
 
-#os.system("pause")
+os.system("pause")

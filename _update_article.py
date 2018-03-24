@@ -26,8 +26,11 @@ def getHeadLines(text, n):
 def writeMenu(fname, bodys):
     with open(fname, "w", encoding="utf-8") as handle:
         handle.write("<article>")
-        for body in bodys:
-            handle.write("<h2><a href=\"javascript:viewArticle('#content_1', '%s');\">%s</a></h2>" % (bodys[body], body[11:]))
+        if len(bodys) > 0:
+            for body in bodys:
+                handle.write("<h2><a href=\"javascript:viewArticle('#content_1', '%s');\">%s</a></h2>" % (bodys[body], body[11:]))
+        else:
+            handle.write("<h2>此类别下暂无文章，请继续关注！</h2>")
         handle.write("</article>")
 
 if __name__ == "__main__":
@@ -54,7 +57,7 @@ if __name__ == "__main__":
 
     files = createTreeAsPath(path, fileRegular=r'^.+\.md$', scanSubFolder=True, relativePath=True)
     heads = {os.path.splitext(os.path.split(file)[1])[0]: file for file in files}
-    keys = sorted(heads.keys())[:2]
+    keys = sorted(heads.keys())[:6]
     heads = {key:heads[key] for key in keys}
 
     for key in heads:
@@ -129,8 +132,6 @@ if __name__ == "__main__":
     with open('articles.pkl', 'wb') as handle:
         pickle.dump(bodys, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-    print(bodys)
-
     writeMenu("template/menu.html", bodys)
     folders = createTreeAsPath(path, scanSubFolder=True, relativePath=True, forFile=False)
     for folder in folders:
@@ -144,5 +145,5 @@ if __name__ == "__main__":
     print("Create: %s files succeed, %s files fail." % (succ_c, fail_c))
     print("Delete: %s files succeed, %s files fail." % (succ_d, fail_d))
 
-#os.system("pause")
+os.system("pause")
     
