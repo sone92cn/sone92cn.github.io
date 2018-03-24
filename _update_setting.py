@@ -4,7 +4,7 @@ from PathTool import createTreeAsPath
 root = os.path.split(os.path.realpath(__file__))[0]
 
 path = os.path.join(root, "article_html")
-article = "article_html" + "/" + createTreeAsPath(path, fileRegular=r'^.+\.html$', scanSubFolder=False, relativePath=True)[0]
+article = "article_html" + "/" + createTreeAsPath(path, fileRegular=r'^.+\.html$', scanSubFolder=True, relativePath=True)[0]
 
 path = os.path.join(root, "article_head")
 recent = ["article_head" + "/" + item for item in createTreeAsPath(path, fileRegular=r'^.+\.html$', scanSubFolder=False, relativePath=True)[:6]]
@@ -19,8 +19,7 @@ show_dt = {
 
 load_dt = {
     "content_0":{},
-    "content_1":{
-		"#content_1 #wrap-col-head":article},
+    "content_1":{},
     "content_2":{},
     "content_3":{}
 }

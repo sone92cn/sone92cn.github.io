@@ -57,25 +57,10 @@ function showContent(n){
 };
 
 function viewHead(content, action){
-	action = name||'x';
-	if (action == '0'){
-		$.each(var_append[content], function(name, value){
-			$(name).html("");
-			$.each(value, function(i, item){
-				$.get(item, function(data, status){
-					if (status=="success"){$(name).append(data);}
-					else{alert("Fail to download " + item);};
-				});
-			});
-		});
-		$(content + " #main-content .wrap-col").hide();
-		$(var_show[content]).show();
-	}else if(action == "1"){
-		$.each(var_load[content], function(name, value){
-			$(name).load(value);
-		});
-		$(content + " #main-content .wrap-col").hide();
-		$(var_show[content]).show();
+	if (action != "null"){
+		$(content + " #wrap-col-body").hide();
+		$(content + " #wrap-col-head").show();
+		$(content + " #wrap-col-head").load(action);
 	}else{
 		$(content + " #wrap-col-body").hide();
 		$(content + " #wrap-col-head").show();

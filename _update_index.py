@@ -1,4 +1,5 @@
-import os
+import os, pickle
+from PathTool import createTreeAsPath
 from jinja2 import FileSystemLoader, Environment
 
 path = os.path.split(os.path.realpath(__file__))[0]
@@ -8,27 +9,36 @@ outputfile = os.path.join(path, "index.html")
 print(inputfile)
 print(outputfile)
 
-"""
-try:
-	rfile = open(inputfile, "r", encoding="utf-8")
-	wfile = open(outputfile, "w", encoding="utf-8")
-except:
-	print("Fail to open files.")
-else:
-	text = rfile.read()
-	template = Template(text)
-	html = template.render(title="Felix's Page")
-	wfile.write(html)
-	rfile.close()
-	wfile.close()
-	print("Succeed to update file.")
-"""
+with open("articles.pkl", "rb") as handle:
+    articles = pickle.load(handle)
 
+keys = sorted(articles.keys())[:6]
+recents = {key:articles[key] for key in keys}
+
+print(recents)
+print(articles)
+
+#path, fileRegular='', scanSubFolder=True, treeMode=False, relativePath=False, forFile=True, maxloops=100
+
+i = 0
+menu = {}
+heads = createTreeAsPath("article_html", scanSubFolder=False, relativePath=True, forFile=False)
+for head in heads:
+    i += 1
+    title = head[3:]
+    titles = createTreeAsPath(os.path.join("article_html", head), scanSubFolder=False, relativePath=True, forFile=False)
+    menu[title] = {"id":"content_menu_"+str(i), "child":{}}
+    child = menu[title]["child"]
+    for title in titles:
+        child[title[3:]] = os.path.join(os.path.join(os.path.join("article_html", head), title), "menu.htm").replace("\\", "/")
+print(menu)
+
+"""
 menu = {
 	"财税审计":{"id":"content_menu_1","child":{"小类一":"article_html/2018-02-26-Git基本用法.html", "小类二":"article_html/2018-02-27-PyMySQL基本用法.html", "小类三":"html/about.html"}},
 	"数据分析":{"id":"content_menu_2","child":{"小类一":"article_html/2018-02-26-Git基本用法.html", "小类二":"article_html/2018-02-27-PyMySQL基本用法.html", "小类三":"html/about.html"}},
 	"信息技术":{"id":"content_menu_3","child":{"小类一":"article_html/2018-02-26-Git基本用法.html", "小类二":"article_html/2018-02-27-PyMySQL基本用法.html", "小类三":"html/about.html"}},
-}
+}"""
 
 try:
     TemplateLoader = FileSystemLoader(searchpath=os.path.join(path, "template"), encoding='utf-8')
@@ -37,10 +47,10 @@ try:
 except:
     print("Fail to open files.")
 else:
-    html = template.render(title="Felix's Page", menu=menu)
+    html = template.render(title="Felix's Page", menu=menu, recents=recents)
     wfile = open(outputfile, "w", encoding="utf-8")
     wfile.write(html)
     wfile.close()
     print("Succeed to update file.")
 
-os.system("pause")
+#os.system("pause")

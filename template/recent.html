@@ -1,15 +1,12 @@
 <div class="head">
-	<h2>最近上传</h2>
+	<h2 onclick="javascript:viewHead('#content_0','null');">最近上传</h2>
 </div>
 <div class="menu">
+	{% for recent in recents %}
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle('#content_0', 'article_html/2018-02-26-Git\u57fa\u672c\u7528\u6cd5.html');">Git&GitHub使用帮助</a></h4>
-		<p>2017-06-30</p>
+		<h4><a href="javascript:viewArticle('#content_0', '{{ recents[recent] }}');">{{recent[11:]}}</a></h4>
+		<p>{{recent[:10]}}</p>
 	</div>
-	<div class="post">
-		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle('#content_0', 'article_html/2018-02-27-PyMySQL\u57fa\u672c\u7528\u6cd5.html');">PyMySQL基本用法</a></h4>
-		<p>November 10 ,2012</p>
-	</div>
+	{% endfor %}
 </div>

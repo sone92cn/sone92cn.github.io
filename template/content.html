@@ -7,7 +7,7 @@
 			</li>
 			{% with child = menu[item]['child'] %}
 				{% for value in child %}
-					<li class="body body_{{id}}" onclick="$('#content_1 #wrap-col-head').load('{{child[value]}}')">
+					<li class="body body_{{id}}" onclick="javascript:viewHead('#content_1', '{{child[value]}}')">
 						<p> {{value}} </p>
 					</li>
 				{% endfor %}
