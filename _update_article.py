@@ -23,10 +23,11 @@ def getHeadLines(text, n):
     else:
         return text[:index+1]
 
-def writeMenu(fname, bodys):
+def writeMenu(fname, bodys, auto_add=True):
     with open(fname, "w", encoding="utf-8") as handle:
         handle.write("<article>")
-        handle.write("<p><a id=\"view_head\" href=\"javascript:viewHead('#content_1');\">返回</a></p>")
+        if auto_add:
+            handle.write("<p><a id=\"view_head\" href=\"javascript:viewHead('#content_1', 'template/menu.html');\">返回</a></p>")
         if len(bodys) > 0:
             for body in bodys:
                 handle.write("<h2><a href=\"javascript:viewArticle('#content_1', '%s');\">%s</a></h2>" % (bodys[body], body[11:]))
@@ -134,7 +135,7 @@ if __name__ == "__main__":
     with open('articles.pkl', 'wb') as handle:
         pickle.dump(bodys, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-    writeMenu("template/menu.html", bodys)
+    writeMenu("template/menu.html", bodys, auto_add=False)
     folders = createTreeAsPath(path, scanSubFolder=True, relativePath=True, forFile=False)
     for folder in folders:
         fpath = os.path.join("article_html", folder)
