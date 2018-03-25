@@ -59,7 +59,6 @@ function showContent(n){
 function viewHead(content, action){
 	if (content_a == 0){
 		content = "#content_0";
-		alert("0");
 	}
 	if (action != "null"){
 		$(content + " #wrap-col-body").hide();
