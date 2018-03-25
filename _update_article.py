@@ -26,6 +26,7 @@ def getHeadLines(text, n):
 def writeMenu(fname, bodys):
     with open(fname, "w", encoding="utf-8") as handle:
         handle.write("<article>")
+        handle.write("<p><a id=\"view_head\" href=\"javascript:viewHead('#content_1');\">返回</a></p>")
         if len(bodys) > 0:
             for body in bodys:
                 handle.write("<h2><a href=\"javascript:viewArticle('#content_1', '%s');\">%s</a></h2>" % (bodys[body], body[11:]))
@@ -102,6 +103,7 @@ if __name__ == "__main__":
             print("Fail to create %s." % tfile)
         else:
             output_file.write("<article>")
+            output_file.write("<p><a id=\"view_head\" href=\"javascript:viewHead('#content_1');\">返回</a></p>")
             output_file.write(markdown.markdown(input_text))
             output_file.write("</article>")
             output_file.close()
