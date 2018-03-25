@@ -61,6 +61,8 @@ function viewHead(content, action){
 		$(content + " #wrap-col-body").hide();
 		$(content + " #wrap-col-head").show();
 		$(content + " #wrap-col-head").load(action);
+		$(content + " #wrap-col-head #view_head").attr("href", "javascript:viewHead('" + content + "');");
+		
 	}else{
 		$(content + " #wrap-col-body").hide();
 		$(content + " #wrap-col-head").show();
@@ -71,4 +73,5 @@ function viewArticle(content, article){
 	$(content + " #wrap-col-head").hide();
 	$(content + " #wrap-col-body").show();
 	$(content + " #wrap-col-body").load(article);
+	$(content + " #wrap-col-body #view_head").attr("href", "javascript:viewHead('" + content + "');");
 };
