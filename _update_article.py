@@ -4,7 +4,7 @@ Created on Tue Feb 27 11:44:43 2018
 @author: Felix
 """
 
-import os, markdown, pickle
+import os, markdown, pickle, json
 from PathTool import createTreeAsPath, createDirAsTree
 
 def getHeadLines(text, n):
@@ -143,6 +143,47 @@ if __name__ == "__main__":
         files = {os.path.splitext(file)[0]:os.path.join(fpath, file).replace("\\", "/") for file in files}
         writeMenu(os.path.join(fpath, "menu.htm"), files)
 
+    path = os.path.join(root, "article_html")
+    article = "article_html" + "/" + \
+              createTreeAsPath(path, fileRegular=r'^.+\.html$', scanSubFolder=True, relativePath=True)[0]
+
+    """update setting"""
+    path = os.path.join(root, "article_head")
+    recent = ["article_head" + "/" + item for item in
+              createTreeAsPath(path, fileRegular=r'^.+\.html$', scanSubFolder=False, relativePath=True)[:6]]
+
+    show_dt = {
+        "content_0": "#content_0 #wrap-col-head",
+        "content_1": "#content_1 #wrap-col-head",
+        "content_2": "#content_2 #wrap-col-body",
+        "content_3": "#content_3 #wrap-col-body",
+        "content_4": "#content_4 #wrap-col-body"
+    }
+
+    load_dt = {
+        "content_0": {},
+        "content_1": {},
+        "content_2": {},
+        "content_3": {}
+    }
+
+    append_dt = {
+        "content_0": {
+            "#content_0 #wrap-col-head": recent},
+        "content_1": {},
+        "content_2": {},
+        "content_3": {}
+    }
+    css_show = "var var_show=" + json.dumps(show_dt) + ";"
+    css_load = "var var_load=" + json.dumps(load_dt) + ";"
+    css_append = "var var_append=" + json.dumps(append_dt) + ";"
+
+    with open("js/setting.js", "w", encoding="utf-8") as file:
+        file.write(css_show)
+        file.write(css_load)
+        file.write(css_append)
+
+    print("Succeed to update js/setting.js.")
 
     print("Head: %s files succeed, %s files fail." % (succ_h, fail_h))
     print("Create: %s files succeed, %s files fail." % (succ_c, fail_c))
