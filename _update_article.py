@@ -164,7 +164,8 @@ if __name__ == "__main__":
         "content_0": {},
         "content_1": {},
         "content_2": {},
-        "content_3": {}
+        "content_3": {},
+        "content_4": {}
     }
 
     append_dt = {
@@ -172,7 +173,8 @@ if __name__ == "__main__":
             "#content_0 #wrap-col-head": recent},
         "content_1": {},
         "content_2": {},
-        "content_3": {}
+        "content_3": {},
+        "content_4": {}
     }
     css_show = "var var_show=" + json.dumps(show_dt) + ";"
     css_load = "var var_load=" + json.dumps(load_dt) + ";"
@@ -183,7 +185,8 @@ if __name__ == "__main__":
         file.write(css_load)
         file.write(css_append)
 
-    print("Succeed to update js/setting.js.")
+    print("\n")
+    print("Setting: updated!")
 
     print("Head: %s files succeed, %s files fail." % (succ_h, fail_h))
     print("Create: %s files succeed, %s files fail." % (succ_c, fail_c))
