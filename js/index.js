@@ -22,7 +22,7 @@ function blurSearch(search){
 function searchResult(){
 	text = $("#input_search").val();
 	if ((text.length > 0) && (text != "Search...")) {
-		alert("搜索关键词：" + text);
+		alert("搜索关键词：" + text + "\n<功能建设中，敬请关注！>");
 	}else{
 		alert("请输入需要搜索的关键词！");
 	};
