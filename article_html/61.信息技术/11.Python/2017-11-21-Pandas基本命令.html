@@ -1,0 +1,21 @@
+<article><p><a id="view_head" href="javascript:viewHead('#content_1');">返回</a></p><h1>Pandas基本命令</h1>
+<h2>1、导入CSV</h2>
+<pre><code>df = pd.read_csv("fname.csv", index_col=[], dtype={}, parse_dates=[], comment=None, encoding="utf8", nrows=10)
+df = pd.read_csv("fname.csv", index_col=["id"], dtype={"order_id": "int64"}, parse_dates=["create_date", "create_time", "update_time"], comment=None, encoding="utf8")
+</code></pre>
+<h2>2、查看基本信息</h2>
+<pre><code>df.shape
+df.dtypes
+</code></pre>
+<h2>3、转换数据类型</h2>
+<pre><code>df['col'] = df['col'].astype("float64")
+</code></pre>
+<h2>4、数据筛选</h2>
+<pre><code>df.query("id &gt; 0")
+</code></pre>
+<h2>5、数据排序</h2>
+<pre><code>df.sort_values(by, axis=0, ascending=True, inplace=False, kind='quicksort', na_position='last')
+</code></pre>
+<h2>6、数据连接</h2>
+<pre><code>pd.concat(objs, axis=0, join='outer', join_axes=None, ignore_index=False, keys=None, levels=None, names=None, verify_integrity=False)
+</code></pre></article>

@@ -12,7 +12,7 @@ print("Output", outputfile)
 with open("articles.pkl", "rb") as handle:
     articles = pickle.load(handle)
 
-keys = sorted(articles.keys())[:6]
+keys = list(articles.keys())[:6]
 recents = {key:articles[key] for key in keys}
 
 i = 0

@@ -59,7 +59,8 @@ if __name__ == "__main__":
 
     files = createTreeAsPath(path, fileRegular=r'^.+\.md$', scanSubFolder=True, relativePath=True)
     heads = {os.path.splitext(os.path.split(file)[1])[0]: file for file in files}
-    keys = sorted(heads.keys())[:6]
+    keys = reversed(sorted((heads.keys())))
+    keys = [key for key in keys][:5]
     heads = {key:heads[key] for key in keys}
 
     for key in heads:
@@ -128,8 +129,9 @@ if __name__ == "__main__":
 
     files = createTreeAsPath(path, fileRegular=r'^.+\.html$', scanSubFolder=True, relativePath=True)
     bodys = {os.path.splitext(os.path.split(file)[1])[0]: file for file in files}
-    keys = sorted(bodys.keys())
+    keys = reversed(sorted(bodys.keys()))
     bodys = {key: os.path.join("article_html", bodys[key]) for key in keys}
+
 
     bodys = {key:bodys[key].replace("\\", "/") for key in bodys}
     with open('articles.pkl', 'wb') as handle:
@@ -143,15 +145,8 @@ if __name__ == "__main__":
         files = {os.path.splitext(file)[0]:os.path.join(fpath, file).replace("\\", "/") for file in files}
         writeMenu(os.path.join(fpath, "menu.htm"), files)
 
-    path = os.path.join(root, "article_html")
-    article = "article_html" + "/" + \
-              createTreeAsPath(path, fileRegular=r'^.+\.html$', scanSubFolder=True, relativePath=True)[0]
-
-    """update setting"""
     path = os.path.join(root, "article_head")
-    recent = ["article_head" + "/" + item for item in
-              createTreeAsPath(path, fileRegular=r'^.+\.html$', scanSubFolder=False, relativePath=True)[:6]]
-
+    recent = ["article_head" + "/" + file for file in reversed(createTreeAsPath(path, fileRegular=r'^.+\.html$', scanSubFolder=False, relativePath=True))]
     show_dt = {
         "content_0": "#content_0 #wrap-col-head",
         "content_1": "#content_1 #wrap-col-head",
