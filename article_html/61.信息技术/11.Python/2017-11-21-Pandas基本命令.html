@@ -17,5 +17,21 @@ df.dtypes
 <pre><code>df.sort_values(by, axis=0, ascending=True, inplace=False, kind='quicksort', na_position='last')
 </code></pre>
 <h2>6、数据连接</h2>
-<pre><code>pd.concat(objs, axis=0, join='outer', join_axes=None, ignore_index=False, keys=None, levels=None, names=None, verify_integrity=False)
+<pre><code>pd.merge(left, right, how='inner', on=None, left_on=None, right_on=None,left_index=False, right_index=False, sort=True, suffixes=('_x', '_y'), copy=True, indicator=False)
+
+pd.concat(objs, axis=0, join='outer', join_axes=None, ignore_index=False, keys=None, levels=None, names=None, verify_integrity=False)
+
+left.join(right, on=key_or_keys) 
+即：pd.merge(left, right, left_on=key_or_keys, right_index=True,how='left', sort=False)
+
+df1.append(df2)
+df1.append([df2, df3], ignore_index=True)
+</code></pre>
+<h2>7、删除重复数据</h2>
+<pre><code>tb.drop_duplicates(subset=['user_id'], keep=False)
+tb.drop_duplicates(subset=['user_id', "ad_id"], keep="first")
+tb.drop_duplicates(subset=['user_id', "ad_id"], keep="last")
+</code></pre>
+<h2>8、获取唯一值</h2>
+<pre><code>tb["user_id"].unique()
 </code></pre></article>
