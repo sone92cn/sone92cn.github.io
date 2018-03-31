@@ -1,7 +1,8 @@
 <article><p><a id="view_head" href="javascript:viewHead('#content_1');">返回</a></p><h1>Pandas基本命令</h1>
 <h2>1、导入CSV</h2>
-<pre><code>df = pd.read_csv("fname.csv", index_col=[], dtype={}, parse_dates=[], comment=None, encoding="utf8", nrows=10)
-df = pd.read_csv("fname.csv", index_col=["id"], dtype={"order_id": "int64"}, parse_dates=["create_date", "create_time", "update_time"], comment=None, encoding="utf8")
+<pre><code>(1)df = pd.read_csv("fname.csv", index_col=[], dtype={}, parse_dates=[], comment=None, encoding="utf8", nrows=10)
+
+(2)df = pd.read_csv("fname.csv", index_col=["id"], dtype={"order_id": "int64"}, parse_dates=["create_date", "create_time", "update_time"], comment=None, encoding="utf8")
 </code></pre>
 <h2>2、查看基本信息</h2>
 <pre><code>df.shape
@@ -29,9 +30,40 @@ df1.append([df2, df3], ignore_index=True)
 </code></pre>
 <h2>7、删除重复数据</h2>
 <pre><code>tb.drop_duplicates(subset=['user_id'], keep=False)
+
 tb.drop_duplicates(subset=['user_id', "ad_id"], keep="first")
+
 tb.drop_duplicates(subset=['user_id', "ad_id"], keep="last")
 </code></pre>
 <h2>8、获取唯一值</h2>
 <pre><code>tb["user_id"].unique()
+</code></pre>
+<h2>9、分组运算</h2>
+<pre><code>tb.groupby("user_id").agg([np.max,np.sum])
+
+tb.groupby("user_id").agg({"id":[pd.Series.idxmin,pd.Series.idxmax],"fee":[np.max,np.sum],"status":[pd.Series.count],"ad_id":[pd.Series.unique]})
+</code></pre>
+<h2>10、修改Index</h2>
+<pre><code>df.setIndex("InxName",drop=True,append=False,inplace=False,verify_integrity=False) 设置单索引和复合索引
+
+df.reindex([IndexList]) 重新指定Index
+
+df.reset_index(level=None,drop=False,inplace=False,col_level=0,col_fill=”)还原索引，变为默认的整型索引
+</code></pre>
+<h2>11、DatetimeIndex转PeriodIndex</h2>
+<pre><code>df.to_period(freq="M", copy=True)  #要求index为datetimeIndex
+
+df["id"].to_period(freq="M", copy=True)   #要求df的index为datetimeIndex
+</code></pre>
+<h2>12、DateTime转Period</h2>
+<pre><code>df["time_ym"].dt.year  #返回年份
+df["time_ym"].dt.month  #返回月份
+df["time_ym"].dt.to_period(freq="M")   #返回Period
+</code></pre>
+<h2>13、计算出现的次序</h2>
+<pre><code>tb["ad_index"] = tb['ad_id'].groupby(tb['ad_id']).transform(lambda x:np.arange(0, len(x))) + 1
+tb["user_index"] = tb['user_id'].groupby(tb['user_id']).transform(lambda x:np.arange(0, len(x))) + 1
+
+tb["user_index"] = tb[['user_id','ad_id']].groupby(['user_id']).transform(lambda x:np.arange(0, len(x))) + 1
+tb["ad_index"] = tb[['user_id','ad_id']].groupby(['ad_id']).transform(lambda x:np.arange(0, len(x))) + 1
 </code></pre></article>
