@@ -36,7 +36,7 @@ header .wrap-nav ul li:hover a{color:#000000;}
 #main-content article h2{font-size: large;}
 #main-content article p{font-size: medium; margin:0.5em;text-indent:0em;}
 #main-content article pre{overflow-x:auto;margin:0.5em; padding:0.5em; background-color:#F0F0F0;border-radius:0.3em;}   /* white-space:pre-wrap; 自动换行 */
-#main-content article img{float:left; margin:0 20px 10px 0; padding:3px; border:1px solid #EEEEEE;}
+#main-content article img{ margin:0 20px 10px 0; padding:3px; border:1px solid #EEEEEE;}
 
 #sidebar{}
 #sidebar .box {margin-bottom:20px; border: 1px solid #EEEEEE; padding: 20px;}
