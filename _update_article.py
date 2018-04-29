@@ -82,7 +82,7 @@ if __name__ == "__main__":
             output_file.write(markdown.markdown(input_text))
             url = os.path.join("/article_html", heads[key]).replace("\\", "/")
             url = os.path.splitext(url)[0] + ".html"
-            output_file.write(f"\n<p><a href=\"{url}\">...</a></p></article>")
+            output_file.write(f"\n<p><a href=\"javascript:viewArticle('#content_0', '{url}');\">...</a></p></article>")
             output_file.close()
             succ_h += 1
             print("Succeed to create %s." % hfile)
