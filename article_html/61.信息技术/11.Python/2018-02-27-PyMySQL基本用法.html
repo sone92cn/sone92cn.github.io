@@ -18,13 +18,18 @@ curcor = conn.cursor(cursorclass=pymysql.cursors.DictCursor)  字典游标
 effect_row = cursor.execute("update tb7 set pass = '123' where nid = %s;", (11,))
 effect_row = cursor.executemany("insert into tb7(user, pass, licnese) values(%s, %s, %s);", [("u1", "u1pass", "11111"),("u2", "u2pass", "22222")])
 </code></pre>
-<h2>6、提交修改</h2>
+<h2>6、取回并读取查询结果</h2>
+<pre><code>nrow = cur.rowcount 获取记录行数
+row0 = cur.fetone() 获取一条记录
+rows = cur.fetchall() 获取所有记录
+</code></pre>
+<h2>7、提交修改</h2>
 <pre><code>conn.commit()
 &lt;insert, update需要提交才能生效&gt;
 </code></pre>
-<h2>7、关闭游标</h2>
+<h2>8、关闭游标</h2>
 <pre><code>cursor.close()
 </code></pre>
-<h2>8、关闭连接</h2>
+<h2>9、关闭连接</h2>
 <pre><code>conn.close()
 </code></pre></article>
