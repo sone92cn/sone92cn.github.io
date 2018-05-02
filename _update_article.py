@@ -30,7 +30,7 @@ def writeMenu(fname, bodys, auto_add=True):
             handle.write("<p><a id=\"view_head\" href=\"javascript:viewHead('#content_1', 'template/menu.html');\">返回</a></p>")
         if len(bodys) > 0:
             for body in bodys:
-                handle.write("<h2><a href=\"javascript:viewArticle('#content_1', '%s');\">%s</a></h2>" % (bodys[body], body[11:]))
+                handle.write("<h2><a href=\"javascript:viewArticle('#content_1', '%s');\">%s %s</a></h2>" % (bodys[body], body[:10], body[11:]))
         else:
             handle.write("<h2>此类别下暂无文章，请继续关注！</h2>")
         handle.write("</article>")

@@ -32,8 +32,7 @@
 <pre><code>安装成功后：net start mysql启动MySQL服务器；
 </code></pre>
 <h2>6、设置初始密码</h2>
-<pre><code>执行"mysqladmin -u root password myword"设置初始密码；如果无法直接重置，mysql\data目录下，查看安装生成的.err文件（等同linux下的log日志文件），定位到temporary password获取临时登录密码。
-</code></pre>
+<p>执行"mysqladmin -u root password myword"设置初始密码；如果无法直接重置，mysql\data目录下，查看安装生成的.err文件（等同linux下的log日志文件），定位到temporary password获取临时登录密码。</p>
 <h2>7、MySQL登录</h2>
 <pre><code>执行：mysql -uroot -p
 &lt;按后续提示输入密码&gt;

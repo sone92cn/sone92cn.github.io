@@ -47,4 +47,5 @@ else:
     wfile.close()
     print("Succeed to update index page.")
 
+
 os.system("pause")

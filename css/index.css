@@ -31,12 +31,12 @@ header .wrap-nav ul li:hover a{color:#000000;}
 
 #main-content{}
 #main-content .wrap-col {display:none;}
-#main-content article{ margin-bottom:40px; padding:20px; border: 1px solid #EEEEEE;}
+#main-content article{ margin-bottom:40px; padding:20px; border: 1px solid #EEEEEE;color:#2E2E2E}
 #main-content article h1{font-size: x-large; text-align: center; border-bottom: 1px solid #EEEEEE; padding: 10px 0 30px 0; margin-bottom: 20px;}
 #main-content article h2{font-size: large;}
 #main-content article p{font-size: medium; margin:0.5em;text-indent:0em;}
 #main-content article pre{overflow-x:auto;margin:0.5em; padding:0.5em; background-color:#F0F0F0;border-radius:0.3em;}   /* white-space:pre-wrap; 自动换行 */
-#main-content article img{ margin-left:auto;margin-right:auto;}
+#main-content article img{ margin-left:auto;margin-right:auto;max-width:90%;display:block}
 #main-content article a{text-decoration:none}
 
 #sidebar{}
