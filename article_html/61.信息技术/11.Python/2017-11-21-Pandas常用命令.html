@@ -1,7 +1,7 @@
-<article><p><a id="view_head" href="javascript:viewHead('#content_1');">返回</a></p><h1>Pandas常用命令</h1>
+<article><p style="text-indent:0em;"><a id="view_head" href="javascript:viewHead('#content_1');">返回</a></p><h1>Pandas常用命令</h1>
 <h2>1、导入CSV</h2>
 <pre><code>(1)df = pd.read_csv("fname.csv", index_col=[], dtype={}, parse_dates=[], comment=None, encoding="utf8", nrows=10)
-(2)df = pd.read_csv("fname.csv", index_col=["id"], dtype={"order_id": "int64"}, parse_dates=["create_date", "create_time", "update_time"], comment=None, encoding="utf8")
+(2)df = pd.read_csv("fname.csv", index_col=["id"], dtype={"order_id": "int64"}, parse_dates=["create_date", "create_time"], comment=None, encoding="utf8", float_precision="")
 </code></pre>
 <h2>2、查看基本信息</h2>
 <pre><code>df.shape
@@ -78,4 +78,7 @@ tb["ad_index"] = tb[['user_id','ad_id']].groupby(['ad_id']).transform(lambda x:n
 <h2>14、数据表透视</h2>
 <pre><code>tb.pivot(index=None, columns=None, values=None)  #数据透视，无法计算，要求透视后的Index不重复
 pd.pivot_table(data, values=None, index=None, columns=None, aggfunc='mean', fill_value=None, margins=False, dropna=True, margins_name='All')    #使用透视DataFrame,支持agg聚合参数， margins=True,透视后求和
+</code></pre>
+<h2>15、另存为csv</h2>
+<pre><code>tb.to_csv(path_or_buf='path', sep=',', header=True, index=True, index_label=None)
 </code></pre></article>
