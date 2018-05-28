@@ -3,49 +3,50 @@ from PathTool import createTreeAsPath
 from jinja2 import FileSystemLoader, Environment
 
 path = os.path.split(os.path.realpath(__file__))[0]
-inputfile = os.path.join(path, "template\\index.html")
-outputfile = os.path.join(path, "index.html")
 
-print("Input:", inputfile)
-print("Output", outputfile)
+def RenderTemplate(menu, recents):
+    try:
+        TemplateLoader = FileSystemLoader(searchpath=os.path.join(path, "template"), encoding='utf-8')
+        TemplateEnv = Environment(loader=TemplateLoader)
+        template = TemplateEnv.get_template("index.html")
+    except:
+        return False
+    else:
+        html = template.render(title="Felix's Page", menu=menu, recents=recents)
+        wfile = open(outputfile, "w", encoding="utf-8")
+        wfile.write(html)
+        wfile.close()
+        return True
+    
+if __name__ == "__main__":
+    
+    inputfile = os.path.join(path, "template\\index.html")
+    outputfile = os.path.join(path, "index.html")
 
-with open("articles.pkl", "rb") as handle:
-    articles = pickle.load(handle)
+    print("Input:", inputfile)
+    print("Output", outputfile)
 
-keys = list(articles.keys())[:6]
-recents = {key:articles[key] for key in keys}
+    with open("articles.pkl", "rb") as handle:
+        articles = pickle.load(handle)
 
-i = 0
-menu = {}
-heads = createTreeAsPath("article_html", scanSubFolder=False, relativePath=True, forFile=False)
-for head in heads:
-    i += 1
-    title = head[3:]
-    titles = createTreeAsPath(os.path.join("article_html", head), scanSubFolder=False, relativePath=True, forFile=False)
-    menu[title] = {"id":"content_menu_"+str(i), "child":{}}
-    child = menu[title]["child"]
-    for title in titles:
-        child[title[3:]] = os.path.join(os.path.join(os.path.join("article_html", head), title), "menu.htm").replace("\\", "/")
+    keys = list(articles.keys())[:6]
+    recents = {key:articles[key] for key in keys}
 
-"""
-menu = {
-	"财税审计":{"id":"content_menu_1","child":{"小类一":"article_html/2018-02-26-Git基本用法.html", "小类二":"article_html/2018-02-27-PyMySQL基本用法.html", "小类三":"html/about.html"}},
-	"数据分析":{"id":"content_menu_2","child":{"小类一":"article_html/2018-02-26-Git基本用法.html", "小类二":"article_html/2018-02-27-PyMySQL基本用法.html", "小类三":"html/about.html"}},
-	"信息技术":{"id":"content_menu_3","child":{"小类一":"article_html/2018-02-26-Git基本用法.html", "小类二":"article_html/2018-02-27-PyMySQL基本用法.html", "小类三":"html/about.html"}},
-}"""
+    i = 0
+    menu = {}
+    heads = createTreeAsPath("article_html", scanSubFolder=False, relativePath=True, forFile=False)
+    for head in heads:
+        i += 1
+        title = head[3:]
+        titles = createTreeAsPath(os.path.join("article_html", head), scanSubFolder=False, relativePath=True, forFile=False)
+        menu[title] = {"id":"content_menu_"+str(i), "child":{}}
+        child = menu[title]["child"]
+        for title in titles:
+            child[title[3:]] = os.path.join(os.path.join(os.path.join("article_html", head), title), "menu.htm").replace("\\", "/")
 
-try:
-    TemplateLoader = FileSystemLoader(searchpath=os.path.join(path, "template"), encoding='utf-8')
-    TemplateEnv = Environment(loader=TemplateLoader)
-    template = TemplateEnv.get_template("index.html")
-except:
-    print("Fail to open files.")
-else:
-    html = template.render(title="Felix's Page", menu=menu, recents=recents)
-    wfile = open(outputfile, "w", encoding="utf-8")
-    wfile.write(html)
-    wfile.close()
-    print("Succeed to update index page.")
-
+    if RenderTemplate(menu=menu, recents=recents):
+        print("Succeed to update index page.")
+    else:
+        print("Fail to update index page.")
 
 os.system("pause")
