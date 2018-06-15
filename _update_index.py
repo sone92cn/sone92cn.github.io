@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
     i = 0
     menu = {}
-    heads = createTreeAsPath("article_html", scanSubFolder=False, relativePath=True, forFile=False)
+    heads = createTreeAsPath(os.path.join(path, "article_html"), scanSubFolder=False, relativePath=True, forFile=False)
     for head in heads:
         i += 1
         title = head[3:]
