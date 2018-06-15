@@ -40,7 +40,7 @@ if __name__ == "__main__":
         menu[title] = {"id":"content_menu_"+str(i), "child":{}}
         child = menu[title]["child"]
         for title in titles:
-            child[title[3:]] = os.path.join(os.path.join(os.path.join(os.path.join(path, "article_html"), head), title), "menu.htm").replace("\\", "/")
+            child[title[3:]] = os.path.join(os.path.join(os.path.join("article_html", head), title), "menu.htm").replace("\\", "/")
 
     if RenderTemplate(menu=menu, recents=recents, path=path):
         print("Succeed to update index page.")
