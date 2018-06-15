@@ -36,11 +36,11 @@ if __name__ == "__main__":
     for head in heads:
         i += 1
         title = head[3:]
-        titles = createTreeAsPath(os.path.join("article_html", head), scanSubFolder=False, relativePath=True, forFile=False)
+        titles = createTreeAsPath(os.path.join(os.path.join(path, "article_html"), head), scanSubFolder=False, relativePath=True, forFile=False)
         menu[title] = {"id":"content_menu_"+str(i), "child":{}}
         child = menu[title]["child"]
         for title in titles:
-            child[title[3:]] = os.path.join(os.path.join(os.path.join("article_html", head), title), "menu.htm").replace("\\", "/")
+            child[title[3:]] = os.path.join(os.path.join(os.path.join(os.path.join(path, "article_html"), head), title), "menu.htm").replace("\\", "/")
 
     if RenderTemplate(menu=menu, recents=recents, path=path):
         print("Succeed to update index page.")
