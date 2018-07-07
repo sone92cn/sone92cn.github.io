@@ -1,4 +1,5 @@
 import os, pickle
+from FelixFunc import saveJSON
 from PathTool import createTreeAsPath
 from jinja2 import FileSystemLoader, Environment
 
@@ -26,6 +27,8 @@ if __name__ == "__main__":
     
     with open(os.path.join(path, "articles.pkl"), "rb") as handle:
         articles = pickle.load(handle)
+        
+    saveJSON(os.path.join(path, "js/articles.json"), articles)
     
     keys = list(articles.keys())[:6]
     recents = {key:articles[key] for key in keys}
