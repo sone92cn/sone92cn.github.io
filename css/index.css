@@ -121,6 +121,33 @@ header .wrap-nav ul li:hover a{color:#000000;}
 	text-indent:0.8em;
 }
 
+#content_1 #sidebar .box {
+	border: none;
+}
+
+#content_1 #sidebar .box ul li p {
+	width: 100%;
+	padding: 14px 22px;
+	text-decoration: none;
+	font-size: 13px;
+	white-space: nowrap;
+	overflow: hidden;
+	-o-transition: color .2s linear,background .2s linear;
+	-moz-transition: color .2s linear,background .2s linear;
+	-webkit-transition: color .2s linear,background .2s linear;
+	transition: color .2s linear,background .2s linear;
+	background: #fff;
+	color: #555;
+	border-bottom: solid 1px #3b424d
+}
+
+#content_1 #sidebar .box ul li:hover>p{
+	color: #f0f0f0;
+	background: #3b424d;
+}
+
+
+
 @media only screen and (min-width: 960px) {
 	body .zerogrid{width:960px;}
 }

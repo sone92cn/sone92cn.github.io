@@ -3,12 +3,21 @@
 {% block css %}
 	<link rel="stylesheet" href="css/basic.css">
 	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/jquery-accordion-menu.css" type="text/css" />
 {% endblock %}
 
 {% block js_head %}
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="js/setting.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/index.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		  $("#jquery-accordion-menu ul li a").click(function(){
+			<!-- $(this).nextAll().toggle(); -->
+			$(this).next("ul").toggle();
+		  });
+		});
+	</script>
 {% endblock %}
 
 {% block js_tail %}
