@@ -1,0 +1,23 @@
+<article><p style="text-indent:0em;"><a id="view_head" href="javascript:viewHead('#content_1');">返回</a></p><h1>PLSQL递归查询</h1>
+<h2>1、语法格式</h2>
+<pre><code>SELECT [COLS] FROM table_name 
+[WHERE condition] 
+[START WITH start_condition] 
+CONNECT BY [ PRIOR COLUMN1 = COLUMN2 | COLUMN1 = PRIOR COLUMN2 [AND ...]];
+</code></pre>
+<h2>2、说明</h2>
+<p>用途：树状检索</p>
+<p>跟节点：START WITH不但可以指定一个根节点，还可以指定多个根节点。</p>
+<p>连接条件：其中用PRIOR表示上一条记录</p>
+<p>顺序：START WITH和CONNECT BY顺序不影响查询结果</p>
+<h2>3、示例</h2>
+<p>(1)找出编号为101的雇员及其所有上司：</p>
+<pre><code>select level, t.* from myemp t
+start with employee_id = 101
+connect by employee_id = prior manager_id;
+</code></pre>
+<p>(2)列出指定期间内的所有日期：</p>
+<pre><code>SELECT ROWNUM, TO_DATE('2019-02-01', 'yyyy-mm-dd') + ROWNUM - 1 ROWDATE 
+FROM DUAL
+CONNECT BY ROWNUM &lt; TO_DATE('2019-02-12', 'yyyy-mm-dd') - TO_DATE('2019-02-01', 'yyyy-mm-dd') + 2;
+</code></pre></article>

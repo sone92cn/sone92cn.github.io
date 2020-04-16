@@ -4,8 +4,12 @@ Created on Tue Feb 27 11:44:43 2018
 @author: Felix
 """
 
-import os, markdown, pickle, json
+import os
+import json
+import pickle
+import markdown
 from PathTool import createTreeAsPath, createDirAsTree
+
 
 def getHeadLines(text, n):
     count = 0
@@ -13,7 +17,7 @@ def getHeadLines(text, n):
     while True:
         index = text.find("\n", index + 1)
         if index == -1:
-            break;
+            break
         else:
             count += 1
         if count >= n:
@@ -22,6 +26,7 @@ def getHeadLines(text, n):
         return text
     else:
         return text[:index+1]
+
 
 def writeMenu(fname, bodys, auto_add=True):
     with open(fname, "w", encoding="utf-8") as handle:
@@ -35,6 +40,7 @@ def writeMenu(fname, bodys, auto_add=True):
         else:
             handle.write("<h2>此类别下暂无文章，请继续关注！</h2>")
         handle.write("</article>")
+
 
 if __name__ == "__main__":
     succ_h, fail_h = 0, 0
@@ -62,7 +68,7 @@ if __name__ == "__main__":
     heads = {os.path.splitext(os.path.split(file)[1])[0]: file for file in files}
     keys = reversed(sorted((heads.keys())))
     keys = [key for key in keys][:5]
-    heads = {key:heads[key] for key in keys}
+    heads = {key: heads[key] for key in keys}
 
     for key in heads:
         fname = os.path.split(heads[key])[1]
@@ -75,7 +81,7 @@ if __name__ == "__main__":
 
         try:
             output_file = open(hfile, "w", encoding="utf-8")
-        except:
+        except BaseException:
             fail_h += 1
             print("Fail to create %s." % hfile)
         else:
@@ -103,7 +109,7 @@ if __name__ == "__main__":
 
         try:
             output_file = open(tfile, "w", encoding="utf-8")
-        except:
+        except BaseException:
             fail_c += 1
             print("Fail to create %s." % tfile)
         else:
@@ -124,7 +130,7 @@ if __name__ == "__main__":
             tfile = os.path.join("article_html", tfile)
             try:
                 os.remove(tfile)
-            except:
+            except BaseException:
                 fail_d += 1
             else:
                 succ_d += 1
@@ -135,8 +141,7 @@ if __name__ == "__main__":
     keys = reversed(sorted(bodys.keys()))
     bodys = {key: os.path.join("article_html", bodys[key]) for key in keys}
 
-
-    bodys = {key:bodys[key].replace("\\", "/") for key in bodys}
+    bodys = {key: bodys[key].replace("\\", "/") for key in bodys}
     with open('articles.pkl', 'wb') as handle:
         pickle.dump(bodys, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
@@ -145,7 +150,7 @@ if __name__ == "__main__":
     for folder in folders:
         fpath = os.path.join("article_html", folder)
         files = createTreeAsPath(fpath, fileRegular=r'^.+\.html$', scanSubFolder=False, relativePath=True, forFile=True)
-        files = {os.path.splitext(file)[0]:os.path.join(fpath, file).replace("\\", "/") for file in files}
+        files = {os.path.splitext(file)[0]: os.path.join(fpath, file).replace("\\", "/") for file in files}
         writeMenu(os.path.join(fpath, "menu.htm"), files)
 
     path = os.path.join(root, "article_head")
@@ -191,4 +196,3 @@ if __name__ == "__main__":
     print("Delete: %s files succeed, %s files fail." % (succ_d, fail_d))
 
 os.system("pause")
-    
