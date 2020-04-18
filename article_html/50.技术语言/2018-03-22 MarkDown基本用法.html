@@ -1,0 +1,123 @@
+<article>
+<p style="text-indent:0em;"><a id="view_head" href="javascript:viewHead('#content_1');">返回</a></p>
+<h1>MarkDown基本用法</h1>
+<h2>1.标题</h2>
+<pre><code># h1
+## h2
+### h3
+#### h4
+##### h5
+###### h6
+</code></pre>
+<h2>2.分级标题</h2>
+<pre><code>h1
+===
+h2
+---
+</code></pre>
+<h2>3.引用</h2>
+<pre><code>&gt; aaaaaaaaa
+&gt;&gt; bbbbbbbbb
+</code></pre>
+<h2>4.行内标记</h2>
+<pre><code>`
+&lt;div&gt;   
+&lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+`
+</code></pre>
+<p>注：标记内的文本会被转换为一行</p>
+<h2>5.代码块</h2>
+<h3>5.1 用(Tab)缩进</h3>
+<h3>5.2 用(```)注释</h3>
+<pre><code>```
+Code
+```
+</code></pre>
+<h3>5.3 自定义语法</h3>
+<pre><code>```javascript
+var num = 0;
+for (var i=0; i&lt;5; i++){
+    num+=i;}
+console.log(num);
+```
+</code></pre>
+<h2>6.插入链接</h2>
+<h3>6.1 内链式</h3>
+<pre><code>[百度](http://www.baidu.com/){:target="_blank"}
+</code></pre>
+<h3>6.2 引用式</h3>
+<pre><code>[百度][2]{target="_blank"}
+[2]:http://www.baidu.com/
+</code></pre>
+<h2>7.插入图片</h2>
+<h3>7.1 内链式</h3>
+<pre><code>![name](./01.png 'info')
+</code></pre>
+<h3>7.2 引用式</h3>
+<pre><code>![name][01]
+[01]: ./01.png '描述'
+</code></pre>
+<h2>8.插入图片带有链接</h2>
+<h3>8.1 内链式</h3>
+<pre><code>[![](./01.png '百度')](http://www.baidu.com){:target="_blank"}
+</code></pre>
+<h3>8.2 引用式</h3>
+<pre><code>[![](./01.png '百度')][5]{:target="_blank"}
+[5]: http://www.baidu.com
+</code></pre>
+<h2>9.序表</h2>
+<h3>9.1 有序序列</h3>
+<pre><code>1. one
+2. two
+3. three
+</code></pre>
+<h3>9.2 无序列表</h3>
+<pre><code>* one
+* two
+* three
+</code></pre>
+<h2>10.任务列表</h2>
+<pre><code>- [ ] 任务一
+- [x] 任务二 
+- [ ] 任务三
+</code></pre>
+<h2>11.表格</h2>
+<pre><code>|   标题一   |    标题二     |    标题三    |
+|:----------:|:------------- | ------------:|
+|    居中    |     左对齐    |    右对齐    |
+</code></pre>
+<h2>12.语义转换</h2>
+<h3>12.1 语义标记</h3>
+<pre><code>*斜体*
+_斜体_
+**加粗**
+***加粗+斜体***
+**_加粗+斜体_**
+~~删除线~~
+</code></pre>
+<h3>12.2 语义标签</h3>
+<pre><code>&lt;i&gt;斜体&lt;/i&gt;
+&lt;b&gt;加粗&lt;/b&gt;
+&lt;em&gt;强调&lt;/em&gt;
+Z&lt;sup&gt;上标&lt;/sup&gt;
+Z&lt;sub&gt;下标&lt;/sub&gt;
+</code></pre>
+<h2>13.公式</h2>
+<pre><code>$$ x = y^2 + 1 $$
+$ x = {-b \pm \sqrt{b^2-4ac} \over 2a}. $
+</code></pre>
+<h2>14.分隔线</h2>
+<pre><code>***
+</code></pre>
+<h2>15.流程图</h2>
+<pre><code>```flow
+st=&gt;start: Start
+op=&gt;operation: Your Operation
+cond=&gt;condition: Yes or No?
+e=&gt;end
+st-&gt;op-&gt;cond
+cond(yes)-&gt;e
+cond(no)-&gt;op
+```
+</code></pre></article>

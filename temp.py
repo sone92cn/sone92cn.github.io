@@ -77,7 +77,6 @@ for tfile in files:
     fname = os.path.splitext(tfile)[0]
     mfile = os.path.join("article_md", fname+".md")
     if not os.path.isfile(mfile):
-        tfile = os.path.join("article_html", tfile)
         try:
             os.remove(tfile)
         except BaseException:

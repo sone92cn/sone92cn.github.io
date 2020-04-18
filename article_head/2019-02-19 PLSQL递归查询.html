@@ -1,0 +1,15 @@
+<article>
+<h1>PLSQL递归查询</h1>
+<h2>1、语法格式</h2>
+<pre><code>SELECT [COLS] FROM table_name 
+[WHERE condition] 
+[START WITH start_condition] 
+CONNECT BY [ PRIOR COLUMN1 = COLUMN2 | COLUMN1 = PRIOR COLUMN2 [AND ...]];
+</code></pre>
+<h2>2、说明</h2>
+<p>用途：树状检索</p>
+<p>跟节点：START WITH不但可以指定一个根节点，还可以指定多个根节点。</p>
+<p>连接条件：其中用PRIOR表示上一条记录</p>
+<p>顺序：START WITH和CONNECT BY顺序不影响查询结果</p>
+<p><a href="javascript:viewArticle('#content_0', '/article_html/50.技术语言/2019-02-19 PLSQL递归查询.html');">...</a></p>
+</article>

@@ -1,0 +1,23 @@
+<article>
+<p style="text-indent:0em;"><a id="view_head" href="javascript:viewHead('#content_1');">返回</a></p>
+<h1>NoteBook配置</h1>
+<h2>1、安装Jupyter NoteBook</h2>
+<pre><code>pip install notebook
+</code></pre>
+<h2>2、设置NoteBook</h2>
+<pre><code>jupyter notebook --generate-config
+</code></pre>
+<p>如果没有设置文件，会创建配置文件：
+<img alt="img" src="/img/A100002.jpg" />
+如果配置文件已经存在，会提示是否重写配置文件：
+<img alt="img" src="/img/A100003.jpg" /></p>
+<h2>3、编辑jupyter_notebook_config.py文件修改NoteBook配置</h2>
+<pre><code>c.NotebookApp.notebook_dir = r"D:\XXX"   #设置NoteBook启动后的工作目录
+c.NotebookApp.open_browser = True/False  #启动服务器后是否打开浏览器
+c.FileContentsManager.root_dir = r"..."  #设置文件资源文件夹主目录
+... ...
+</code></pre>
+<h2>4、启动NoteBook服务器</h2>
+<pre><code>jupyter notebook #不带参数
+jupyter notebook --ip=127.0.0.1 --port 8888  #带参数
+</code></pre></article>

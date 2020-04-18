@@ -1,0 +1,39 @@
+<article>
+<p style="text-indent:0em;"><a id="view_head" href="javascript:viewHead('#content_1');">返回</a></p>
+<h1>QrCode二维码生成器</h1>
+<h2>1、命令行使用</h2>
+<pre><code>qr "Text" &gt; test.png
+</code></pre>
+<h2>2、简单的二维码</h2>
+<pre><code>import qrcode
+img = qrcode.make('Text')
+img.save("fpath")
+</code></pre>
+<h2>3、定制其它属性</h2>
+<pre><code>from qrcode.constants import ERROR_CORRECT_L
+qr = qrcode.QRCode(version=1, box_size=10, border=4, error_correction=ERROR_CORRECT_L)
+qr.add_data('Text')
+qr.make(fit=True)
+img = qr.make_image(fill_color="black", back_color="white")
+
+#version: an integer from 1 to 40 that controls the size of the QR Code (the smallest, version 1, is a 21x21 matrix). Set to None and use the fit parameter when making the code to determine this automatically.
+#box_size: how many pixels each “box” of the QR code is.
+#border: how many boxes thick the border should be (the default is 4, which is the minimum according to the specs).
+#error_correction: the error correction used for the QR Code:ERROR_CORRECT_L:About 7% or less;ERROR_CORRECT_M (default):About 15% or less;ERROR_CORRECT_Q:About 25% or less;ERROR_CORRECT_H:About 30% or less.
+
+#fill_color: the background color of the QR
+#back_color: the background color of the QR
+</code></pre>
+<h2>4、二维码添加图片</h2>
+<pre><code>img = img.convert("RGBA")
+icon = Image.open("D:/favicon.jpg")
+icon = icon.convert("RGBA")
+img.paste(im=icon,box=(x,y),mask=icon)
+
+#im: Source image or pixel value (integer or tuple)
+#box: An optional 4-tuple giving the region to paste into.
+</code></pre>
+<p>If a 2-tuple is used instead, it's treated as the upper left
+   corner.  If omitted or None, the source is pasted into the
+   upper left corner.
+   #mask: An optional mask image.</p></article>
