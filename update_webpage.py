@@ -136,8 +136,6 @@ if __name__ == "__main__":
         else:
             raise Exception(f"{head_d[key]}无法归入现有类别！")
 
-
-
     # 更新Index页面
     try:
         renderPage(model="index.html", title="Felix's Page", recents=head_d, preview="\n".join(view_s))
