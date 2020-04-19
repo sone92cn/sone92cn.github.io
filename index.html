@@ -1,144 +1,198 @@
 ﻿<!DOCTYPE html>
-<html lang="zh-cn"> 
+<html lang="zh-cn">
 	<head>
 		<meta charset="utf-8" />
 		<title>Felix's Page</title>
-		
-		<!-- Mobile Specific Metas -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		
-		<!-- CSS -->
-		
-	<link rel="stylesheet" href="css/basic.css">
-	<link rel="stylesheet" href="css/index.css">
-	<link rel="stylesheet" href="css/jquery-accordion-menu.css" type="text/css" />
 
+		<!-- 适应移动端 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+		<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+		<!-- 自定义CSS -->
 		
+	<link rel="stylesheet" href="css/index.css" charset="utf-8">
+
+
 		<!-- JS -->
+		<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+		<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+		<!-- <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script> -->
+		<script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+		<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js" integrity="sha384-94230eb1714d1db177fa14e3734c6e133fe4f1a7f0d20e3440c717f4bd1d7a68df17c8420026b86b06a5ed830196fa50" crossorigin="anonymous"></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+		<!-- 自定义js -->
 		
-	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="js/setting.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/vue.min.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/index.js" charset="utf-8"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-		  $("#jquery-accordion-menu ul li a").click(function(){
-			<!-- $(this).nextAll().toggle(); -->
-			$(this).next("ul").toggle();
-		  });
-		});
-	</script>
 
 	</head>
 	<body>
+		<!-- 正文 -->
 		
-	<div class="wrap-body zerogrid">
-		<!-- Header -->
-		<header>
-			<div class="top">
-				<div class="socials">
-					<ul>
-						<li><a href="#" title="baidu"><img src="img/socials/live-32x32.png" /></a></li>
-						<li><a href="#" title="google"><img src="img/socials/google-32x32.png" /></a></li>
-						<li><a href="#" title="rss"><img src="img/socials/rss-32x32.png" /></a></li>
-						<li><a href="#" title="youtube"><img src="img/socials/youtube-32x32.png" /></a></li>
-					</ul>
+	<div class="container" id="container-main">
+		<div class="row" id="socials">
+				<div class="col-8">
+						<span><a href="#" title="baidu"><img src="img/socials/live-32x32.png" /></a></span>
+						<span><a href="#" title="google"><img src="img/socials/google-32x32.png" /></a></span>
+						<span><a href="#" title="rss"><img src="img/socials/rss-32x32.png" /></a></span>
+						<span><a href="#" title="youtube"><img src="img/socials/youtube-32x32.png" /></a></span>
 				</div>
-				<div class="search">
-					<div class="submit" onclick="searchResult();"></div>
-					<input id="input_search" type="text" value="Search..." onfocus="focusSearch(this);" onblur="blurSearch(this);">
+				<div class="col-4">
+					<div class="input-group float-right">
+       			<input type="text" class="form-control" placeholder="搜索" / >
+						<button class="btn btn-info btn-search" id="btn-search"></button>
+					</div>
 				</div>
-			</div>
+		</div>
 
-			<div class="logo">
-				<h1>Felix's Web Page</h1>
+		<div class="row">
+			<div class="col-12" id="logo">
+				<h1>Felix's Page</h1>
 			</div>
+		</div>
 
-			<div class="wrap-nav">
-				<ul>
-					<li><a href="javascript:showContent(0);">最近</a></li>
-					<li><a href="javascript:showContent(1);">全部</a></li>
-					<li><a href="javascript:showContent(2);">项目</a></li>
-					<li><a href="javascript:showContent(3);">下载</a></li>
-					<li><a href="javascript:showContent(4);">留言</a></li>
+		<div class="row">
+			<div class="col-12" id="navbar">
+				<ul class="nav nav-pills">
+					<li data-href="#content_0" class="active"><a href="#" onclick="javascript:showContent($(this));">最近</a></li>
+					<li data-href="#content_1"><a href="#" onclick="javascript:showContent($(this));">全部</a></li>
+					<li data-href="#content_2"><a href="#" onclick="javascript:showContent($(this));">项目</a></li>
+					<li data-href="#content_3"><a href="#" onclick="javascript:showContent($(this));"">下载</a></li>
+					<!-- <li data-href="#content_4"><a href="#" onclick="javascript:showContent($(this));">留言</a></li> -->
 				</ul>
 			</div>
-		</header>
+		</div>
 
-		<!-- Content 首页 -->
-		<section class="content" id="content_0">
-			<div class="block">
-				<div id="main-content" class="col-2-3">
-					<div class="wrap-col" id="wrap-col-head">
-						<article>
-							首页,建设中...
-						</article>
-					</div>
-					<div class="wrap-col" id="wrap-col-body">
-						<article>
-							首页,建设中...
-						</article>
-					</div>
-				</div>
-				<div id="sidebar" class="col-1-3">
-					<div class="wrap-col">
-						<div class="box" id="profile">
-							<p style="text-align:center;"><img src="/img/head.png" width="80%"/></p>
+		<!-- Content 最近 -->
+		<div class="row content" id="content_0">
+			<div class="col-8 view-part" >
+				<article>
+<h1>PLSQL递归查询</h1>
+<h2>1、语法格式</h2>
+<pre><code>SELECT [COLS] FROM table_name 
+[WHERE condition] 
+[START WITH start_condition] 
+CONNECT BY [ PRIOR COLUMN1 = COLUMN2 | COLUMN1 = PRIOR COLUMN2 [AND ...]];
+</code></pre>
+<h2>2、说明</h2>
+<p>用途：树状检索</p>
+<p>跟节点：START WITH不但可以指定一个根节点，还可以指定多个根节点。</p>
+<p>连接条件：其中用PRIOR表示上一条记录</p>
+<p>顺序：START WITH和CONNECT BY顺序不影响查询结果</p>
+<p><a href="javascript:viewArticle($('#content_0'), '/article_html/50.技术语言/2019-02-19 PLSQL递归查询.html');">...</a></p>
+</article>
+<article>
+<h1>解决pgAdmin4启动失败</h1>
+<h2>1.问题描述</h2>
+<p>pgAdmin 4  the application server could not be contant</p>
+<h2>2.解决方法</h2>
+<h3>2.1 删除生成的配置文件</h3>
+<pre><code>删除：C:\Users\username\AppData\Roaming\pgAdmin内的所有文件
+</code></pre>
+<h3>2.2 修改config_distro.py文件（pgAdmin 4\web）</h3>
+<pre><code>MINIFY_HTML = False
+DATA_DIR = "C:/Data/pgAdmin" #路径可以自己设置
+</code></pre>
+<h3>2.3 创建缺少的空文件（空文件）</h3>
+<p><a href="javascript:viewArticle($('#content_0'), '/article_html/70.专业工具/2018-06-17 pgAdmin4启动失败.html');">...</a></p>
+</article>
+<article>
+<h1>PostgreSQL安装(Zip版)</h1>
+<h2>1.下载并解压</h2>
+<p>从官网（https://www.postgresql.org/）下载程序文件并解压到指定目录（如：D:\PGSQL）。</p>
+<h2>2.添加和设置Windows用户</h2>
+<h3>2.1 添加用于启动PostgreSQL的Windows用户</h3>
+<pre><code>net user uname passswd /add /expires:never /passwordchg:no
+&gt;&gt; uname:用户名，一般为postgres
+&gt;&gt; passwd:用户密码
+</code></pre>
+<h3>2.2 设置添加的用户不允许本地登录(非必须)</h3>
+<p><a href="javascript:viewArticle($('#content_0'), '/article_html/70.专业工具/2018-06-17 PostgreSQL安装.html');">...</a></p>
+</article>
+<article>
+<h1>PL/SQL Developer常用技巧</h1>
+<h2>1.类SQL PLUS窗口</h2>
+<p>File-&gt;New-&gt;Command Window，这个类似于oracle的客户端工具sql plus，但比它好用</p>
+<h2>2.关键字自动大写</h2>
+<p>Tools-&gt;Preferences-&gt;Editor：将Keyword case选择Uppercase。这样在窗口中输入sql语句时，关键字会自动大写，而其它都是小写。这样阅读代码比较容易，且保持良好得编码风格;</p>
+<p><a href="javascript:viewArticle($('#content_0'), '/article_html/70.专业工具/2018-06-04 PLSqlDeveloper技巧.html');">...</a></p>
+</article>
+<article>
+<h1>jQuery选择器</h1>
+<h2>一、基本选择器</h2>
+<h3>1.类型选择器</h3>
+<p>$("element"):document.getElementByTagName("element")</p>
+<pre><code>$("p").css("background-color","#B2E0FF");
+</code></pre>
+<h3>2.ID选择器</h3>
+<p>$("#id"):document.getElementById("id")</p>
+<pre><code>$("#choose").css("background-color","#B2E0FF");
+</code></pre>
+<h3>3.类选择器</h3>
+<p><a href="javascript:viewArticle($('#content_0'), '/article_html/50.技术语言/2018-05-28 jQuery选择器.html');">...</a></p>
+</article>
+			</div>
+			<div class="col-8 view-full d-none" >
+			</div>
+			<div class="col-4">
+				<div class="box" id="profile">
+					<p style="text-align:center;"><img src="/img/head.png" width="80%"/></p>
 <!--
 <p style="text-indent:0em;">
 Felix Chou，中级会计师、注册数据分析师，Python爱好者，致力于业务数据、财务信息的及时互联与高效使用。
 </p>
 -->
-						</div>
-						<div class="box" id="recent">
-							<div class="head">
+				</div>
+				<div class="box" id="recent">
+					<div class="head">
 	<h2 onclick="javascript:viewHead('#content_0','null');">最近更新</h2>
 </div>
 <div class="menu">
 	
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle('#content_0', 'article_html/99.其他文章/01.其他文章/2019-02-19-PLSQL递归查询.html');">PLSQL递归查询</a></h4>
+		<h4><a href="javascript:viewArticle($('#content_0'), 'article_html/50.技术语言/2019-02-19 PLSQL递归查询.html');">PLSQL递归查询</a></h4>
 		<p>2019-02-19</p>
 	</div>
 	
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle('#content_0', 'article_html/61.信息技术/31.DataBase/2018-06-17-pgAdmin4启动失败.html');">pgAdmin4启动失败</a></h4>
+		<h4><a href="javascript:viewArticle($('#content_0'), 'article_html/70.专业工具/2018-06-17 pgAdmin4启动失败.html');">pgAdmin4启动失败</a></h4>
 		<p>2018-06-17</p>
 	</div>
 	
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle('#content_0', 'article_html/61.信息技术/31.DataBase/2018-06-17-PostgreSQL安装.html');">PostgreSQL安装</a></h4>
+		<h4><a href="javascript:viewArticle($('#content_0'), 'article_html/70.专业工具/2018-06-17 PostgreSQL安装.html');">PostgreSQL安装</a></h4>
 		<p>2018-06-17</p>
 	</div>
 	
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle('#content_0', 'article_html/61.信息技术/31.DataBase/2018-06-04-PLSqlDeveloper技巧.html');">PLSqlDeveloper技巧</a></h4>
+		<h4><a href="javascript:viewArticle($('#content_0'), 'article_html/70.专业工具/2018-06-04 PLSqlDeveloper技巧.html');">PLSqlDeveloper技巧</a></h4>
 		<p>2018-06-04</p>
 	</div>
 	
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle('#content_0', 'article_html/61.信息技术/41.jQuery/2018-05-28-jQuery选择器.html');">jQuery选择器</a></h4>
+		<h4><a href="javascript:viewArticle($('#content_0'), 'article_html/50.技术语言/2018-05-28 jQuery选择器.html');">jQuery选择器</a></h4>
 		<p>2018-05-28</p>
 	</div>
 	
 </div>
-						</div>
-					</div>
 				</div>
 			</div>
-		</section>
+		</div>
 
-		<!-- Content 文章 -->
-		<section class="content" id="content_1">
-			<div class="block">
-				<div id="sidebar" class="col-1-4">
-					<div class="wrap-col">
-						<div class="box" id="menu menu1">
-							
+		<!-- Content 全部 -->
+		<div class="row content d-none" id="content_1">
+			<div class="col-4 col-first" >
+				
 
 
 
@@ -146,178 +200,35 @@ Felix Chou，中级会计师、注册数据分析师，Python爱好者，致力�
 <div class="menu">
 	<ul>
 	
-		
-			<li class="head head_content_menu_1" onclick="$('.menu .body_content_menu_1').toggle();">
-				<p> 财税审计 </p>
-			</li>
-			
-				
-					<li class="body body_content_menu_1" onclick="javascript:viewHead('#content_1', 'article_html/01.财税审计/01.会计基础/menu.htm')">
-						<p> 会计基础 </p>
-					</li>
-				
-			
-		
-	
-		
-			<li class="head head_content_menu_2" onclick="$('.menu .body_content_menu_2').toggle();">
-				<p> 数据分析 </p>
-			</li>
-			
-				
-					<li class="body body_content_menu_2" onclick="javascript:viewHead('#content_1', 'article_html/51.数据分析/01.数据基础/menu.htm')">
-						<p> 数据基础 </p>
-					</li>
-				
-					<li class="body body_content_menu_2" onclick="javascript:viewHead('#content_1', 'article_html/51.数据分析/02.分析工具/menu.htm')">
-						<p> 分析工具 </p>
-					</li>
-				
-			
-		
-	
-		
-			<li class="head head_content_menu_3" onclick="$('.menu .body_content_menu_3').toggle();">
-				<p> 信息技术 </p>
-			</li>
-			
-				
-					<li class="body body_content_menu_3" onclick="javascript:viewHead('#content_1', 'article_html/61.信息技术/11.Python/menu.htm')">
-						<p> Python </p>
-					</li>
-				
-					<li class="body body_content_menu_3" onclick="javascript:viewHead('#content_1', 'article_html/61.信息技术/31.DataBase/menu.htm')">
-						<p> DataBase </p>
-					</li>
-				
-					<li class="body body_content_menu_3" onclick="javascript:viewHead('#content_1', 'article_html/61.信息技术/41.jQuery/menu.htm')">
-						<p> jQuery </p>
-					</li>
-				
-					<li class="body body_content_menu_3" onclick="javascript:viewHead('#content_1', 'article_html/61.信息技术/71.Github/menu.htm')">
-						<p> Github </p>
-					</li>
-				
-			
-		
-	
-		
-			<li class="head head_content_menu_4" onclick="$('.menu .body_content_menu_4').toggle();">
-				<p> 其他文章 </p>
-			</li>
-			
-				
-					<li class="body body_content_menu_4" onclick="javascript:viewHead('#content_1', 'article_html/99.其他文章/01.其他文章/menu.htm')">
-						<p> 其他文章 </p>
-					</li>
-				
-			
-		
-	
 	</ul>
 </div>
-						</div>
-					</div>
-				</div>
-				<div id="main-content" class="col-3-4">
-					<div class="wrap-col" id="wrap-col-head">
-						<article><h2><a href="javascript:viewArticle('#content_1', 'article_html/99.其他文章/01.其他文章/2019-02-19-PLSQL递归查询.html');">2019-02-19 PLSQL递归查询</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2018-06-17-pgAdmin4启动失败.html');">2018-06-17 pgAdmin4启动失败</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2018-06-17-PostgreSQL安装.html');">2018-06-17 PostgreSQL安装</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2018-06-04-PLSqlDeveloper技巧.html');">2018-06-04 PLSqlDeveloper技巧</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/41.jQuery/2018-05-28-jQuery选择器.html');">2018-05-28 jQuery选择器</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/41.jQuery/2018-05-28-jQuery过滤器.html');">2018-05-28 jQuery过滤器</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-05-25-JSON模块.html');">2018-05-25 JSON模块</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/99.其他文章/01.其他文章/2018-05-24-Windows上帝模式.html');">2018-05-24 Windows上帝模式</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-05-18-QrCode使用方法.html');">2018-05-18 QrCode使用方法</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-05-07-TornadoHTTPClient.html');">2018-05-07 TornadoHTTPClient</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-05-02-NoteBook配置.html');">2018-05-02 NoteBook配置</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/71.Github/2018-03-22-MarkDown基本用法.html');">2018-03-22 MarkDown基本用法</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/99.其他文章/01.其他文章/2018-02-27-REG文件语法.html');">2018-02-27 REG文件语法</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-02-27-PyMySQL基本用法.html');">2018-02-27 PyMySQL基本用法</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/71.Github/2018-02-26-Git&GitHub使用帮助.html');">2018-02-26 Git&GitHub使用帮助</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-01-25-Python部分函数.html');">2018-01-25 Python部分函数</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2018-01-06-MySQL备份还原.html');">2018-01-06 MySQL备份还原</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2017-21-01-MySQL安装(Zip).html');">2017-21-01 MySQL安装(Zip)</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/01.财税审计/01.会计基础/2017-12-21-权责发生制与收付实现制.html');">2017-12-21 权责发生制与收付实现制</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2017-11-21-Pandas常用命令.html');">2017-11-21 Pandas常用命令</a></h2></article>
-					</div>
-					<div class="wrap-col" id="wrap-col-body">
-						<article>
-							文章,建设中...
-						</article>
-					</div>
-				</div>
 			</div>
-		</section>
+			<div class="col-8 view-part">
+				<article><h2><a href="javascript:viewArticle('#content_1', 'article_html/99.其他文章/01.其他文章/2019-02-19-PLSQL递归查询.html');">2019-02-19 PLSQL递归查询</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2018-06-17-pgAdmin4启动失败.html');">2018-06-17 pgAdmin4启动失败</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2018-06-17-PostgreSQL安装.html');">2018-06-17 PostgreSQL安装</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2018-06-04-PLSqlDeveloper技巧.html');">2018-06-04 PLSqlDeveloper技巧</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/41.jQuery/2018-05-28-jQuery选择器.html');">2018-05-28 jQuery选择器</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/41.jQuery/2018-05-28-jQuery过滤器.html');">2018-05-28 jQuery过滤器</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-05-25-JSON模块.html');">2018-05-25 JSON模块</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/99.其他文章/01.其他文章/2018-05-24-Windows上帝模式.html');">2018-05-24 Windows上帝模式</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-05-18-QrCode使用方法.html');">2018-05-18 QrCode使用方法</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-05-07-TornadoHTTPClient.html');">2018-05-07 TornadoHTTPClient</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-05-02-NoteBook配置.html');">2018-05-02 NoteBook配置</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/71.Github/2018-03-22-MarkDown基本用法.html');">2018-03-22 MarkDown基本用法</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/99.其他文章/01.其他文章/2018-02-27-REG文件语法.html');">2018-02-27 REG文件语法</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-02-27-PyMySQL基本用法.html');">2018-02-27 PyMySQL基本用法</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/71.Github/2018-02-26-Git&GitHub使用帮助.html');">2018-02-26 Git&GitHub使用帮助</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-01-25-Python部分函数.html');">2018-01-25 Python部分函数</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2018-01-06-MySQL备份还原.html');">2018-01-06 MySQL备份还原</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2017-21-01-MySQL安装(Zip).html');">2017-21-01 MySQL安装(Zip)</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/01.财税审计/01.会计基础/2017-12-21-权责发生制与收付实现制.html');">2017-12-21 权责发生制与收付实现制</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2017-11-21-Pandas常用命令.html');">2017-11-21 Pandas常用命令</a></h2></article>
+			</div>
+			<div class="col-8 view-full d-none" >
+			</div>
+		</div>
 
 		<!-- Content 项目 -->
-		<section class="content" id="content_2">
-			<div class="block">
-				<div id="main-content" class="col-full">
-					<div class="wrap-col" id="wrap-col-body">
-						<article>
-							<h2 style="color:#000000">点击访问我的<a href="https://github.com/sone92cn">GitHub项目</a>首页</h2>
-						</article>
-					</div>
-				</div>
+		<div class="row content d-none" id="content_2">
+			<div class="col-12">
+				<article>
+					点击访问我的<a href="https://github.com/sone92cn">GitHub</a>项目
+				</article>
 			</div>
-		</section>
+		</div>
 
 		<!-- Content 下载 -->
-		<section class="content" id="content_3">
-			<div class="block">
-				<div id="main-content" class="col-2-3">
-					<div class="wrap-col" id="wrap-col-body">
-						<article>
-							暂无可供下载资源！
-						</article>
-					</div>
-				</div>
-				<div id="sidebar" class="col-1-3">
-					<div class="wrap-col">
-						<div class="box" id="menu">
-							<div class="head">
-	<h2 onclick="javascript:viewHead('#content_0','null');">下载列表</h2>
-</div>
-<div class="menu">
-	<div class="post">
-		<h4>暂无资源</h4>
-	</div>
-</div>
-						</div>
-					</div>
-				</div>
+		<div class="row content d-none" id="content_3">
+			<div class="col-12">
+				<article>
+					暂无可供下载资源！
+				</article>
 			</div>
-		</section>
-
-		<!-- Content 留言 -->
-		<section class="content" id="content_4">
-			<div class="block">
-				<div id="main-content" class="col-full">
-					<div class="wrap-col" id="wrap-col-body">
-						<article>
-							<form style="width:100%;">
-							<label>请写下您的建议和意见：</label> <br />
-							<textarea  rows="10" style="width:100%;border:1px solid #EEEEEE"></textarea><br />
-							<label>您的昵称：</label><br />
-							<input type=text height="1.2em" width="25em"  style="padding:0.1em;border:1px solid #EEEEEE" /><br />
-							<label>您的联系方式：</label><br />
-							<input type=text height="1.2em" width="25em" style="padding:0.1em;border:1px solid #EEEEEE" /><br />
-							</form>
-							<button onclick="javascript:alert('功能建设中，敬请关注！');return 0;" style="float:right;margin-top:30px;">提交</button><br /><br />
-						</article>
-					</div>
-				</div>
-			</div>
-		</section>
+		</div>
 
 	</div>
 
 	</body>
-	
-	<script type="text/javascript">
-		var article = getUrlParam("article");
-		if (article == ""){
-			var page = getUrlParam("page");
-			if ((page == "0") || (page == "1") || (page == "2") || (page == "3") || (page == "4")){
-				showContent(page*1);
-			}else{
-				showContent(0);
-			};
-		}else{
-			$.getJSON("/js/articles.json",function(articles){
-				if(articles.hasOwnProperty(article)){
-					showContent(1);
-					viewArticle("#content_1", articles[article]);
-				}else{
-					alert("文章不存在或已删除！");
-				};
-			});
-		};
-
-
-	</script>
-
 </html>

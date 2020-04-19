@@ -1,5 +1,5 @@
 <article>
-<p style="text-indent:0em;"><a id="view_head" href="javascript:viewHead('#content_1');">返回</a></p>
+<p style="text-indent:0em;"><a id="view_head" href="#" onclick="javascript:viewHead($(this));">返回</a></p>
 <h1>NoteBook配置</h1>
 <h2>1、安装Jupyter NoteBook</h2>
 <pre><code>pip install notebook
@@ -20,4 +20,5 @@ c.FileContentsManager.root_dir = r"..."  #设置文件资源文件夹主目录
 <h2>4、启动NoteBook服务器</h2>
 <pre><code>jupyter notebook #不带参数
 jupyter notebook --ip=127.0.0.1 --port 8888  #带参数
-</code></pre></article>
+</code></pre>
+</article>

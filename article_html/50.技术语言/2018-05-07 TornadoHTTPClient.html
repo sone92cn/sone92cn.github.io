@@ -1,5 +1,5 @@
 <article>
-<p style="text-indent:0em;"><a id="view_head" href="javascript:viewHead('#content_1');">返回</a></p>
+<p style="text-indent:0em;"><a id="view_head" href="#" onclick="javascript:viewHead($(this));">返回</a></p>
 <h1>Tornado HTTPClient</h1>
 <h2>1、阻塞型客户端</h2>
 <pre><code>from tornado.httpclient import HTTPClient
@@ -16,4 +16,5 @@ response = client.fetch("http://127.0.0.1:80", method='POST', body=data_send, ca
 
 def data_resp(resp):
     print(resp.body)
-</code></pre></article>
+</code></pre>
+</article>

@@ -29,30 +29,29 @@ def writeMenu(fname, bodys, auto_add=True):
         handle.write("</article>")
 
 
-def RenderTemplate(menu, recents):
+def renderPage(model, title, recents, preview):
     try:
         TemplateLoader = FileSystemLoader(searchpath="template", encoding='utf-8')
         TemplateEnv = Environment(loader=TemplateLoader)
-        template = TemplateEnv.get_template("index.html")
+        template = TemplateEnv.get_template(model)
     except BaseException:
         raise
     else:
-        with open("index.html", "w", encoding="utf-8") as wfile:
-            wfile.write(template.render(title="Felix's Page", menu=menu, recents=recents))
+        with open(model, "w", encoding="utf-8") as wfile:
+            wfile.write(template.render(title=title, recents=recents, preview=preview))
 
 
 if __name__ == "__main__":
     debug = False
     view_d = {}  # 所有文章信息
+    head_d = None  # 最近文章信息
     html_d = None  # 文章目录字典
     mkdn_d = None  # markdown文件字典
-    succ_h, fail_h = [], []  # 更新最近记录
     succ_d, fail_d = [], []  # 删除文章记录
     succ_c, fail_c, skip_c = [], [], []  # 更新全部记录
 
     # 设置资源文件夹
     path_json = "json"
-    path_head = "article_head"
     path_html = "article_html"
     path_mkdn = "article_markdown"
 
@@ -61,11 +60,10 @@ if __name__ == "__main__":
 
     # 设置脚本文件目录为工作目录
     os.chdir(root)
-    print(f"开始更新({root})：")
+    print(f"工作目录：{root}：\n")
 
-    # 删除原最近文章
-    for key in createTreeAsPath(path_head, scanSubFolder=False, treeMode=False, relativePath=False, forFile=True):
-        os.remove(key)
+    # 任务开始
+    print("----------------------START----------------------")
 
     # -- 初始化 html_d
     temp = createTreeAsPath(path_html, scanSubFolder=False, treeMode=False, relativePath=True, forFile=False)
@@ -77,26 +75,6 @@ if __name__ == "__main__":
     # 检索markdown文件 -- 初始化 mkdn_d
     temp = createTreeAsPath(path_mkdn, fileRegular=r'^\d{8}.+\.\d{2}\.md$', scanSubFolder=False, relativePath=True)
     mkdn_d = {f"{key[:4]}-{key[4:6]}-{key[6:8]}{key[8:-6]}": f"{path_mkdn}/{key}" for key in temp}
-
-    # 生成最近文章
-    head_d = {key: mkdn_d[key] for key in list(sorted(mkdn_d.keys(), reverse=True))[:5]}
-    for key in head_d:
-        temp = head_d[key][-5:-3]
-        if temp in html_d:
-            try:
-                hfile = f"{path_head}/{key}.html"
-                with open(head_d[key], mode="r", encoding="utf-8") as r:
-                    input_text = getHeadLines(r.read(), 300)  # 摘要最多输出300字
-                    with open(hfile, "w", encoding="utf-8") as w:
-                        w.write("<article>\n")
-                        w.write(markdown.markdown(input_text))
-                        w.write(f"\n<p><a href=\"javascript:viewArticle('#content_0', '/{html_d[temp]}/{key}.html');\">...</a></p>\n</article>")
-            except BaseException:
-                fail_h.append(hfile)
-            else:
-                succ_h.append(hfile)
-        else:
-            raise Exception(f"{head_d[key]}无法归入现有类别！")
 
     # 生成全部文章
     for key in mkdn_d:
@@ -113,7 +91,7 @@ if __name__ == "__main__":
                     input_text = r.read()
                     with open(hfile, "w", encoding="utf-8") as w:
                         w.write("<article>\n")
-                        w.write("<p style=\"text-indent:0em;\"><a id=\"view_head\" href=\"javascript:viewHead('#content_1');\">返回</a></p>\n")
+                        w.write("<p style=\"text-indent:0em;\"><a id=\"view_head\" href=\"#\" onclick=\"javascript:viewHead($(this));\">返回</a></p>\n")
                         w.write(markdown.markdown(input_text))
                         w.write("\n</article>")
             except BaseException:
@@ -137,18 +115,38 @@ if __name__ == "__main__":
 
     # 输出所有文章到json
     with open(f"{path_json}/articles.json", "w", encoding="utf-8") as w:
-        json.dump(view_d, w)
+        json.dump({"cate": createTreeAsPath(path_html, scanSubFolder=False, relativePath=True, forFile=False), "data": view_d}, w)
+
+    # 生成最近文章
+    view_s = []
+    head_d = {key: mkdn_d[key] for key in list(sorted(mkdn_d.keys(), reverse=True))[:5]}
+    for key in head_d:
+        temp = head_d[key][-5:-3]
+        if temp in html_d:
+            try:
+                with open(head_d[key], mode="r", encoding="utf-8") as r:
+                    input_text = getHeadLines(r.read(), 300)
+                    view_s.append("<article>")
+                    view_s.append(markdown.markdown(input_text))
+                    view_s.append(f"<p><a href=\"javascript:viewArticle($('#content_0'), '/{html_d[temp]}/{key}.html');\">...</a></p>\n</article>")
+            except BaseException:
+                raise
+            else:
+                head_d[key] = view_d[key]
+        else:
+            raise Exception(f"{head_d[key]}无法归入现有类别！")
+
+
 
     # 更新Index页面
     try:
-        RenderTemplate(menu=menu, recents=recents)
+        renderPage(model="index.html", title="Felix's Page", recents=head_d, preview="\n".join(view_s))
     except BaseException:
-        print("Fail to update index page.")
+        raise Exception("Fail to update index page.")
     else:
-        print(f"网站首页：Succeed to update.")
+        print(f"网站首页：更新成功.\n")
 
     # 打印更新结果
-    print(f"最近文章: {len(succ_h)} succeed, {len(fail_h)} fail.")
     print(f"更新文章: {len(succ_c)} succeed, {len(fail_c)} fail, {len(skip_c)} skip.")
     print(f"删除文章: {len(succ_d)} succeed, {len(fail_d)} fail.")
     if len(succ_c):
@@ -167,3 +165,6 @@ if __name__ == "__main__":
         print("删除失败的文章：")
         for file in fail_d:
             print(file)
+
+    # 任务结束
+    print("\n----------------------FINISH----------------------")

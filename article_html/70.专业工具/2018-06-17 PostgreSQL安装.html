@@ -1,5 +1,5 @@
 <article>
-<p style="text-indent:0em;"><a id="view_head" href="javascript:viewHead('#content_1');">返回</a></p>
+<p style="text-indent:0em;"><a id="view_head" href="#" onclick="javascript:viewHead($(this));">返回</a></p>
 <h1>PostgreSQL安装(Zip版)</h1>
 <h2>1.下载并解压</h2>
 <p>从官网（https://www.postgresql.org/）下载程序文件并解压到指定目录（如：D:\PGSQL）。</p>
@@ -64,4 +64,5 @@ listen_addresses = 'localhost'/'*'   #*表示所有IP
 <pre><code>host all all ::1/128 password   #允许本机IPv6用户密码登陆
 host all all 0.0.0.0/32 password   #允许所有用户IPv4密码登陆
 host all all 127.0.0.1/32 password   #允许本机IPv4用户密码登陆
-</code></pre></article>
+</code></pre>
+</article>

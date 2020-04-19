@@ -1,5 +1,5 @@
 <article>
-<p style="text-indent:0em;"><a id="view_head" href="javascript:viewHead('#content_1');">返回</a></p>
+<p style="text-indent:0em;"><a id="view_head" href="#" onclick="javascript:viewHead($(this));">返回</a></p>
 <h1>PyMySQL基本用法</h1>
 <h2>1、导入库</h2>
 <pre><code>import pymysql
@@ -34,4 +34,5 @@ rows = cur.fetchall() 获取所有记录
 </code></pre>
 <h2>9、关闭连接</h2>
 <pre><code>conn.close()
-</code></pre></article>
+</code></pre>
+</article>

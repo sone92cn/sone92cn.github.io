@@ -1,5 +1,5 @@
 <article>
-<p style="text-indent:0em;"><a id="view_head" href="javascript:viewHead('#content_1');">返回</a></p>
+<p style="text-indent:0em;"><a id="view_head" href="#" onclick="javascript:viewHead($(this));">返回</a></p>
 <h1>jQuery过滤器</h1>
 <h2>一、基本过滤</h2>
 <h3>1.is</h3>
@@ -60,4 +60,5 @@ filter(fn):按fn的条件筛选，如果fn返回True则保留，False则删除</
 <h3>6.添加查找</h3>
 <p>add(expr, [context]):添加满足条件的元素到当前列表</p>
 <pre><code>$("p").add("h2 h3").css("font-size", "large")
-</code></pre></article>
+</code></pre>
+</article>

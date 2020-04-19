@@ -5,7 +5,7 @@
 	{% for recent in recents %}
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle('#content_0', '{{ recents[recent] }}');">{{recent[11:]}}</a></h4>
+		<h4><a href="javascript:viewArticle($('#content_0'), '{{ recents[recent] }}');">{{recent[11:]}}</a></h4>
 		<p>{{recent[:10]}}</p>
 	</div>
 	{% endfor %}

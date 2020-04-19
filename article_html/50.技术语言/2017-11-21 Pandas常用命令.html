@@ -1,5 +1,5 @@
 <article>
-<p style="text-indent:0em;"><a id="view_head" href="javascript:viewHead('#content_1');">返回</a></p>
+<p style="text-indent:0em;"><a id="view_head" href="#" onclick="javascript:viewHead($(this));">返回</a></p>
 <h1>Pandas常用命令</h1>
 <h2>1、导入CSV</h2>
 <pre><code>(1)df = pd.read_csv("fname.csv", index_col=[], dtype={}, parse_dates=[], comment=None, encoding="utf8", nrows=10)
@@ -83,4 +83,5 @@ pd.pivot_table(data, values=None, index=None, columns=None, aggfunc='mean', fill
 </code></pre>
 <h2>15、另存为csv</h2>
 <pre><code>tb.to_csv(path_or_buf='path', sep=',', header=True, index=True, index_label=None)
-</code></pre></article>
+</code></pre>
+</article>
