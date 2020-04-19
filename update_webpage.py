@@ -125,7 +125,7 @@ if __name__ == "__main__":
 
     # 更新Index页面
     try:
-        renderPage(model="index.html", title="Felix's Page", recents=head_d, preview="\n".join(view_s))
+        renderPage(model="index.html", title="Felix's Git Page", recents=head_d, preview="\n".join(view_s))
     except BaseException:
         raise Exception("Fail to update index page.")
     else:
