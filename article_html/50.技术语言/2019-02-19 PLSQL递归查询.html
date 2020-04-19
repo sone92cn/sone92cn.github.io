@@ -1,4 +1,4 @@
-<article>
+<div class="article">
 <p style="text-indent:0em;"><a id="view_head" href="#" onclick="javascript:viewHead($(this));">返回</a></p>
 <h1>PLSQL递归查询</h1>
 <h2>1、语法格式</h2>
@@ -23,4 +23,4 @@ connect by employee_id = prior manager_id;
 FROM DUAL
 CONNECT BY ROWNUM &lt; TO_DATE('2019-02-12', 'yyyy-mm-dd') - TO_DATE('2019-02-01', 'yyyy-mm-dd') + 2;
 </code></pre>
-</article>
+</div>

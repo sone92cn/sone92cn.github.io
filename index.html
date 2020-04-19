@@ -71,7 +71,7 @@
 		<!-- Content 最近 -->
 		<div class="row content" id="content_0">
 			<div class="col-8 view-part" >
-				<article>
+				<div class="article">
 <h1>PLSQL递归查询</h1>
 <h2>1、语法格式</h2>
 <pre><code>SELECT [COLS] FROM table_name 
@@ -85,8 +85,8 @@ CONNECT BY [ PRIOR COLUMN1 = COLUMN2 | COLUMN1 = PRIOR COLUMN2 [AND ...]];
 <p>连接条件：其中用PRIOR表示上一条记录</p>
 <p>顺序：START WITH和CONNECT BY顺序不影响查询结果</p>
 <p><a href="javascript:viewArticle($('#content_0'), '/article_html/50.技术语言/2019-02-19 PLSQL递归查询.html');">...</a></p>
-</article>
-<article>
+</div>
+<div class="article">
 <h1>解决pgAdmin4启动失败</h1>
 <h2>1.问题描述</h2>
 <p>pgAdmin 4  the application server could not be contant</p>
@@ -100,8 +100,8 @@ DATA_DIR = "C:/Data/pgAdmin" #路径可以自己设置
 </code></pre>
 <h3>2.3 创建缺少的空文件（空文件）</h3>
 <p><a href="javascript:viewArticle($('#content_0'), '/article_html/70.专业工具/2018-06-17 pgAdmin4启动失败.html');">...</a></p>
-</article>
-<article>
+</div>
+<div class="article">
 <h1>PostgreSQL安装(Zip版)</h1>
 <h2>1.下载并解压</h2>
 <p>从官网（https://www.postgresql.org/）下载程序文件并解压到指定目录（如：D:\PGSQL）。</p>
@@ -113,16 +113,16 @@ DATA_DIR = "C:/Data/pgAdmin" #路径可以自己设置
 </code></pre>
 <h3>2.2 设置添加的用户不允许本地登录(非必须)</h3>
 <p><a href="javascript:viewArticle($('#content_0'), '/article_html/70.专业工具/2018-06-17 PostgreSQL安装.html');">...</a></p>
-</article>
-<article>
+</div>
+<div class="article">
 <h1>PL/SQL Developer常用技巧</h1>
 <h2>1.类SQL PLUS窗口</h2>
 <p>File-&gt;New-&gt;Command Window，这个类似于oracle的客户端工具sql plus，但比它好用</p>
 <h2>2.关键字自动大写</h2>
 <p>Tools-&gt;Preferences-&gt;Editor：将Keyword case选择Uppercase。这样在窗口中输入sql语句时，关键字会自动大写，而其它都是小写。这样阅读代码比较容易，且保持良好得编码风格;</p>
 <p><a href="javascript:viewArticle($('#content_0'), '/article_html/70.专业工具/2018-06-04 PLSqlDeveloper技巧.html');">...</a></p>
-</article>
-<article>
+</div>
+<div class="article">
 <h1>jQuery选择器</h1>
 <h2>一、基本选择器</h2>
 <h3>1.类型选择器</h3>
@@ -135,7 +135,7 @@ DATA_DIR = "C:/Data/pgAdmin" #路径可以自己设置
 </code></pre>
 <h3>3.类选择器</h3>
 <p><a href="javascript:viewArticle($('#content_0'), '/article_html/50.技术语言/2018-05-28 jQuery选择器.html');">...</a></p>
-</article>
+</div>
 			</div>
 			<div class="col-8 view-full d-none" >
 			</div>
@@ -190,21 +190,20 @@ Felix Chou，中级会计师、注册数据分析师，Python爱好者，致力�
 		</div>
 
 		<!-- Content 全部 -->
-		<div class="row content d-none" id="content_1">
-			<div class="col-4 col-first" >
-				
-
-
-
-
-<div class="menu">
-	<ul>
-	
-	</ul>
-</div>
+		<div class="row content d-none" id="content_1" data-init="none">
+			<div class="col-3 col-first" >
+				<div>
+					<ul class="nav nav-justified flex-column">
+						<li class="nav-item" v-for="val in cate"><a href="#" @click="filterArticle" :data-filter="val" v-text="val.slice(3)"></a></li>
+					</ul>
+				</div>
 			</div>
 			<div class="col-8 view-part">
-				<article><h2><a href="javascript:viewArticle('#content_1', 'article_html/99.其他文章/01.其他文章/2019-02-19-PLSQL递归查询.html');">2019-02-19 PLSQL递归查询</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2018-06-17-pgAdmin4启动失败.html');">2018-06-17 pgAdmin4启动失败</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2018-06-17-PostgreSQL安装.html');">2018-06-17 PostgreSQL安装</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2018-06-04-PLSqlDeveloper技巧.html');">2018-06-04 PLSqlDeveloper技巧</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/41.jQuery/2018-05-28-jQuery选择器.html');">2018-05-28 jQuery选择器</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/41.jQuery/2018-05-28-jQuery过滤器.html');">2018-05-28 jQuery过滤器</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-05-25-JSON模块.html');">2018-05-25 JSON模块</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/99.其他文章/01.其他文章/2018-05-24-Windows上帝模式.html');">2018-05-24 Windows上帝模式</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-05-18-QrCode使用方法.html');">2018-05-18 QrCode使用方法</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-05-07-TornadoHTTPClient.html');">2018-05-07 TornadoHTTPClient</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-05-02-NoteBook配置.html');">2018-05-02 NoteBook配置</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/71.Github/2018-03-22-MarkDown基本用法.html');">2018-03-22 MarkDown基本用法</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/99.其他文章/01.其他文章/2018-02-27-REG文件语法.html');">2018-02-27 REG文件语法</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-02-27-PyMySQL基本用法.html');">2018-02-27 PyMySQL基本用法</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/71.Github/2018-02-26-Git&GitHub使用帮助.html');">2018-02-26 Git&GitHub使用帮助</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-01-25-Python部分函数.html');">2018-01-25 Python部分函数</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2018-01-06-MySQL备份还原.html');">2018-01-06 MySQL备份还原</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2017-21-01-MySQL安装(Zip).html');">2017-21-01 MySQL安装(Zip)</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/01.财税审计/01.会计基础/2017-12-21-权责发生制与收付实现制.html');">2017-12-21 权责发生制与收付实现制</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2017-11-21-Pandas常用命令.html');">2017-11-21 Pandas常用命令</a></h2></article>
+				<div class="article">
+					<ul>
+						<li v-for="(val, key) in menu"><a href="#" onclick="viewArticle($('#content_1'), $(this).data('url'));" :data-url="val" v-text="key"></a></li>
+					</ul>
+				</div>
 			</div>
 			<div class="col-8 view-full d-none" >
 			</div>
@@ -213,18 +212,35 @@ Felix Chou，中级会计师、注册数据分析师，Python爱好者，致力�
 		<!-- Content 项目 -->
 		<div class="row content d-none" id="content_2">
 			<div class="col-12">
-				<article>
+				<div class="article">
 					点击访问我的<a href="https://github.com/sone92cn">GitHub</a>项目
-				</article>
+				</div>
 			</div>
 		</div>
 
 		<!-- Content 下载 -->
 		<div class="row content d-none" id="content_3">
 			<div class="col-12">
-				<article>
+				<div class="article">
 					暂无可供下载资源！
-				</article>
+				</div>
+			</div>
+		</div>
+
+		<!-- Content 留言 -->
+		<div class="row content d-none" id="content_4">
+			<div class="col-12">
+				<div class="article">
+					<form style="width:100%;">
+					<label>请写下您的建议和意见：</label> <br />
+					<textarea  rows="10" style="width:100%;border:1px solid #EEEEEE"></textarea><br />
+					<label>您的昵称：</label><br />
+					<input type=text height="1.2em" width="25em"  style="padding:0.1em;border:1px solid #EEEEEE" /><br />
+					<label>您的联系方式：</label><br />
+					<input type=text height="1.2em" width="25em" style="padding:0.1em;border:1px solid #EEEEEE" /><br />
+					</form>
+					<button onclick="javascript:alert('功能建设中，敬请关注！');return 0;" style="float:right;margin-top:30px;">提交</button><br /><br />
+				</div>
 			</div>
 		</div>
 

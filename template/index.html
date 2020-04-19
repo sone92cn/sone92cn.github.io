@@ -62,12 +62,20 @@
 		</div>
 
 		<!-- Content 全部 -->
-		<div class="row content d-none" id="content_1">
-			<div class="col-4 col-first" >
-				{% include "content.html" %}
+		<div class="row content d-none" id="content_1" data-init="none">
+			<div class="col-3 col-first" >
+				<div>
+					<ul class="nav nav-justified flex-column">
+						<li class="nav-item" v-for="val in cate"><a href="#" @click="filterArticle" :data-filter="val" v-text="val.slice(3)"></a></li>
+					</ul>
+				</div>
 			</div>
 			<div class="col-8 view-part">
-				{% include "menu.html" %}
+				<div class="article">
+					<ul>
+						<li v-for="(val, key) in menu"><a href="#" onclick="viewArticle($('#content_1'), $(this).data('url'));" :data-url="val" v-text="key"></a></li>
+					</ul>
+				</div>
 			</div>
 			<div class="col-8 view-full d-none" >
 			</div>
@@ -76,25 +84,25 @@
 		<!-- Content 项目 -->
 		<div class="row content d-none" id="content_2">
 			<div class="col-12">
-				<article>
+				<div class="article">
 					点击访问我的<a href="https://github.com/sone92cn">GitHub</a>项目
-				</article>
+				</div>
 			</div>
 		</div>
 
 		<!-- Content 下载 -->
 		<div class="row content d-none" id="content_3">
 			<div class="col-12">
-				<article>
+				<div class="article">
 					暂无可供下载资源！
-				</article>
+				</div>
 			</div>
 		</div>
 
 		<!-- Content 留言 -->
 		<div class="row content d-none" id="content_4">
 			<div class="col-12">
-				<article>
+				<div class="article">
 					<form style="width:100%;">
 					<label>请写下您的建议和意见：</label> <br />
 					<textarea  rows="10" style="width:100%;border:1px solid #EEEEEE"></textarea><br />
@@ -104,7 +112,7 @@
 					<input type=text height="1.2em" width="25em" style="padding:0.1em;border:1px solid #EEEEEE" /><br />
 					</form>
 					<button onclick="javascript:alert('功能建设中，敬请关注！');return 0;" style="float:right;margin-top:30px;">提交</button><br /><br />
-				</article>
+				</div>
 			</div>
 		</div>
 

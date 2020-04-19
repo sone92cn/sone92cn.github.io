@@ -16,19 +16,6 @@ def getHeadLines(text, n):
     return text[:n] if index == -1 else text[:index+1]
 
 
-def writeMenu(fname, bodys, auto_add=True):
-    with open(fname, "w", encoding="utf-8") as handle:
-        handle.write("<article>")
-        if auto_add:
-            handle.write("<p><a id=\"view_head\" href=\"javascript:viewHead('#content_1', 'template/menu.html');\">返回</a></p>")
-        if len(bodys):
-            for body in sorted(bodys.keys(), reverse=True):
-                handle.write("<h2><a href=\"javascript:viewArticle('#content_1', '%s');\">%s %s</a></h2>" % (bodys[body], body[:10], body[11:]))
-        else:
-            handle.write("<h2>此类别下暂无文章，请继续关注！</h2>")
-        handle.write("</article>")
-
-
 def renderPage(model, title, recents, preview):
     try:
         TemplateLoader = FileSystemLoader(searchpath="template", encoding='utf-8')
@@ -73,7 +60,7 @@ if __name__ == "__main__":
         raise BaseException("No Sub Dirs.")
 
     # 检索markdown文件 -- 初始化 mkdn_d
-    temp = createTreeAsPath(path_mkdn, fileRegular=r'^\d{8}.+\.\d{2}\.md$', scanSubFolder=False, relativePath=True)
+    temp = sorted(createTreeAsPath(path_mkdn, fileRegular=r'^\d{8}.+\.\d{2}\.md$', scanSubFolder=False, relativePath=True), reverse=True)
     mkdn_d = {f"{key[:4]}-{key[4:6]}-{key[6:8]}{key[8:-6]}": f"{path_mkdn}/{key}" for key in temp}
 
     # 生成全部文章
@@ -90,10 +77,10 @@ if __name__ == "__main__":
                 with open(mkdn_d[key], mode="r", encoding="utf-8") as r:
                     input_text = r.read()
                     with open(hfile, "w", encoding="utf-8") as w:
-                        w.write("<article>\n")
+                        w.write("<div class=\"article\">\n")
                         w.write("<p style=\"text-indent:0em;\"><a id=\"view_head\" href=\"#\" onclick=\"javascript:viewHead($(this));\">返回</a></p>\n")
                         w.write(markdown.markdown(input_text))
-                        w.write("\n</article>")
+                        w.write("\n</div>")
             except BaseException:
                 fail_c.append(hfile)
             else:
@@ -115,7 +102,7 @@ if __name__ == "__main__":
 
     # 输出所有文章到json
     with open(f"{path_json}/articles.json", "w", encoding="utf-8") as w:
-        json.dump({"cate": createTreeAsPath(path_html, scanSubFolder=False, relativePath=True, forFile=False), "data": view_d}, w)
+        json.dump({"cate": createTreeAsPath(path_html, scanSubFolder=False, relativePath=True, forFile=False), "full": view_d}, w)
 
     # 生成最近文章
     view_s = []
@@ -126,9 +113,9 @@ if __name__ == "__main__":
             try:
                 with open(head_d[key], mode="r", encoding="utf-8") as r:
                     input_text = getHeadLines(r.read(), 300)
-                    view_s.append("<article>")
+                    view_s.append("<div class=\"article\">")
                     view_s.append(markdown.markdown(input_text))
-                    view_s.append(f"<p><a href=\"javascript:viewArticle($('#content_0'), '/{html_d[temp]}/{key}.html');\">...</a></p>\n</article>")
+                    view_s.append(f"<p><a href=\"javascript:viewArticle($('#content_0'), '/{html_d[temp]}/{key}.html');\">...</a></p>\n</div>")
             except BaseException:
                 raise
             else:
