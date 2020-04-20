@@ -39,7 +39,7 @@ if __name__ == "__main__":
 
     # 设置资源文件夹
     path_json = "json"
-    path_html = "article_html"
+    path_html = "html"
     path_mkdn = r"E:\Projects\Markdown"
 
     # 获取当前脚本所在路径
