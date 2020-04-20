@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 	<head>
 		<meta charset="utf-8" />
-		<title>Felix's Git Page</title>
+		<title>My Local Page</title>
 
 		<!-- 适应移动端 -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -52,7 +52,7 @@
 
 		<div class="row">
 			<div class="col-12" id="logo">
-				<h1>Felix's Git Page</h1>
+				<h1>My Local Page</h1>
 			</div>
 		</div>
 
@@ -72,18 +72,17 @@
 		<div class="row content" id="content_0">
 			<div class="col-8 view-part" >
 				<div class="article">
-<p>如何安全地修改密码：</p>
-<p>方式1
-使用psql，连接到Postgres Server：</p>
-<p>test1=&gt; \password
+<h1>如何安全地修改密码：</h1>
+<h3>方式1：</h3>
+<p>使用psql，连接到Postgres Server：
+<pre><code>username=&gt; \password
 Enter new password:
 Enter it again:
-test1=&gt;
+username=&gt;</code></pre>
 我将原密码hello，修改为hellojava.123456
-这种修改方式相当于向postgres server 发送了如下命令：</p>
-<p>ALTER USER postgres PASSWORD ' md53175af154as54df5as4d5f45sd6af';
-后面的字符串是  hellojava经过md5加密后的字符串
-12345</p>
+这种修改方式相当于向postgres server 发送了如下命令：
+<pre><code>ALTER USER postgres PASSWORD ' md53175af154as54df5as4d5f45sd6af';</code></pre>
+注意：尽量不要使用postgres作为用户密码，防止被攻击。</p>
 <p><a href="javascript:viewArticle($('#content_0'), '/html/70.专业工具/2020-03-31 PostgreSQL密码修改.html');">...</a></p>
 </div>
 <div class="article">

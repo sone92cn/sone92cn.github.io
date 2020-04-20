@@ -7,8 +7,9 @@ Created on Tue Feb 27 11:44:43 2018
 import os
 import json
 import markdown
-from jinja2 import FileSystemLoader, Environment
+from datetime import datetime
 from PathTool import createTreeAsPath
+from jinja2 import FileSystemLoader, Environment
 
 
 def getHeadLines(text, n):
@@ -79,8 +80,8 @@ if __name__ == "__main__":
                     with open(hfile, "w", encoding="utf-8") as w:
                         w.write("<div class=\"article\">\n")
                         w.write("<p style=\"text-indent:0em;\"><a id=\"view_head\" href=\"#\" onclick=\"javascript:viewHead($(this));\">返回</a></p>\n")
-                        w.write(markdown.markdown(input_text))
-                        w.write("\n</div>")
+                        w.write(markdown.markdown(input_text).replace('<pre><code>', '<code>').replace('</code></pre>', '</code>').replace('<code>', '<pre><code>').replace('</code>', '</code></pre>'))
+                        w.write(f"\n<p class=\"text-right\">最后更新时间：{datetime.fromtimestamp(os.path.getmtime(mkdn_d[key])).strftime('%Y-%m-%d %H:%M:%S')}</p></div>")
             except BaseException:
                 fail_c.append(hfile)
             else:
@@ -116,7 +117,7 @@ if __name__ == "__main__":
                 with open(head_d[key], mode="r", encoding="utf-8") as r:
                     input_text = getHeadLines(r.read(), 300)
                     view_s.append("<div class=\"article\">")
-                    view_s.append(markdown.markdown(input_text))
+                    view_s.append(markdown.markdown(input_text).replace('<pre><code>', '<code>').replace('</code></pre>', '</code>').replace('<code>', '<pre><code>').replace('</code>', '</code></pre>'))
                     view_s.append(f"<p><a href=\"javascript:viewArticle($('#content_0'), '/{html_d[temp]}/{key}.html');\">...</a></p>\n</div>")
             except BaseException:
                 raise
@@ -127,7 +128,7 @@ if __name__ == "__main__":
 
     # 更新Index页面
     try:
-        renderPage(model="index.html", title="Felix's Git Page", recents=head_d, preview="\n".join(view_s))
+        renderPage(model="index.html", title="My Local Page", recents=head_d, preview="\n".join(view_s))
     except BaseException:
         raise Exception("Fail to update index page.")
     else:
