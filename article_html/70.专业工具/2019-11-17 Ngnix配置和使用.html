@@ -1,0 +1,37 @@
+<div class="article">
+<p style="text-indent:0em;"><a id="view_head" href="#" onclick="javascript:viewHead($(this));">返回</a></p>
+<h1>Ngnix使用</h1>
+<h3>一、下载和安装</h3>
+<ol>
+<li>下载地址：http://nginx.org/en/download.html</li>
+<li>安装启动： 下载后解压至任意目录，运行“nginx.exe”启动</li>
+<li>如果“http://localhost/”能正常访问，表示正常启动</li>
+<li>服务关闭：nginx -s stop(快速停止nginx)；nginx -s quit(完整有序的停止nginx)</li>
+</ol>
+<h3>二、Ngnix配置文件</h3>
+<ol>
+<li>配置文件：nginx的配置文件是conf目录下的nginx.conf</li>
+<li>启用配置：修改了nginx的配置文件nginx.conf 时，执行 nginx -s reload 可让改动生效</li>
+</ol>
+<h3>三、Ngnix负载均衡</h3>
+<p><img alt="" src="assets/nginx-1.png" /></p>
+<h3>四、Nginx静态资源</h3>
+<p><img alt="" src="assets/nginx-2.png" /></p>
+<h3>五、匹配模式及顺序</h3>
+<p>location = /uri 　　　表示精确匹配，只有完全匹配上才能生效。<br />
+　　location ^~ /uri 　　 对URL路径进行前缀匹配，并且在正则之前<br />
+　　location ~ pattern 　 表示区分大小写的正则匹配<br />
+　　location ~* pattern 　表示不区分大小写的正则匹配<br />
+　　location /uri 　　　　也表示前缀匹配，但是在正则匹配之后<br />
+　　location / 　　　　　  通用匹配，相当于default</p>
+<h3>六、root与alias</h3>
+<ol>
+<li>root: 表示跟目录，文件名包含完整url，可以不以/结尾</li>
+<li>alias:  资源所在目录，文件名不包含完整url，必须以/结尾</li>
+</ol>
+<h3>七、根据GET参数转发</h3>
+<p>if ($arg_server_id = "3"){
+    proxy_pass    http://tornado_server3;
+    break;
+}</p>
+</div>

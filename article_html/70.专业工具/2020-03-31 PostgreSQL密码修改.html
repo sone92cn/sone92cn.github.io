@@ -1,0 +1,22 @@
+<div class="article">
+<p style="text-indent:0em;"><a id="view_head" href="#" onclick="javascript:viewHead($(this));">返回</a></p>
+<p>如何安全地修改密码：</p>
+<p>方式1
+使用psql，连接到Postgres Server：</p>
+<p>test1=&gt; \password
+Enter new password:
+Enter it again:
+test1=&gt;
+我将原密码hello，修改为hellojava.123456
+这种修改方式相当于向postgres server 发送了如下命令：</p>
+<p>ALTER USER postgres PASSWORD ' md53175af154as54df5as4d5f45sd6af';
+后面的字符串是  hellojava经过md5加密后的字符串
+12345
+注意：尽量不要使用postgres作为用户密码，防止被攻击。</p>
+<p>方式2：可以直接发送sql修改：</p>
+<p>`这种方式不仅仅限于psql了，其余客户端也能修改，如pgadmin等</p>
+<p>ALTER USER test1 PASSWORD 'secret'
+弊端：通过sql修改，有可能会将修改语句记录在相关工具的log里。
+例如：通过psql 运行该条sql，则在.psql_history文件中会有相应语句的记录
+      有密码泄露的风险</p>
+</div>

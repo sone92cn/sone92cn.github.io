@@ -40,7 +40,7 @@ if __name__ == "__main__":
     # 设置资源文件夹
     path_json = "json"
     path_html = "article_html"
-    path_mkdn = "article_markdown"
+    path_mkdn = r"E:\Projects\Markdown"
 
     # 获取当前脚本所在路径
     root = os.path.split(os.path.realpath(__file__))[0]
@@ -86,6 +86,8 @@ if __name__ == "__main__":
             else:
                 view_d[key] = hfile
                 succ_c.append(hfile)
+        else:
+            fail_c.append(mkdn_d[key])
 
     # 删除MD目录已删除的文章
     temp = createTreeAsPath(path_html, fileRegular=r'^.+\.html$', scanSubFolder=True, relativePath=True)
@@ -94,11 +96,11 @@ if __name__ == "__main__":
         k2, k3 = os.path.splitext(k2)
         if not os.path.isfile(f"{path_mkdn}/{k2[:4]}{k2[5:7]}{k2[8:]}.{k1[:2]}.md"):
             try:
-                os.remove(key)
+                os.remove(f"{path_html}/{key}")
             except BaseException:
-                fail_d.append(key)
+                fail_d.append(f"{path_html}/{key}")
             else:
-                succ_d.append(key)
+                succ_d.append(f"{path_html}/{key}")
 
     # 输出所有文章到json
     with open(f"{path_json}/articles.json", "w", encoding="utf-8") as w:

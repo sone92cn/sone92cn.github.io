@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 	<head>
 		<meta charset="utf-8" />
-		<title>Felix's Page</title>
+		<title>Felix's Git Page</title>
 
 		<!-- 适应移动端 -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -52,7 +52,7 @@
 
 		<div class="row">
 			<div class="col-12" id="logo">
-				<h1>Felix's Page</h1>
+				<h1>Felix's Git Page</h1>
 			</div>
 		</div>
 
@@ -72,76 +72,78 @@
 		<div class="row content" id="content_0">
 			<div class="col-8 view-part" >
 				<div class="article">
-<h1>PLSQL递归查询</h1>
-<h2>1、语法格式</h2>
-<pre><code>SELECT [COLS] FROM table_name 
-[WHERE condition] 
-[START WITH start_condition] 
-CONNECT BY [ PRIOR COLUMN1 = COLUMN2 | COLUMN1 = PRIOR COLUMN2 [AND ...]];
-</code></pre>
-<h2>2、说明</h2>
-<p>用途：树状检索</p>
-<p>跟节点：START WITH不但可以指定一个根节点，还可以指定多个根节点。</p>
-<p>连接条件：其中用PRIOR表示上一条记录</p>
-<p>顺序：START WITH和CONNECT BY顺序不影响查询结果</p>
-<p><a href="javascript:viewArticle($('#content_0'), '/article_html/50.技术语言/2019-02-19 PLSQL递归查询.html');">...</a></p>
+<p>如何安全地修改密码：</p>
+<p>方式1
+使用psql，连接到Postgres Server：</p>
+<p>test1=&gt; \password
+Enter new password:
+Enter it again:
+test1=&gt;
+我将原密码hello，修改为hellojava.123456
+这种修改方式相当于向postgres server 发送了如下命令：</p>
+<p>ALTER USER postgres PASSWORD ' md53175af154as54df5as4d5f45sd6af';
+后面的字符串是  hellojava经过md5加密后的字符串
+12345</p>
+<p><a href="javascript:viewArticle($('#content_0'), '/article_html/70.专业工具/2020-03-31 PostgreSQL密码修改.html');">...</a></p>
 </div>
 <div class="article">
-<h1>解决pgAdmin4启动失败</h1>
-<h2>1.问题描述</h2>
-<p>pgAdmin 4  the application server could not be contant</p>
-<h2>2.解决方法</h2>
-<h3>2.1 删除生成的配置文件</h3>
-<pre><code>删除：C:\Users\username\AppData\Roaming\pgAdmin内的所有文件
-</code></pre>
-<h3>2.2 修改config_distro.py文件（pgAdmin 4\web）</h3>
-<pre><code>MINIFY_HTML = False
-DATA_DIR = "C:/Data/pgAdmin" #路径可以自己设置
-</code></pre>
-<h3>2.3 创建缺少的空文件（空文件）</h3>
-<p><a href="javascript:viewArticle($('#content_0'), '/article_html/70.专业工具/2018-06-17 pgAdmin4启动失败.html');">...</a></p>
+<h1>MongoDB安装</h1>
+<h3>一、下载MongoDB(Zip版)</h3>
+<p>url: https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2012plus-4.2.2.zip</p>
+<h3>二、解压到任意目录</h3>
+<p>如：D:\MongoDB（若无logs目录，在跟目录下新建）</p>
+<h3>三、添加根目录下"bin"到系统环境变量</h3>
+<p><img alt="" src="assets/markdown-img-paste-2019121516202662.png" /></p>
+<h3>四、在任意位置创建MongoDB配置文件</h3>
+<p>如：E:\MongoDB\Conf\mongo.config  </p>
+<p><a href="javascript:viewArticle($('#content_0'), '/article_html/70.专业工具/2019-12-14 MongoDB安装.html');">...</a></p>
 </div>
 <div class="article">
-<h1>PostgreSQL安装(Zip版)</h1>
-<h2>1.下载并解压</h2>
-<p>从官网（https://www.postgresql.org/）下载程序文件并解压到指定目录（如：D:\PGSQL）。</p>
-<h2>2.添加和设置Windows用户</h2>
-<h3>2.1 添加用于启动PostgreSQL的Windows用户</h3>
-<pre><code>net user uname passswd /add /expires:never /passwordchg:no
-&gt;&gt; uname:用户名，一般为postgres
-&gt;&gt; passwd:用户密码
-</code></pre>
-<h3>2.2 设置添加的用户不允许本地登录(非必须)</h3>
-<p><a href="javascript:viewArticle($('#content_0'), '/article_html/70.专业工具/2018-06-17 PostgreSQL安装.html');">...</a></p>
+<h3>创建虚拟环境</h3>
+<p>pip install virtualenv
+pip install virtualenvwrapper-win
+配置环境变量：WORKON_HOME=path
+创建：mkvirtualenv venvname
+查看：workon
+启动：workon venvname
+退出：deactivate
+删除：rmvirtualenv venv</p>
+<h3>启动虚拟环境</h3>
+<p>切换到Virtualenv\superset\Scripts目录，运行"activate"</p>
+<h3>安装superset</h3>
+<p>pip install superset
+(如部分依赖库安装失败，手工下载安装)</p>
+<p><a href="javascript:viewArticle($('#content_0'), '/article_html/70.专业工具/2019-12-06 Superset安装.html');">...</a></p>
 </div>
 <div class="article">
-<h1>PL/SQL Developer常用技巧</h1>
-<h2>1.类SQL PLUS窗口</h2>
-<p>File-&gt;New-&gt;Command Window，这个类似于oracle的客户端工具sql plus，但比它好用</p>
-<h2>2.关键字自动大写</h2>
-<p>Tools-&gt;Preferences-&gt;Editor：将Keyword case选择Uppercase。这样在窗口中输入sql语句时，关键字会自动大写，而其它都是小写。这样阅读代码比较容易，且保持良好得编码风格;</p>
-<p><a href="javascript:viewArticle($('#content_0'), '/article_html/70.专业工具/2018-06-04 PLSqlDeveloper技巧.html');">...</a></p>
+<p>pip install virtualenv
+pip install virtualenvwrapper-win
+配置环境变量：WORKON_HOME=path
+创建：mkvirtualenv venvname
+查看：workon
+启动：workon venvname
+退出：deactivate
+删除：rmvirtualenv venv</p>
+<p><a href="javascript:viewArticle($('#content_0'), '/article_html/70.专业工具/2019-12-06 Python虚拟环境.html');">...</a></p>
 </div>
 <div class="article">
-<h1>jQuery选择器</h1>
-<h2>一、基本选择器</h2>
-<h3>1.类型选择器</h3>
-<p>$("element"):document.getElementByTagName("element")</p>
-<pre><code>$("p").css("background-color","#B2E0FF");
-</code></pre>
-<h3>2.ID选择器</h3>
-<p>$("#id"):document.getElementById("id")</p>
-<pre><code>$("#choose").css("background-color","#B2E0FF");
-</code></pre>
-<h3>3.类选择器</h3>
-<p><a href="javascript:viewArticle($('#content_0'), '/article_html/50.技术语言/2018-05-28 jQuery选择器.html');">...</a></p>
+<h1>CMD编码修改</h1>
+<ol>
+<li>临时修改：只作用于当前窗口，先进入cmd命令窗口（快捷键win键+R）</li>
+<li>直接输入“chcp 65001”，回车键（Enter键）执行，这时候该窗口编码已经是UTF-8编码了。</li>
+<li>永久修改：win键+R，输入regedit，确定。</li>
+<li>按顺序找到HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor。</li>
+<li>点击右键-新建，选择“字符串值”。</li>
+<li>命名为“autorun”, 点击右击修改，数值数据填写“chcp 65001”，确定。</li>
+</ol>
+<p><a href="javascript:viewArticle($('#content_0'), '/article_html/90.其他杂项/2019-11-20 CMD编码修改.html');">...</a></p>
 </div>
 			</div>
 			<div class="col-8 view-full d-none" >
 			</div>
 			<div class="col-4">
 				<div class="box" id="profile">
-					<p style="text-align:center;"><img src="/img/head.png" width="80%"/></p>
+					<p style="text-align:center;"><img src="/img/img4.png" width="80%"/></p>
 <!--
 <p style="text-indent:0em;">
 Felix Chou，中级会计师、注册数据分析师，Python爱好者，致力于业务数据、财务信息的及时互联与高效使用。
@@ -156,32 +158,32 @@ Felix Chou，中级会计师、注册数据分析师，Python爱好者，致力�
 	
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle($('#content_0'), 'article_html/50.技术语言/2019-02-19 PLSQL递归查询.html');">PLSQL递归查询</a></h4>
-		<p>2019-02-19</p>
+		<h4><a href="javascript:viewArticle($('#content_0'), 'article_html/70.专业工具/2020-03-31 PostgreSQL密码修改.html');">PostgreSQL密码修改</a></h4>
+		<p>2020-03-31</p>
 	</div>
 	
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle($('#content_0'), 'article_html/70.专业工具/2018-06-17 pgAdmin4启动失败.html');">pgAdmin4启动失败</a></h4>
-		<p>2018-06-17</p>
+		<h4><a href="javascript:viewArticle($('#content_0'), 'article_html/70.专业工具/2019-12-14 MongoDB安装.html');">MongoDB安装</a></h4>
+		<p>2019-12-14</p>
 	</div>
 	
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle($('#content_0'), 'article_html/70.专业工具/2018-06-17 PostgreSQL安装.html');">PostgreSQL安装</a></h4>
-		<p>2018-06-17</p>
+		<h4><a href="javascript:viewArticle($('#content_0'), 'article_html/70.专业工具/2019-12-06 Superset安装.html');">Superset安装</a></h4>
+		<p>2019-12-06</p>
 	</div>
 	
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle($('#content_0'), 'article_html/70.专业工具/2018-06-04 PLSqlDeveloper技巧.html');">PLSqlDeveloper技巧</a></h4>
-		<p>2018-06-04</p>
+		<h4><a href="javascript:viewArticle($('#content_0'), 'article_html/70.专业工具/2019-12-06 Python虚拟环境.html');">Python虚拟环境</a></h4>
+		<p>2019-12-06</p>
 	</div>
 	
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle($('#content_0'), 'article_html/50.技术语言/2018-05-28 jQuery选择器.html');">jQuery选择器</a></h4>
-		<p>2018-05-28</p>
+		<h4><a href="javascript:viewArticle($('#content_0'), 'article_html/90.其他杂项/2019-11-20 CMD编码修改.html');">CMD编码修改</a></h4>
+		<p>2019-11-20</p>
 	</div>
 	
 </div>

@@ -1,0 +1,23 @@
+<div class="article">
+<p style="text-indent:0em;"><a id="view_head" href="#" onclick="javascript:viewHead($(this));">返回</a></p>
+<h1>npm包管理器</h1>
+<h3>一、npm安装</h3>
+<ol>
+<li>下载并安装node.js，会自动安装npm</li>
+</ol>
+<h3>二、npm设置</h3>
+<ol>
+<li>修改包安装目录：<br />
+  在nodejs根目录下，node_modules/npm文件夹中找到npmrc文件，修改其中prefix为新路径，如：E:\Projects\npm</li>
+</ol>
+<h3>三、安装包</h3>
+<ol>
+<li>当前目录安装：<br />
+  npm install packagename@v，省略@v将自动安装最新版本，比如：
+<code>npm install jquery@3</code></li>
+<li>全局安装：<br />
+  npm install packagename@v -g，将安装到第二部设置的目录。</li>
+</ol>
+<h3>四、查看已安装的包</h3>
+<p><code>npm ls [-g]</code></p>
+</div>
