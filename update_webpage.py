@@ -7,6 +7,7 @@ Created on Tue Feb 27 11:44:43 2018
 import os
 import json
 import markdown
+from shutil import copyfile
 from datetime import datetime
 from PathTool import createTreeAsPath
 from jinja2 import FileSystemLoader, Environment
@@ -37,6 +38,7 @@ if __name__ == "__main__":
     mkdn_d = None  # markdown文件字典
     succ_d, fail_d = [], []  # 删除文章记录
     succ_c, fail_c, skip_c = [], [], []  # 更新全部记录
+    succ_i, fail_i, skip_i = [], [], []  # 更新截图
 
     # 设置资源文件夹
     path_json = "json"
@@ -80,7 +82,7 @@ if __name__ == "__main__":
                     with open(hfile, "w", encoding="utf-8") as w:
                         w.write("<div class=\"article\">\n")
                         w.write("<p style=\"text-indent:0em;\"><a id=\"view_head\" href=\"#\" onclick=\"javascript:viewHead($(this));\">返回</a></p>\n")
-                        w.write(markdown.markdown(input_text).replace('<pre><code>', '<code>').replace('</code></pre>', '</code>').replace('<code>', '<pre><code>').replace('</code>', '</code></pre>'))
+                        w.write(markdown.markdown(input_text).replace('<pre><code>', '<code>').replace('</code></pre>', '</code>').replace('<code>', '<pre><code>').replace('</code>', '</code></pre>').replace('src="assets', 'src="/img/assets'))
                         w.write(f"\n<p class=\"text-right\">最后更新时间：{datetime.fromtimestamp(os.path.getmtime(mkdn_d[key])).strftime('%Y-%m-%d %H:%M:%S')}</p></div>")
             except BaseException:
                 fail_c.append(hfile)
@@ -103,6 +105,22 @@ if __name__ == "__main__":
             else:
                 succ_d.append(f"{path_html}/{key}")
 
+    # 复制图片
+    path_img = f"{path_mkdn}/assets"
+    if os.path.isdir(path_img):
+        imgs = createTreeAsPath(path_img, fileRegular=r'^.+\.png$', scanSubFolder=False, relativePath=True)
+        for img in imgs:
+            temp = f"img/assets/{img}"
+            if os.path.isfile(temp):
+                skip_i.append(temp)
+            else:
+                try:
+                    copyfile(f"{path_img}/{img}", temp)
+                except BaseException:
+                    fail_i.append(temp)
+                else:
+                    succ_i.append(temp)
+
     # 输出所有文章到json
     with open(f"{path_json}/articles.json", "w", encoding="utf-8") as w:
         json.dump({"cate": createTreeAsPath(path_html, scanSubFolder=False, relativePath=True, forFile=False), "full": view_d}, w)
@@ -117,7 +135,7 @@ if __name__ == "__main__":
                 with open(head_d[key], mode="r", encoding="utf-8") as r:
                     input_text = getHeadLines(r.read(), 300)
                     view_s.append("<div class=\"article\">")
-                    view_s.append(markdown.markdown(input_text).replace('<pre><code>', '<code>').replace('</code></pre>', '</code>').replace('<code>', '<pre><code>').replace('</code>', '</code></pre>'))
+                    view_s.append(markdown.markdown(input_text).replace('<pre><code>', '<code>').replace('</code></pre>', '</code>').replace('<code>', '<pre><code>').replace('</code>', '</code></pre>').replace('src="assets', 'src="/img/assets'))
                     view_s.append(f"<p><a href=\"javascript:viewArticle($('#content_0'), '/{html_d[temp]}/{key}.html');\">...</a></p>\n</div>")
             except BaseException:
                 raise
@@ -136,7 +154,8 @@ if __name__ == "__main__":
 
     # 打印更新结果
     print(f"更新文章: {len(succ_c)} succeed, {len(fail_c)} fail, {len(skip_c)} skip.")
-    print(f"删除文章: {len(succ_d)} succeed, {len(fail_d)} fail.")
+    print(f"更新截图: {len(succ_i)} succeed, {len(fail_i)} fail, {len(skip_i)} skip.")
+    print(f"删除文章: {len(succ_d)} succeed, {len(fail_d)} fail.\n")
     if len(succ_c):
         print("成功更新的文章：")
         for file in succ_c:
@@ -144,6 +163,14 @@ if __name__ == "__main__":
     if len(fail_c):
         print("更新失败的文章：")
         for file in fail_c:
+            print(file)
+    if len(succ_i):
+        print("成功更新的截图：")
+        for file in succ_i:
+            print(file)
+    if len(fail_i):
+        print("更新失败的截图：")
+        for file in fail_i:
             print(file)
     if len(succ_d):
         print("删除成功的文章：")
