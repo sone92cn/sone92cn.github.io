@@ -13,6 +13,12 @@ from PathTool import createTreeAsPath
 from jinja2 import FileSystemLoader, Environment
 
 
+# 设置资源文件夹
+path_json = "json"
+path_html = "html"
+path_mkdn = r"E:\Projects\Markdown"
+
+
 def getHeadLines(text, n):
     index = text[:n].rfind("\n")
     return text[:n] if index == -1 else text[:index+1]
@@ -30,6 +36,17 @@ def renderPage(model, title, recents, preview):
             wfile.write(template.render(title=title, recents=recents, preview=preview))
 
 
+def copyAsset(m):
+    file = f"/img/{m.group(2)}"
+    if not os.path.isfile(file):
+        try:
+            copyfile(f"{path_mkdn}/{m.group(2)}", file)
+        except BaseException:
+            raise Exception(f"复制{file}失败！")
+        else:
+            return f"{m.group(1)}/img/{m.group(2)}{m.group(3)}"
+
+
 if __name__ == "__main__":
     debug = False
     view_d = {}  # 所有文章信息
@@ -39,11 +56,6 @@ if __name__ == "__main__":
     succ_d, fail_d = [], []  # 删除文章记录
     succ_c, fail_c, skip_c = [], [], []  # 更新全部记录
     succ_i, fail_i, skip_i = [], [], []  # 更新截图
-
-    # 设置资源文件夹
-    path_json = "json"
-    path_html = "html"
-    path_mkdn = r"E:\Projects\Markdown"
 
     # 获取当前脚本所在路径
     root = os.path.split(os.path.realpath(__file__))[0]
@@ -105,21 +117,21 @@ if __name__ == "__main__":
             else:
                 succ_d.append(f"{path_html}/{key}")
 
-    # 复制图片
-    path_img = f"{path_mkdn}/assets"
-    if os.path.isdir(path_img):
-        imgs = createTreeAsPath(path_img, fileRegular=r'^.+\.png$', scanSubFolder=False, relativePath=True)
-        for img in imgs:
-            temp = f"img/assets/{img}"
-            if os.path.isfile(temp):
-                skip_i.append(temp)
-            else:
-                try:
-                    copyfile(f"{path_img}/{img}", temp)
-                except BaseException:
-                    fail_i.append(temp)
-                else:
-                    succ_i.append(temp)
+    # # 复制图片
+    # path_img = f"{path_mkdn}/assets"
+    # if os.path.isdir(path_img):
+    #     imgs = createTreeAsPath(path_img, fileRegular=r'^.+\.png$', scanSubFolder=False, relativePath=True)
+    #     for img in imgs:
+    #         temp = f"img/assets/{img}"
+    #         if os.path.isfile(temp):
+    #             skip_i.append(temp)
+    #         else:
+    #             try:
+    #                 copyfile(f"{path_img}/{img}", temp)
+    #             except BaseException:
+    #                 fail_i.append(temp)
+    #             else:
+    #                 succ_i.append(temp)
 
     # 输出所有文章到json
     with open(f"{path_json}/articles.json", "w", encoding="utf-8") as w:
