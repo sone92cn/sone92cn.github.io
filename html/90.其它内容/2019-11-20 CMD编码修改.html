@@ -1,0 +1,13 @@
+<div class="article">
+<p style="text-indent:0em;"><a id="view_head" href="#" onclick="javascript:viewHead($(this));">返回</a></p>
+<h1>CMD编码修改</h1>
+<ol>
+<li>临时修改：只作用于当前窗口，先进入cmd命令窗口（快捷键win键+R）</li>
+<li>直接输入“chcp 65001”，回车键（Enter键）执行，这时候该窗口编码已经是UTF-8编码了。</li>
+<li>永久修改：win键+R，输入regedit，确定。</li>
+<li>按顺序找到HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor。</li>
+<li>点击右键-新建，选择“字符串值”。</li>
+<li>命名为“autorun”, 点击右击修改，数值数据填写“chcp 65001”，确定。</li>
+<li>这时候打开cmd命令窗口就会看到，和之前临时修改的窗口一样，每次打开cmd对是UTF-8编码了。</li>
+</ol>
+<p class="text-right">最后更新时间：2019-11-20 10:55:07</p></div>

@@ -1,0 +1,38 @@
+<div class="article">
+<p style="text-indent:0em;"><a id="view_head" href="#" onclick="javascript:viewHead($(this));">返回</a></p>
+<h1>Reg文件语法</h1>
+<h2>1、文件开头</h2>
+<pre><code>Windows Registry Editor Version 5.00
+</code></pre>
+<h2>2、新建项</h2>
+<pre><code>[HKEY_CLASSES_ROOT\.pyw\Shell\Edit with IDLE\Command]
+</code></pre>
+<h2>3、删除项</h2>
+<pre><code>[-HKEY_CLASSES_ROOT\.pyw\Shell\Edit with IDLE\Command]
+</code></pre>
+<h2>4、新建键值</h2>
+<pre><code>[HKEY_CLASSES_ROOT\*\Shell\Edit with IDLE\Command]
+@="\"D:\\pythonw.exe\" \"D:\\Lib\\idlelib\\idle.pyw\" -e \"%1\""
+
+[HKEY_CLASSES_ROOT\*\Shell\Edit with IDLE\Command]
+"cmd"=dword:00000000
+</code></pre>
+<h2>5、删除键值</h2>
+<pre><code>[HKEY_CLASSES_ROOT\*\Shell\Edit with IDLE\Command]
+"cmd"=-
+</code></pre>
+<h2>6、示例</h2>
+<h3>6.1 所有文件新增用Notepad++打开</h3>
+<pre><code>Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\*\Shell\Edit with NotePad++]
+[HKEY_CLASSES_ROOT\*\Shell\Edit with NotePad++\Command]
+@="\"D:\\Apps\\Notepad++\\notepad++.exe\" \"%1\""
+</code></pre>
+<h3>6.1 py&amp;pyw文件新增用IDLE编辑</h3>
+<pre><code>Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\Shell\Edit with IDLE\Command]
+@="\"D:\\pythonw.exe\" \"D:\\Lib\\idlelib\\idle.pyw\" -e \"%1\""
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.pyw\Shell\Edit with IDLE\Command]
+@="\"D:\\pythonw.exe\" \"D:\\Lib\\idlelib\\idle.pyw\" -e \"%1\""
+</code></pre>
+<p class="text-right">最后更新时间：2020-04-20 09:22:21</p></div>
