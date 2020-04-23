@@ -4,6 +4,7 @@ Created on Tue Feb 27 11:44:43 2018
 @author: Felix
 """
 
+import re
 import os
 import json
 import markdown
@@ -12,6 +13,8 @@ from datetime import datetime
 from PathTool import createTreeAsPath
 from jinja2 import FileSystemLoader, Environment
 
+# 是否删除
+del_mode = False
 
 # 设置资源文件夹
 path_json = "json"
@@ -37,18 +40,19 @@ def renderPage(model, title, recents, preview):
 
 
 def copyAsset(m):
-    file = f"/img/{m.group(2)}"
+    # print("copy")
+    file = f"img/{m.group(2)}"
     if not os.path.isfile(file):
         try:
             copyfile(f"{path_mkdn}/{m.group(2)}", file)
         except BaseException:
             raise Exception(f"复制{file}失败！")
         else:
-            return f"{m.group(1)}/img/{m.group(2)}{m.group(3)}"
+            # print(file)
+            return f"{m.group(1)}/{file}{m.group(3)}"
 
 
 if __name__ == "__main__":
-    debug = False
     view_d = {}  # 所有文章信息
     head_d = None  # 最近文章信息
     html_d = None  # 文章目录字典
@@ -59,6 +63,9 @@ if __name__ == "__main__":
 
     # 获取当前脚本所在路径
     root = os.path.split(os.path.realpath(__file__))[0]
+
+    # 截图资源正则表达式
+    re_copy = re.compile(r'(src\=\")(assets\/.+?\.png)(\")', re.IGNORECASE)
 
     # 设置脚本文件目录为工作目录
     os.chdir(root)
@@ -90,11 +97,11 @@ if __name__ == "__main__":
                     continue  # 跳过更新时间在markdown文件后的html文件
             try:
                 with open(mkdn_d[key], mode="r", encoding="utf-8") as r:
-                    input_text = r.read()
+                    input_text = re_copy.sub(copyAsset, markdown.markdown(r.read()))
                     with open(hfile, "w", encoding="utf-8") as w:
                         w.write("<div class=\"article\">\n")
                         w.write("<p style=\"text-indent:0em;\"><a id=\"view_head\" href=\"#\" onclick=\"javascript:viewHead($(this));\">返回</a></p>\n")
-                        w.write(markdown.markdown(input_text).replace('<pre><code>', '<code>').replace('</code></pre>', '</code>').replace('<code>', '<pre><code>').replace('</code>', '</code></pre>').replace('src="assets', 'src="/img/assets'))
+                        w.write(input_text.replace('<pre><code>', '<code>').replace('</code></pre>', '</code>').replace('<code>', '<pre><code>').replace('</code>', '</code></pre>'))
                         w.write(f"\n<p class=\"text-right\">最后更新时间：{datetime.fromtimestamp(os.path.getmtime(mkdn_d[key])).strftime('%Y-%m-%d %H:%M:%S')}</p></div>")
             except BaseException:
                 fail_c.append(hfile)
@@ -105,17 +112,18 @@ if __name__ == "__main__":
             fail_c.append(mkdn_d[key])
 
     # 删除MD目录已删除的文章
-    temp = createTreeAsPath(path_html, fileRegular=r'^.+\.html$', scanSubFolder=True, relativePath=True)
-    for key in temp:
-        k1, k2 = os.path.split(key)
-        k2, k3 = os.path.splitext(k2)
-        if not os.path.isfile(f"{path_mkdn}/{k2[:4]}{k2[5:7]}{k2[8:]}.{k1[:2]}.md"):
-            try:
-                os.remove(f"{path_html}/{key}")
-            except BaseException:
-                fail_d.append(f"{path_html}/{key}")
-            else:
-                succ_d.append(f"{path_html}/{key}")
+    if del_mode:
+        temp = createTreeAsPath(path_html, fileRegular=r'^.+\.html$', scanSubFolder=True, relativePath=True)
+        for key in temp:
+            k1, k2 = os.path.split(key)
+            k2, k3 = os.path.splitext(k2)
+            if not os.path.isfile(f"{path_mkdn}/{k2[:4]}{k2[5:7]}{k2[8:]}.{k1[:2]}.md"):
+                try:
+                    os.remove(f"{path_html}/{key}")
+                except BaseException:
+                    fail_d.append(f"{path_html}/{key}")
+                else:
+                    succ_d.append(f"{path_html}/{key}")
 
     # # 复制图片
     # path_img = f"{path_mkdn}/assets"
@@ -145,9 +153,9 @@ if __name__ == "__main__":
         if temp in html_d:
             try:
                 with open(head_d[key], mode="r", encoding="utf-8") as r:
-                    input_text = getHeadLines(r.read(), 300)
+                    input_text = re_copy.sub(copyAsset, markdown.markdown(getHeadLines(r.read(), 300)))
                     view_s.append("<div class=\"article\">")
-                    view_s.append(markdown.markdown(input_text).replace('<pre><code>', '<code>').replace('</code></pre>', '</code>').replace('<code>', '<pre><code>').replace('</code>', '</code></pre>').replace('src="assets', 'src="/img/assets'))
+                    view_s.append(input_text.replace('<pre><code>', '<code>').replace('</code></pre>', '</code>').replace('<code>', '<pre><code>').replace('</code>', '</code></pre>'))
                     view_s.append(f"<p><a href=\"javascript:viewArticle($('#content_0'), '/{html_d[temp]}/{key}.html');\">...</a></p>\n</div>")
             except BaseException:
                 raise

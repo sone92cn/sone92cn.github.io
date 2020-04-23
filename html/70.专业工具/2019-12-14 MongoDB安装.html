@@ -1,23 +1,23 @@
 <div class="article">
 <p style="text-indent:0em;"><a id="view_head" href="#" onclick="javascript:viewHead($(this));">返回</a></p>
 <h1>MongoDB安装</h1>
-<h3>一、下载MongoDB(Zip版)</h3>
+<h2>一、下载MongoDB(Zip版)</h2>
 <p>url: https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2012plus-4.2.2.zip</p>
-<h3>二、解压到任意目录</h3>
+<h2>二、解压到任意目录</h2>
 <p>如：D:\MongoDB（若无logs目录，在跟目录下新建）</p>
-<h3>三、添加根目录下"bin"到系统环境变量</h3>
+<h2>三、添加根目录下"bin"到系统环境变量</h2>
 <p><img alt="" src="/img/assets/markdown-img-paste-2019121516202662.png" /></p>
-<h3>四、在任意位置创建MongoDB配置文件</h3>
+<h2>四、在任意位置创建MongoDB配置文件</h2>
 <p>如：E:\MongoDB\Conf\mongo.config<br />
 配置文件修改后停止服务再启动即可生效</p>
-<h3>五、启动MongoDb服务器</h3>
+<h2>五、启动MongoDb服务器</h2>
 <p>mongod --config "E:\MongoDB\Conf\mongo.config"<br />
 （浏览：http://localhost:27017/，出现成功提示表示可用，Ctrl+C停止）</p>
-<h3>五、将MongoDB添加为服务</h3>
+<h2>五、将MongoDB添加为服务</h2>
 <p>mongod --config "E:\MongoDB\Conf\mongo.config" --install --serviceName "MongoDB"</p>
-<h3>六、下载MongoDB服务</h3>
+<h2>六、下载MongoDB服务</h2>
 <p>mongod --remove</p>
-<h3>七、用户管理</h3>
+<h2>七、用户管理</h2>
 <ol>
 <li>切换到admin库
 use admin</li>
@@ -30,7 +30,7 @@ db.changeUserPassword("username", "xxx")</li>
 <li>删除已有用户
 db.dropUser('user001')</li>
 </ol>
-<h3>八、mongodb内置角色：</h3>
+<h2>八、mongodb内置角色：</h2>
 <ol>
 <li>数据库用户角色：read、readWrite;</li>
 <li>数据库管理角色：dbAdmin、dbOwner、userAdmin；</li>
@@ -40,4 +40,4 @@ db.dropUser('user001')</li>
 <li>超级用户角色：root  </li>
 <li>内部角色：system</li>
 </ol>
-<p class="text-right">最后更新时间：2020-04-08 09:08:39</p></div>
+<p class="text-right">最后更新时间：2020-04-23 09:53:19</p></div>
