@@ -1,11 +1,11 @@
 <div class="head">
-	<h2 onclick="javascript:viewHead('#content_0','null');">最近足迹</h2>
+	<h2 onclick="javascript:viewHead('#content_0','null');">最近更新</h2>
 </div>
 <div class="menu">
 	{% for recent in recents %}
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle('#content_0', '{{ recents[recent] }}');">{{recent[11:]}}</a></h4>
+		<h4><a href="javascript:viewArticle($('#content_0'), '{{ recents[recent] }}');">{{recent[11:]}}</a></h4>
 		<p>{{recent[:10]}}</p>
 	</div>
 	{% endfor %}

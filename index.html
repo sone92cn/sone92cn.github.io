@@ -1,331 +1,251 @@
 ﻿<!DOCTYPE html>
-<html lang="zh-cn"> 
+<html lang="zh-cn">
 	<head>
 		<meta charset="utf-8" />
-		<title>Felix's Page</title>
-		
-		<!-- Mobile Specific Metas -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		
-		<!-- CSS -->
-		
-	<link rel="stylesheet" href="css/basic.css">
-	<link rel="stylesheet" href="css/index.css">
-	<link rel="stylesheet" href="css/jquery-accordion-menu.css" type="text/css" />
+		<title>My Local Page</title>
 
+		<!-- 适应移动端 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+		<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+		<!-- 自定义CSS -->
 		
+	<link rel="stylesheet" href="css/index.css" charset="utf-8">
+
+
 		<!-- JS -->
+		<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+		<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+		<!-- <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script> -->
+		<script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+		<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js" integrity="sha384-94230eb1714d1db177fa14e3734c6e133fe4f1a7f0d20e3440c717f4bd1d7a68df17c8420026b86b06a5ed830196fa50" crossorigin="anonymous"></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+		<!-- 自定义js -->
 		
-	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="js/setting.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/vue.min.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/index.js" charset="utf-8"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-		  $("#jquery-accordion-menu ul li a").click(function(){
-			<!-- $(this).nextAll().toggle(); -->
-			$(this).next("ul").toggle();
-		  });
-		});
-	</script>
 
 	</head>
 	<body>
+		<!-- 正文 -->
 		
-	<div class="wrap-body zerogrid">
-		<!-- Header -->
-		<header>
-			<div class="top">
-				<div class="socials">
-					<ul>
-						<li><a href="#" title="baidu"><img src="img/socials/live-32x32.png" /></a></li>
-						<li><a href="#" title="google"><img src="img/socials/google-32x32.png" /></a></li>
-						<li><a href="#" title="rss"><img src="img/socials/rss-32x32.png" /></a></li>
-						<li><a href="#" title="youtube"><img src="img/socials/youtube-32x32.png" /></a></li>
-					</ul>
+	<div class="container" id="container-main">
+		<div class="row" id="socials">
+				<div class="col-8">
+						<span><a href="#" title="baidu"><img src="img/socials/live-32x32.png" /></a></span>
+						<span><a href="#" title="google"><img src="img/socials/google-32x32.png" /></a></span>
+						<span><a href="#" title="rss"><img src="img/socials/rss-32x32.png" /></a></span>
+						<span><a href="#" title="youtube"><img src="img/socials/youtube-32x32.png" /></a></span>
 				</div>
-				<div class="search">
-					<div class="submit" onclick="searchResult();"></div>
-					<input id="input_search" type="text" value="Search..." onfocus="focusSearch(this);" onblur="blurSearch(this);">
+				<div class="col-4">
+					<div class="input-group float-right">
+       			<input type="text" class="form-control" placeholder="搜索" / >
+						<button class="btn btn-info btn-search" id="btn-search"></button>
+					</div>
 				</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12" id="logo">
+				<h1>My Local Page</h1>
 			</div>
-				
-			<div class="logo">
-				<h1>Felix's Web Page</h1>
-			</div>
-			
-			<div class="wrap-nav">
-				<ul>
-					<li><a href="javascript:showContent(0);">最近</a></li>
-					<li><a href="javascript:showContent(1);">文章</a></li>
-					<li><a href="javascript:showContent(2);">项目</a></li>
-					<li><a href="javascript:showContent(3);">下载</a></li>
-					<li><a href="javascript:showContent(4);">留言</a></li>
+		</div>
+
+		<div class="row">
+			<div class="col-12" id="navbar">
+				<ul class="nav nav-pills">
+					<li data-href="#content_0" class="active"><a href="#" onclick="javascript:showContent($(this));">最近</a></li>
+					<li data-href="#content_1"><a href="#" onclick="javascript:showContent($(this));">全部</a></li>
+					<li data-href="#content_2"><a href="#" onclick="javascript:showContent($(this));">项目</a></li>
+					<li data-href="#content_3"><a href="#" onclick="javascript:showContent($(this));"">下载</a></li>
+					<!-- <li data-href="#content_4"><a href="#" onclick="javascript:showContent($(this));">留言</a></li> -->
 				</ul>
 			</div>
-		</header>
-		 
-		<!-- Content 首页 -->
-		<section class="content" id="content_0">
-			<div class="block">
-				<div id="main-content" class="col-2-3">
-					<div class="wrap-col" id="wrap-col-head">
-						<article>
-							首页,建设中...
-						</article>
-					</div>
-					<div class="wrap-col" id="wrap-col-body">
-						<article>
-							首页,建设中...
-						</article>
-					</div>
-				</div>
-				<div id="sidebar" class="col-1-3">
-					<div class="wrap-col">
-						<div class="box" id="profile">
-							<p style="text-align:center;"><img src="/img/head.png" width="80%"/></p>
+		</div>
+
+		<!-- Content 最近 -->
+		<div class="row content" id="content_0">
+			<div class="col-8 view-part" >
+				<div class="article">
+<h1>如何安全地修改密码：</h1>
+<h3>方式1：</h3>
+<p>使用psql，连接到Postgres Server：
+<pre><code>username=&gt; \password
+Enter new password:
+Enter it again:
+username=&gt;</code></pre>
+我将原密码hello，修改为hellojava.123456
+这种修改方式相当于向postgres server 发送了如下命令：
+<pre><code>ALTER USER postgres PASSWORD ' md53175af154as54df5as4d5f45sd6af';</code></pre>
+注意：尽量不要使用postgres作为用户密码，防止被攻击。</p>
+<p><a href="javascript:viewArticle($('#content_0'), '/html/70.专业工具/2020-03-31 PostgreSQL密码修改.html');">...</a></p>
+</div>
+<div class="article">
+<h1>MongoDB安装</h1>
+<h2>一、下载MongoDB(Zip版)</h2>
+<p>url: https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2012plus-4.2.2.zip</p>
+<h2>二、解压到任意目录</h2>
+<p>如：D:\MongoDB（若无logs目录，在跟目录下新建）</p>
+<h2>三、添加根目录下"bin"到系统环境变量</h2>
+<p><img alt=""  /></p>
+<h2>四、在任意位置创建MongoDB配置文件</h2>
+<p>如：E:\MongoDB\Conf\mongo.config  </p>
+<p><a href="javascript:viewArticle($('#content_0'), '/html/70.专业工具/2019-12-14 MongoDB安装.html');">...</a></p>
+</div>
+<div class="article">
+<h3>创建虚拟环境</h3>
+<p>pip install virtualenv
+pip install virtualenvwrapper-win
+配置环境变量：WORKON_HOME=path
+创建：mkvirtualenv venvname
+查看：workon
+启动：workon venvname
+退出：deactivate
+删除：rmvirtualenv venv</p>
+<h3>启动虚拟环境</h3>
+<p>切换到Virtualenv\superset\Scripts目录，运行"activate"</p>
+<h3>安装superset</h3>
+<p>pip install superset
+(如部分依赖库安装失败，手工下载安装)</p>
+<p><a href="javascript:viewArticle($('#content_0'), '/html/70.专业工具/2019-12-06 Superset安装.html');">...</a></p>
+</div>
+<div class="article">
+<p>pip install virtualenv
+pip install virtualenvwrapper-win
+配置环境变量：WORKON_HOME=path
+创建：mkvirtualenv venvname
+查看：workon
+启动：workon venvname
+退出：deactivate
+删除：rmvirtualenv venv</p>
+<p><a href="javascript:viewArticle($('#content_0'), '/html/70.专业工具/2019-12-06 Python虚拟环境.html');">...</a></p>
+</div>
+<div class="article">
+<h1>CMD编码修改</h1>
+<ol>
+<li>临时修改：只作用于当前窗口，先进入cmd命令窗口（快捷键win键+R）</li>
+<li>直接输入“chcp 65001”，回车键（Enter键）执行，这时候该窗口编码已经是UTF-8编码了。</li>
+<li>永久修改：win键+R，输入regedit，确定。</li>
+<li>按顺序找到HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor。</li>
+<li>点击右键-新建，选择“字符串值”。</li>
+<li>命名为“autorun”, 点击右击修改，数值数据填写“chcp 65001”，确定。</li>
+</ol>
+<p><a href="javascript:viewArticle($('#content_0'), '/html/90.其他杂项/2019-11-20 CMD编码修改.html');">...</a></p>
+</div>
+			</div>
+			<div class="col-8 view-full d-none" >
+			</div>
+			<div class="col-4">
+				<div class="box" id="profile">
+					<p style="text-align:center;"><img src="/img/img4.png" width="80%"/></p>
 <!--
 <p style="text-indent:0em;">
 Felix Chou，中级会计师、注册数据分析师，Python爱好者，致力于业务数据、财务信息的及时互联与高效使用。
 </p>
 -->
-						</div>
-						<div class="box" id="recent">
-							<div class="head">
-	<h2 onclick="javascript:viewHead('#content_0','null');">最近足迹</h2>
+				</div>
+				<div class="box" id="recent">
+					<div class="head">
+	<h2 onclick="javascript:viewHead('#content_0','null');">最近更新</h2>
 </div>
 <div class="menu">
 	
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle('#content_0', 'article_html/99.其他文章/01.其他文章/2019-02-19-PLSQL递归查询.html');">PLSQL递归查询</a></h4>
-		<p>2019-02-19</p>
+		<h4><a href="javascript:viewArticle($('#content_0'), 'html/70.专业工具/2020-03-31 PostgreSQL密码修改.html');">PostgreSQL密码修改</a></h4>
+		<p>2020-03-31</p>
 	</div>
 	
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle('#content_0', 'article_html/61.信息技术/31.DataBase/2018-06-17-pgAdmin4启动失败.html');">pgAdmin4启动失败</a></h4>
-		<p>2018-06-17</p>
+		<h4><a href="javascript:viewArticle($('#content_0'), 'html/70.专业工具/2019-12-14 MongoDB安装.html');">MongoDB安装</a></h4>
+		<p>2019-12-14</p>
 	</div>
 	
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle('#content_0', 'article_html/61.信息技术/31.DataBase/2018-06-17-PostgreSQL安装.html');">PostgreSQL安装</a></h4>
-		<p>2018-06-17</p>
+		<h4><a href="javascript:viewArticle($('#content_0'), 'html/70.专业工具/2019-12-06 Superset安装.html');">Superset安装</a></h4>
+		<p>2019-12-06</p>
 	</div>
 	
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle('#content_0', 'article_html/61.信息技术/31.DataBase/2018-06-04-PLSqlDeveloper技巧.html');">PLSqlDeveloper技巧</a></h4>
-		<p>2018-06-04</p>
+		<h4><a href="javascript:viewArticle($('#content_0'), 'html/70.专业工具/2019-12-06 Python虚拟环境.html');">Python虚拟环境</a></h4>
+		<p>2019-12-06</p>
 	</div>
 	
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle('#content_0', 'article_html/61.信息技术/41.jQuery/2018-05-28-jQuery选择器.html');">jQuery选择器</a></h4>
-		<p>2018-05-28</p>
-	</div>
-	
-	<div class="post">
-		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle('#content_0', 'article_html/61.信息技术/41.jQuery/2018-05-28-jQuery过滤器.html');">jQuery过滤器</a></h4>
-		<p>2018-05-28</p>
+		<h4><a href="javascript:viewArticle($('#content_0'), 'html/90.其他杂项/2019-11-20 CMD编码修改.html');">CMD编码修改</a></h4>
+		<p>2019-11-20</p>
 	</div>
 	
 </div>
-						</div>
-					</div>
 				</div>
 			</div>
-		</section>
-		
-		<!-- Content 文章 -->
-		<section class="content" id="content_1">
-			<div class="block">
-				<div id="sidebar" class="col-1-4">
-					<div class="wrap-col">
-						<div class="box" id="menu menu1">
-							
+		</div>
 
-
-
-
-<div class="menu">
-	<ul>
-	
-		
-			<li class="head head_content_menu_1" onclick="$('.menu .body_content_menu_1').toggle();">
-				<p> 财税审计 </p>
-			</li>
-			
-				
-					<li class="body body_content_menu_1" onclick="javascript:viewHead('#content_1', 'article_html/01.财税审计/01.会计基础/menu.htm')">
-						<p> 会计基础 </p>
-					</li>
-				
-			
-		
-	
-		
-			<li class="head head_content_menu_2" onclick="$('.menu .body_content_menu_2').toggle();">
-				<p> 数据分析 </p>
-			</li>
-			
-				
-					<li class="body body_content_menu_2" onclick="javascript:viewHead('#content_1', 'article_html/51.数据分析/01.数据基础/menu.htm')">
-						<p> 数据基础 </p>
-					</li>
-				
-					<li class="body body_content_menu_2" onclick="javascript:viewHead('#content_1', 'article_html/51.数据分析/02.分析工具/menu.htm')">
-						<p> 分析工具 </p>
-					</li>
-				
-			
-		
-	
-		
-			<li class="head head_content_menu_3" onclick="$('.menu .body_content_menu_3').toggle();">
-				<p> 信息技术 </p>
-			</li>
-			
-				
-					<li class="body body_content_menu_3" onclick="javascript:viewHead('#content_1', 'article_html/61.信息技术/11.Python/menu.htm')">
-						<p> Python </p>
-					</li>
-				
-					<li class="body body_content_menu_3" onclick="javascript:viewHead('#content_1', 'article_html/61.信息技术/31.DataBase/menu.htm')">
-						<p> DataBase </p>
-					</li>
-				
-					<li class="body body_content_menu_3" onclick="javascript:viewHead('#content_1', 'article_html/61.信息技术/41.jQuery/menu.htm')">
-						<p> jQuery </p>
-					</li>
-				
-					<li class="body body_content_menu_3" onclick="javascript:viewHead('#content_1', 'article_html/61.信息技术/71.Github/menu.htm')">
-						<p> Github </p>
-					</li>
-				
-			
-		
-	
-		
-			<li class="head head_content_menu_4" onclick="$('.menu .body_content_menu_4').toggle();">
-				<p> 其他文章 </p>
-			</li>
-			
-				
-					<li class="body body_content_menu_4" onclick="javascript:viewHead('#content_1', 'article_html/99.其他文章/01.其他文章/menu.htm')">
-						<p> 其他文章 </p>
-					</li>
-				
-			
-		
-	
-	</ul>
-</div>
-
-
-						</div>
-					</div>
-				</div>
-				<div id="main-content" class="col-3-4">
-					<div class="wrap-col" id="wrap-col-head">
-						<article><h2><a href="javascript:viewArticle('#content_1', 'article_html/99.其他文章/01.其他文章/2019-02-19-PLSQL递归查询.html');">2019-02-19 PLSQL递归查询</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2018-06-17-pgAdmin4启动失败.html');">2018-06-17 pgAdmin4启动失败</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2018-06-17-PostgreSQL安装.html');">2018-06-17 PostgreSQL安装</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2018-06-04-PLSqlDeveloper技巧.html');">2018-06-04 PLSqlDeveloper技巧</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/41.jQuery/2018-05-28-jQuery选择器.html');">2018-05-28 jQuery选择器</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/41.jQuery/2018-05-28-jQuery过滤器.html');">2018-05-28 jQuery过滤器</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-05-25-JSON模块.html');">2018-05-25 JSON模块</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/99.其他文章/01.其他文章/2018-05-24-Windows上帝模式.html');">2018-05-24 Windows上帝模式</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-05-18-QrCode使用方法.html');">2018-05-18 QrCode使用方法</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-05-07-TornadoHTTPClient.html');">2018-05-07 TornadoHTTPClient</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-05-02-NoteBook配置.html');">2018-05-02 NoteBook配置</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/71.Github/2018-03-22-MarkDown基本用法.html');">2018-03-22 MarkDown基本用法</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/99.其他文章/01.其他文章/2018-02-27-Reg文件语法.html');">2018-02-27 Reg文件语法</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-02-27-PyMySQL基本用法.html');">2018-02-27 PyMySQL基本用法</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/71.Github/2018-02-26-Git&GitHub使用帮助.html');">2018-02-26 Git&GitHub使用帮助</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2018-01-25-Python部分函数.html');">2018-01-25 Python部分函数</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2018-01-06-MySQL备份还原.html');">2018-01-06 MySQL备份还原</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/31.DataBase/2017-21-01-MySQL安装(Zip).html');">2017-21-01 MySQL安装(Zip)</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/01.财税审计/01.会计基础/2017-12-21-权责发生制与收付实现制.html');">2017-12-21 权责发生制与收付实现制</a></h2><h2><a href="javascript:viewArticle('#content_1', 'article_html/61.信息技术/11.Python/2017-11-21-Pandas常用命令.html');">2017-11-21 Pandas常用命令</a></h2></article>
-					</div>
-					<div class="wrap-col" id="wrap-col-body">
-						<article>
-							文章,建设中...
-						</article>
-					</div>
+		<!-- Content 全部 -->
+		<div class="row content d-none" id="content_1" data-init="none">
+			<div class="col-3 col-first" >
+				<div>
+					<ul class="nav nav-justified flex-column">
+						<li class="nav-item" v-for="val in cate"><a href="#" @click="filterArticle" :data-filter="val" v-text="val.slice(3)"></a></li>
+					</ul>
 				</div>
 			</div>
-		</section>
-		
+			<div class="col-8 view-part">
+				<div class="article">
+					<ul>
+						<li v-for="(val, key) in menu"><a href="#" onclick="viewArticle($('#content_1'), $(this).data('url'));" :data-url="val" v-text="key"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-8 view-full d-none" >
+			</div>
+		</div>
+
 		<!-- Content 项目 -->
-		<section class="content" id="content_2">
-			<div class="block">
-				<div id="main-content" class="col-full">
-					<div class="wrap-col" id="wrap-col-body">
-						<article>
-							<h2 style="color:#000000">点击访问我的<a href="https://github.com/sone92cn">GitHub项目</a>首页</h2>
-						</article>
-					</div>
+		<div class="row content d-none" id="content_2">
+			<div class="col-12">
+				<div class="article">
+					点击访问我的<a href="https://github.com/sone92cn">GitHub</a>项目
 				</div>
 			</div>
-		</section>
-		
+		</div>
+
 		<!-- Content 下载 -->
-		<section class="content" id="content_3">
-			<div class="block">
-				<div id="main-content" class="col-2-3">
-					<div class="wrap-col" id="wrap-col-body">
-						<article>
-							暂无可供下载资源！
-						</article>
-					</div>
-				</div>
-				<div id="sidebar" class="col-1-3">
-					<div class="wrap-col">
-						<div class="box" id="menu">
-							<div class="head">
-	<h2 onclick="javascript:viewHead('#content_0','null');">下载列表</h2>
-</div>
-<div class="menu">
-	<div class="post">
-		<h4>暂无资源</h4>
-	</div>
-</div>
-						</div>
-					</div>
+		<div class="row content d-none" id="content_3">
+			<div class="col-12">
+				<div class="article">
+					暂无可供下载资源！
 				</div>
 			</div>
-		</section>
-		
+		</div>
+
 		<!-- Content 留言 -->
-		<section class="content" id="content_4">
-			<div class="block">
-				<div id="main-content" class="col-full">
-					<div class="wrap-col" id="wrap-col-body">
-						<article>
-							<form style="width:100%;">
-							<label>请写下您的建议和意见：</label> <br />
-							<textarea  rows="10" style="width:100%;border:1px solid #EEEEEE"></textarea><br />
-							<label>您的昵称：</label><br />
-							<input type=text height="1.2em" width="25em"  style="padding:0.1em;border:1px solid #EEEEEE" /><br />
-							<label>您的联系方式：</label><br />
-							<input type=text height="1.2em" width="25em" style="padding:0.1em;border:1px solid #EEEEEE" /><br />
-							</form>
-							<button onclick="javascript:alert('功能建设中，敬请关注！');return 0;" style="float:right;margin-top:30px;">提交</button><br /><br />
-						</article>
-					</div>
+		<div class="row content d-none" id="content_4">
+			<div class="col-12">
+				<div class="article">
+					<form style="width:100%;">
+					<label>请写下您的建议和意见：</label> <br />
+					<textarea  rows="10" style="width:100%;border:1px solid #EEEEEE"></textarea><br />
+					<label>您的昵称：</label><br />
+					<input type=text height="1.2em" width="25em"  style="padding:0.1em;border:1px solid #EEEEEE" /><br />
+					<label>您的联系方式：</label><br />
+					<input type=text height="1.2em" width="25em" style="padding:0.1em;border:1px solid #EEEEEE" /><br />
+					</form>
+					<button onclick="javascript:alert('功能建设中，敬请关注！');return 0;" style="float:right;margin-top:30px;">提交</button><br /><br />
 				</div>
 			</div>
-		</section>
-		
+		</div>
+
 	</div>
 
 	</body>
-	
-	<script type="text/javascript">
-		var article = getUrlParam("article");
-		if (article == ""){
-			var page = getUrlParam("page");
-			if ((page == "0") || (page == "1") || (page == "2") || (page == "3") || (page == "4")){
-				showContent(page*1);
-			}else{
-				showContent(0);
-			};
-		}else{
-			$.getJSON("/js/articles.json",function(articles){
-				if(articles.hasOwnProperty(article)){
-					showContent(1);
-					viewArticle("#content_1", articles[article]);
-				}else{
-					alert("文章不存在或已删除！");
-				};
-			});
-		};
-		
-		
-	</script>
-
 </html>
