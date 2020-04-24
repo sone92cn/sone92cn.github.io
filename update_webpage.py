@@ -13,7 +13,7 @@ from datetime import datetime
 from PathTool import createTreeAsPath
 from jinja2 import FileSystemLoader, Environment
 
-# 是否删除
+# 清理已删除文章
 del_mode = False
 
 # 设置资源文件夹
@@ -40,7 +40,6 @@ def renderPage(model, title, recents, preview):
 
 
 def copyAsset(m):
-    # print("copy")
     file = f"img/{m.group(2)}"
     if not os.path.isfile(file):
         try:
@@ -48,7 +47,6 @@ def copyAsset(m):
         except BaseException:
             raise Exception(f"复制{file}失败！")
         else:
-            # print(file)
             return f"{m.group(1)}/{file}{m.group(3)}"
 
 
@@ -74,14 +72,14 @@ if __name__ == "__main__":
     # 任务开始
     print("----------------------START----------------------")
 
-    # -- 初始化 html_d
+    # 初始化 html_d
     temp = createTreeAsPath(path_html, scanSubFolder=False, treeMode=False, relativePath=True, forFile=False)
     if len(temp):
         html_d = {key[:2]: f"{path_html}/{key}" for key in temp}
     else:
         raise BaseException("No Sub Dirs.")
 
-    # 检索markdown文件 -- 初始化 mkdn_d
+    # 初始化 mkdn_d
     temp = sorted(createTreeAsPath(path_mkdn, fileRegular=r'^\d{8}.+\.\d{2}\.md$', scanSubFolder=False, relativePath=True), reverse=True)
     mkdn_d = {f"{key[:4]}-{key[4:6]}-{key[6:8]}{key[8:-6]}": f"{path_mkdn}/{key}" for key in temp}
 
@@ -125,22 +123,6 @@ if __name__ == "__main__":
                 else:
                     succ_d.append(f"{path_html}/{key}")
 
-    # # 复制图片
-    # path_img = f"{path_mkdn}/assets"
-    # if os.path.isdir(path_img):
-    #     imgs = createTreeAsPath(path_img, fileRegular=r'^.+\.png$', scanSubFolder=False, relativePath=True)
-    #     for img in imgs:
-    #         temp = f"img/assets/{img}"
-    #         if os.path.isfile(temp):
-    #             skip_i.append(temp)
-    #         else:
-    #             try:
-    #                 copyfile(f"{path_img}/{img}", temp)
-    #             except BaseException:
-    #                 fail_i.append(temp)
-    #             else:
-    #                 succ_i.append(temp)
-
     # 输出所有文章到json
     with open(f"{path_json}/articles.json", "w", encoding="utf-8") as w:
         json.dump({"cate": createTreeAsPath(path_html, scanSubFolder=False, relativePath=True, forFile=False), "full": view_d}, w)
@@ -172,7 +154,7 @@ if __name__ == "__main__":
     else:
         print(f"网站首页：更新成功.\n")
 
-    # 打印更新结果
+    # 打印结果
     print(f"更新文章: {len(succ_c)} succeed, {len(fail_c)} fail, {len(skip_c)} skip.")
     print(f"更新截图: {len(succ_i)} succeed, {len(fail_i)} fail, {len(skip_i)} skip.")
     print(f"删除文章: {len(succ_d)} succeed, {len(fail_d)} fail.\n")
