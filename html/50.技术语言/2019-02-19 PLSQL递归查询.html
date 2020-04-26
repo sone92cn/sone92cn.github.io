@@ -2,9 +2,9 @@
 <p style="text-indent:0em;"><a id="view_head" href="#" onclick="javascript:viewHead($(this));">返回</a></p>
 <h1>PLSQL递归查询</h1>
 <h2>1、语法格式</h2>
-<pre><code>SELECT [COLS] FROM table_name 
-[WHERE condition] 
-[START WITH start_condition] 
+<pre><code>SELECT [COLS] FROM table_name
+[WHERE condition]
+[START WITH start_condition]
 CONNECT BY [ PRIOR COLUMN1 = COLUMN2 | COLUMN1 = PRIOR COLUMN2 [AND ...]];
 </code></pre>
 <h2>2、说明</h2>
@@ -19,8 +19,12 @@ start with employee_id = 101
 connect by employee_id = prior manager_id;
 </code></pre>
 <p>(2)列出指定期间内的所有日期：</p>
-<pre><code>SELECT ROWNUM, TO_DATE('2019-02-01', 'yyyy-mm-dd') + ROWNUM - 1 ROWDATE 
+<pre><code>SELECT ROWNUM, TO_DATE('2019-02-01', 'yyyy-mm-dd') + ROWNUM - 1 ROWDATE
 FROM DUAL
 CONNECT BY ROWNUM &lt; TO_DATE('2019-02-12', 'yyyy-mm-dd') - TO_DATE('2019-02-01', 'yyyy-mm-dd') + 2;
 </code></pre>
-<p class="text-right">最后更新时间：2020-04-20 09:22:21</p></div>
+<h2>4、递归查询数据处理函数</h2>
+<pre><code>使用顶层数据：connect_by_root(col)
+串联各层数据：SYS_CONNECT_BY_PATH(col, ',')
+</code></pre>
+<p class="text-right">最后更新时间：2020-04-26 17:40:08</p></div>

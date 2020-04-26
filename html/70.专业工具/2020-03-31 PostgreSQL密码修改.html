@@ -1,19 +1,23 @@
 <div class="article">
 <p style="text-indent:0em;"><a id="view_head" href="#" onclick="javascript:viewHead($(this));">返回</a></p>
-<h1>如何安全地修改密码：</h1>
-<h3>方式1：</h3>
-<p>使用psql，连接到Postgres Server：
+<h1>PostgreSQL密码修改</h1>
+<h2>方式1：</h2>
+<p>使用psql，连接到Postgres Server：</p>
 <pre><code>username=&gt; \password
 Enter new password:
 Enter it again:
-username=&gt;</code></pre>
-我将原密码hello，修改为hellojava.123456
-这种修改方式相当于向postgres server 发送了如下命令：
-<pre><code>ALTER USER postgres PASSWORD ' md53175af154as54df5as4d5f45sd6af';</code></pre>
-注意：尽量不要使用postgres作为用户密码，防止被攻击。</p>
-<h3>方式2：</h3>
-<p>可以直接发送sql修改，这种方式不仅仅限于psql了，其余客户端也能修改，如pgadmin等：
-<pre><code>ALTER USER test1 PASSWORD 'secret'</code></pre>
-弊端：通过sql修改，有可能会将修改语句记录在相关工具的log里;<br />
-例如：通过psql 运行该条sql，则在.psql_history文件中会有相应语句的记录有密码泄露的风险</p>
-<p class="text-right">最后更新时间：2020-04-20 14:50:53</p></div>
+username=&gt;
+</code></pre>
+<p>这种修改方式相当于向postgres server 发送了如下命令：</p>
+<pre><code>ALTER USER postgres PASSWORD 'md53175af154as54df5as4d5f45sd6af'
+</code></pre>
+<h2>方式2：</h2>
+<p>可以直接执行sql修改，可用任意客户端，如pgadmin等：</p>
+<pre><code>ALTER USER test1 PASSWORD 'secret'
+</code></pre>
+<blockquote>
+<p>弊端：通过sql修改，有可能会将修改语句记录在相关工具的log里; 通过psql 运行该条sql，则在.psql_history文件中会有相应语句的记录有密码泄露的风险</p>
+</blockquote>
+<h2>注意：</h2>
+<p>尽量不要使用postgres作为用户密码，防止被攻击。</p>
+<p class="text-right">最后更新时间：2020-04-26 19:04:24</p></div>

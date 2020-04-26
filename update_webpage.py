@@ -41,7 +41,9 @@ def renderPage(model, title, recents, preview):
 
 def copyAsset(m):
     file = f"img/{m.group(2)}"
-    if not os.path.isfile(file):
+    if os.path.isfile(file):
+        return f"{m.group(1)}/{file}{m.group(3)}"
+    else:
         try:
             copyfile(f"{path_mkdn}/{m.group(2)}", file)
         except BaseException:
@@ -95,11 +97,10 @@ if __name__ == "__main__":
                     continue  # 跳过更新时间在markdown文件后的html文件
             try:
                 with open(mkdn_d[key], mode="r", encoding="utf-8") as r:
-                    input_text = re_copy.sub(copyAsset, markdown.markdown(r.read()))
                     with open(hfile, "w", encoding="utf-8") as w:
                         w.write("<div class=\"article\">\n")
                         w.write("<p style=\"text-indent:0em;\"><a id=\"view_head\" href=\"#\" onclick=\"javascript:viewHead($(this));\">返回</a></p>\n")
-                        w.write(input_text.replace('<pre><code>', '<code>').replace('</code></pre>', '</code>').replace('<code>', '<pre><code>').replace('</code>', '</code></pre>'))
+                        w.write(re_copy.sub(copyAsset, markdown.markdown(r.read(), extensions=['markdown.extensions.tables'])))
                         w.write(f"\n<p class=\"text-right\">最后更新时间：{datetime.fromtimestamp(os.path.getmtime(mkdn_d[key])).strftime('%Y-%m-%d %H:%M:%S')}</p></div>")
             except BaseException:
                 fail_c.append(hfile)
@@ -135,9 +136,8 @@ if __name__ == "__main__":
         if temp in html_d:
             try:
                 with open(head_d[key], mode="r", encoding="utf-8") as r:
-                    input_text = re_copy.sub(copyAsset, markdown.markdown(getHeadLines(r.read(), 300)))
                     view_s.append("<div class=\"article\">")
-                    view_s.append(input_text.replace('<pre><code>', '<code>').replace('</code></pre>', '</code>').replace('<code>', '<pre><code>').replace('</code>', '</code></pre>'))
+                    view_s.append(re_copy.sub(copyAsset, markdown.markdown(getHeadLines(r.read(), 300), extensions=['markdown.extensions.tables'])))
                     view_s.append(f"<p><a href=\"javascript:viewArticle($('#content_0'), '/{html_d[temp]}/{key}.html');\">...</a></p>\n</div>")
             except BaseException:
                 raise
