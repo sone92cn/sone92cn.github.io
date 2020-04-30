@@ -100,7 +100,7 @@ if __name__ == "__main__":
                     with open(hfile, "w", encoding="utf-8") as w:
                         w.write("<div class=\"article\">\n")
                         w.write("<p style=\"text-indent:0em;\"><a id=\"view_head\" href=\"#\" onclick=\"javascript:viewHead($(this));\">返回</a></p>\n")
-                        w.write(re_copy.sub(copyAsset, markdown.markdown(r.read(), extensions=['markdown.extensions.tables'])))
+                        w.write(re_copy.sub(copyAsset, markdown.markdown(r.read(), extensions=['markdown.extensions.tables', 'markdown.extensions.fenced_code'])))
                         w.write(f"\n<p class=\"text-right\">最后更新时间：{datetime.fromtimestamp(os.path.getmtime(mkdn_d[key])).strftime('%Y-%m-%d %H:%M:%S')}</p></div>")
             except BaseException:
                 fail_c.append(hfile)
@@ -137,7 +137,7 @@ if __name__ == "__main__":
             try:
                 with open(head_d[key], mode="r", encoding="utf-8") as r:
                     view_s.append("<div class=\"article\">")
-                    view_s.append(re_copy.sub(copyAsset, markdown.markdown(getHeadLines(r.read(), 300), extensions=['markdown.extensions.tables'])))
+                    view_s.append(re_copy.sub(copyAsset, markdown.markdown(getHeadLines(r.read(), 300), extensions=['markdown.extensions.tables', 'markdown.extensions.fenced_code'])))
                     view_s.append(f"<p><a href=\"javascript:viewArticle($('#content_0'), '/{html_d[temp]}/{key}.html');\">...</a></p>\n</div>")
             except BaseException:
                 raise
@@ -146,9 +146,18 @@ if __name__ == "__main__":
         else:
             raise Exception(f"{head_d[key]}无法归入现有类别！")
 
+    # 储存最近文章
+    if len(head_d):
+        preview = "\n".join(view_s)
+        with open("preview.dat", "w", encoding="utf-8") as w:
+            w.write(preview)
+    else:
+        with open("preview.dat", "r", encoding="utf-8") as r:
+            preview = r.read()
+
     # 更新Index页面
     try:
-        renderPage(model="index.html", title="My Local Page", recents=head_d, preview="\n".join(view_s))
+        renderPage(model="index.html", title="My Local Page", recents=head_d, preview=preview)
     except BaseException:
         raise Exception("Fail to update index page.")
     else:
