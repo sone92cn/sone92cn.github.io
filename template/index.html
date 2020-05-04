@@ -14,13 +14,13 @@
 		<div class="row" id="socials">
 				<div class="col-8">
 						<span><a href="https://www.baidu.com/" target="_blank" title="baidu"><img src="/img/socials/baidu-32x32.png" /></a></span>
-						<span><a href="http://172.17.111.55/" target="_blank" title="ERP数据查询"><img src="/img/socials/google-32x32.png" /></a></span>
-						<span><a href="http://hades.zhubajie.la/" target="_blank" title="ZBJ数据平台"><img src="/img/socials/rss-32x32.png" /></a></span>
-						<span><a href="https://www.scipy.org/" target="_blank" title="Scipy"><img src="/img/socials/youtube-32x32.png" /></a></span>
+						<span><a href="http://172.17.111.55/" target="_blank" title="ERP数据查询"><img src="/img/socials/zbj-32x32.png" /></a></span>
+						<span><a href="http://hades.zhubajie.la/" target="_blank" title="ZBJ数据平台"><img src="/img/socials/hades-32x32.png" /></a></span>
+						<span><a href="https://www.scipy.org/" target="_blank" title="Scipy"><img src="/img/socials/scipy-32x32.png" /></a></span>
 				</div>
 				<div class="col-4">
 					<div class="input-group float-right">
-       			<input type="text" class="form-control" placeholder="搜索" / >
+       			<input type="text" class="form-control" placeholder="搜索" autocomplete="off" oninput="javascript:searchArticle($(this).val());" / >
 						<button class="btn btn-info btn-search" id="btn-search"></button>
 					</div>
 				</div>
@@ -63,21 +63,39 @@
 
 		<!-- Content 全部 -->
 		<div class="row content d-none" id="content_1" data-init="none">
-			<div class="col-3 col-first" >
-				<div>
-					<ul class="nav nav-justified flex-column">
+			<div class="col-3 view-menu" >
+				<div class="menu">
+					<p>按类别：</p>
+					<ul class="nav nav-list">
 						<li class="nav-item" v-for="val in cate"><a href="#" @click="filterArticle" :data-filter="val" v-text="val.slice(3)"></a></li>
 					</ul>
-				</div>
-			</div>
-			<div class="col-8 view-part">
-				<div class="article">
-					<ul>
-						<li v-for="(val, key) in menu"><a href="#" onclick="viewArticle($('#content_1'), $(this).data('url'));" :data-url="val" v-text="key"></a></li>
+					<hr />
+					<p>按时间：</p>
+					<ul class="nav nav-list">
+						<li class="nav-item"><a href="#" @click="recentArticle" data-recent="1">最近一月</a></li>
+						<li class="nav-item"><a href="#" @click="recentArticle" data-recent="3">三月以内</a></li>
+						<li class="nav-item"><a href="#" @click="recentArticle" data-recent="6">半年以内</a></li>
+						<li class="nav-item"><a href="#" @click="recentArticle" data-recent="0">查看全部</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="col-8 view-full d-none" >
+			<div class="col-9 view-part">
+				<div class="head">
+					<ul>
+						<li v-for="(val, key) in show"><a href="#" class="text-primary" onclick="viewArticle($('#content_1'), $(this).data('url'));" :data-url="val" v-text="key"></a></li>
+					</ul>
+					<p v-show="nlen === 0">无满足满足要求的内容</p>
+					<ul class="pagination text-center" v-show="nlen > 1">
+						<!-- <li><a class="page-link btn-small" href="#">&laquo;</a><li> -->
+						<li><a class="page-link btn-small" href="#content_1" @click="movePage" data-index="-1">&lt;</a><li>
+						<li v-for="pn in page"><a class="page-link btn-small" href="#content_1" @click="gotoPage" :data-index="pn" v-text="pn+1"></a><li>
+						<li><a class="page-link btn-small" href="#content_1" @click="movePage" data-index="1">&gt;</a><li>
+						<!-- <li><a class="page-link btn-small" href="#">&raquo;</a><li> -->
+					</ul>
+					<!-- <p v-text="show"></p> -->
+				</div>
+			</div>
+			<div class="col-9 view-full d-none" >
 			</div>
 		</div>
 
@@ -85,7 +103,7 @@
 		<div class="row content d-none" id="content_2">
 			<div class="col-12">
 				<div class="article">
-					点击访问我的<a href="https://github.com/sone92cn">GitHub</a>项目
+					点击访问我的<a href="https://github.com/sone92cn"  target="_blank">GitHub</a>项目
 				</div>
 			</div>
 		</div>

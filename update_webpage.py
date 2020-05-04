@@ -7,6 +7,7 @@ Created on Tue Feb 27 11:44:43 2018
 import re
 import os
 import json
+import pickle
 import markdown
 from shutil import copyfile
 from datetime import datetime
@@ -53,6 +54,7 @@ def copyAsset(m):
 
 
 if __name__ == "__main__":
+    rest_n = 5  # 最近文章数量
     view_d = {}  # 所有文章信息
     head_d = None  # 最近文章信息
     html_d = None  # 文章目录字典
@@ -72,7 +74,7 @@ if __name__ == "__main__":
     print(f"工作目录：{root}：\n")
 
     # 任务开始
-    print("----------------------START----------------------")
+    print("----------------------START----------------------\n")
 
     # 初始化 html_d
     temp = createTreeAsPath(path_html, scanSubFolder=False, treeMode=False, relativePath=True, forFile=False)
@@ -85,14 +87,13 @@ if __name__ == "__main__":
     temp = sorted(createTreeAsPath(path_mkdn, fileRegular=r'^\d{8}.+\.\d{2}\.md$', scanSubFolder=False, relativePath=True), reverse=True)
     mkdn_d = {f"{key[:4]}-{key[4:6]}-{key[6:8]}{key[8:-6]}": f"{path_mkdn}/{key}" for key in temp}
 
-    # 生成全部文章
+    # 更新文章
     for key in mkdn_d:
         temp = mkdn_d[key][-5:-3]
         if temp in html_d:
             hfile = f"{html_d[temp]}/{key}.html"
             if os.path.isfile(hfile):
                 if os.path.getmtime(hfile) > os.path.getmtime(mkdn_d[key]):
-                    view_d[key] = hfile
                     skip_c.append(hfile)
                     continue  # 跳过更新时间在markdown文件后的html文件
             try:
@@ -105,59 +106,61 @@ if __name__ == "__main__":
             except BaseException:
                 fail_c.append(hfile)
             else:
-                view_d[key] = hfile
                 succ_c.append(hfile)
         else:
             fail_c.append(mkdn_d[key])
 
+    # 检索全部文章
+    view_d = {os.path.splitext(os.path.split(key)[1])[0]: f"{path_html}/{key}".replace('\\', '/') for key in createTreeAsPath(path_html, fileRegular=r'^.+\.html$', scanSubFolder=True, relativePath=True)}
+    view_k = list(sorted(view_d.keys(), reverse=True))
+
     # 删除MD目录已删除的文章
     if del_mode:
-        temp = createTreeAsPath(path_html, fileRegular=r'^.+\.html$', scanSubFolder=True, relativePath=True)
-        for key in temp:
+        for temp in view_d:
+            key = view_d[temp]
             k1, k2 = os.path.split(key)
             k2, k3 = os.path.splitext(k2)
-            if not os.path.isfile(f"{path_mkdn}/{k2[:4]}{k2[5:7]}{k2[8:]}.{k1[:2]}.md"):
+            # print(f"{path_mkdn}/{k2[:4]}{k2[5:7]}{k2[8:]}.{key[len(path_html)+1:len(path_html)+3]}.md")
+            if not os.path.isfile(f"{path_mkdn}/{k2[:4]}{k2[5:7]}{k2[8:]}.{key[len(path_html)+1:len(path_html)+3]}.md"):
                 try:
-                    os.remove(f"{path_html}/{key}")
+                    pass  # os.remove(f"{path_html}/{key}")
                 except BaseException:
                     fail_d.append(f"{path_html}/{key}")
                 else:
+                    view_k.remove(temp)
                     succ_d.append(f"{path_html}/{key}")
 
-    # 输出所有文章到json
+    # 储存所有文章到JSON
     with open(f"{path_json}/articles.json", "w", encoding="utf-8") as w:
-        json.dump({"cate": createTreeAsPath(path_html, scanSubFolder=False, relativePath=True, forFile=False), "full": view_d}, w)
+        json.dump({"cate": createTreeAsPath(path_html, scanSubFolder=False, relativePath=True, forFile=False), "full": {key: view_d[key] for key in view_k}}, w)
 
-    # 生成最近文章
-    view_s = []
-    head_d = {key: mkdn_d[key] for key in list(sorted(mkdn_d.keys(), reverse=True))[:5]}
-    for key in head_d:
-        temp = head_d[key][-5:-3]
-        if temp in html_d:
+    # 读取缓存的最近更新
+    with open("preview.pkl", "rb") as r:
+        rest_d = pickle.load(r)
+
+    # 生成最近更新
+    view_s = {}
+    view_k = view_k[:rest_n]
+    for key in view_k:
+        if key in rest_d:
+            view_s[key] = rest_d[key]
+        elif key in mkdn_d:
             try:
+                temp = []
                 with open(head_d[key], mode="r", encoding="utf-8") as r:
-                    view_s.append("<div class=\"article\">")
-                    view_s.append(re_copy.sub(copyAsset, markdown.markdown(getHeadLines(r.read(), 300), extensions=['markdown.extensions.tables', 'markdown.extensions.fenced_code'])))
-                    view_s.append(f"<p><a href=\"javascript:viewArticle($('#content_0'), '/{html_d[temp]}/{key}.html');\">...</a></p>\n</div>")
+                    temp.append("<div class=\"article\">")
+                    temp.append(re_copy.sub(copyAsset, markdown.markdown(getHeadLines(r.read(), 300), extensions=['markdown.extensions.tables', 'markdown.extensions.fenced_code'])))
+                    temp.append(f"<p><a href=\"javascript:viewArticle($('#content_0'), '/{html_d[temp]}/{key}.html');\">...</a></p>\n</div>")
             except BaseException:
                 raise
             else:
-                head_d[key] = view_d[key]
+                view_s[key] = "\n".join(temp)
         else:
-            raise Exception(f"{head_d[key]}无法归入现有类别！")
-
-    # 储存最近文章
-    if len(head_d):
-        preview = "\n".join(view_s)
-        with open("preview.dat", "w", encoding="utf-8") as w:
-            w.write(preview)
-    else:
-        with open("preview.dat", "r", encoding="utf-8") as r:
-            preview = r.read()
+            raise Exception(f"文章<{key}>不存在！")
 
     # 更新Index页面
     try:
-        renderPage(model="index.html", title="My Local Page", recents=head_d, preview=preview)
+        renderPage(model="index.html", title="My Local Page", recents={key: view_d[key] for key in view_k}, preview="\n".join(view_s.values()))
     except BaseException:
         raise Exception("Fail to update index page.")
     else:

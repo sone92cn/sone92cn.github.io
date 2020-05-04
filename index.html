@@ -38,13 +38,13 @@
 		<div class="row" id="socials">
 				<div class="col-8">
 						<span><a href="https://www.baidu.com/" target="_blank" title="baidu"><img src="/img/socials/baidu-32x32.png" /></a></span>
-						<span><a href="http://172.17.111.55/" target="_blank" title="ERP数据查询"><img src="/img/socials/google-32x32.png" /></a></span>
-						<span><a href="http://hades.zhubajie.la/" target="_blank" title="ZBJ数据平台"><img src="/img/socials/rss-32x32.png" /></a></span>
-						<span><a href="https://www.scipy.org/" target="_blank" title="Scipy"><img src="/img/socials/youtube-32x32.png" /></a></span>
+						<span><a href="http://172.17.111.55/" target="_blank" title="ERP数据查询"><img src="/img/socials/zbj-32x32.png" /></a></span>
+						<span><a href="http://hades.zhubajie.la/" target="_blank" title="ZBJ数据平台"><img src="/img/socials/hades-32x32.png" /></a></span>
+						<span><a href="https://www.scipy.org/" target="_blank" title="Scipy"><img src="/img/socials/scipy-32x32.png" /></a></span>
 				</div>
 				<div class="col-4">
 					<div class="input-group float-right">
-       			<input type="text" class="form-control" placeholder="搜索" / >
+       			<input type="text" class="form-control" placeholder="搜索" autocomplete="off" oninput="javascript:searchArticle($(this).val());" / >
 						<button class="btn btn-info btn-search" id="btn-search"></button>
 					</div>
 				</div>
@@ -71,7 +71,8 @@
 		<!-- Content 最近 -->
 		<div class="row content" id="content_0">
 			<div class="col-8 view-part" >
-				<div class="article">
+				
+<div class="article">
 <h1>PostgreSQL密码修改</h1>
 <h2>方式1：</h2>
 <p>使用psql，连接到Postgres Server：</p>
@@ -90,6 +91,8 @@ username=&gt;
 ```sql</p>
 <p><a href="javascript:viewArticle($('#content_0'), '/html/70.专业工具/2020-03-31 PostgreSQL密码修改.html');">...</a></p>
 </div>
+
+
 <div class="article">
 <h1>MongoDB安装</h1>
 <h2>一、下载MongoDB(Zip版)</h2>
@@ -102,6 +105,8 @@ username=&gt;
 <p>如：E:\MongoDB\Conf\mongo.config  </p>
 <p><a href="javascript:viewArticle($('#content_0'), '/html/70.专业工具/2019-12-14 MongoDB安装.html');">...</a></p>
 </div>
+
+
 <div class="article">
 <h1>Superset安装</h1>
 <h2>一、创建虚拟环境</h2>
@@ -120,6 +125,8 @@ username=&gt;
 <h2>三、安装superset</h2>
 <p><a href="javascript:viewArticle($('#content_0'), '/html/70.专业工具/2019-12-06 Superset安装.html');">...</a></p>
 </div>
+
+
 <div class="article">
 <h1>Python虚拟环境搭建</h1>
 <h2>一、包安装</h2>
@@ -139,6 +146,8 @@ pip install virtualenvwrapper-win
 </ul>
 <p><a href="javascript:viewArticle($('#content_0'), '/html/70.专业工具/2019-12-06 Python虚拟环境.html');">...</a></p>
 </div>
+
+
 <div class="article">
 <h1>CMD编码修改</h1>
 <h2>一、临时修改：</h2>
@@ -152,6 +161,7 @@ pip install virtualenvwrapper-win
 </ol>
 <p><a href="javascript:viewArticle($('#content_0'), '/html/90.其它内容/2019-11-20 CMD编码修改.html');">...</a></p>
 </div>
+
 			</div>
 			<div class="col-8 view-full d-none" >
 			</div>
@@ -207,21 +217,39 @@ Felix Chou，中级会计师、注册数据分析师，Python爱好者，致力�
 
 		<!-- Content 全部 -->
 		<div class="row content d-none" id="content_1" data-init="none">
-			<div class="col-3 col-first" >
-				<div>
-					<ul class="nav nav-justified flex-column">
+			<div class="col-3 view-menu" >
+				<div class="menu">
+					<p>按类别：</p>
+					<ul class="nav nav-list">
 						<li class="nav-item" v-for="val in cate"><a href="#" @click="filterArticle" :data-filter="val" v-text="val.slice(3)"></a></li>
 					</ul>
-				</div>
-			</div>
-			<div class="col-8 view-part">
-				<div class="article">
-					<ul>
-						<li v-for="(val, key) in menu"><a href="#" onclick="viewArticle($('#content_1'), $(this).data('url'));" :data-url="val" v-text="key"></a></li>
+					<hr />
+					<p>按时间：</p>
+					<ul class="nav nav-list">
+						<li class="nav-item"><a href="#" @click="recentArticle" data-recent="1">最近一月</a></li>
+						<li class="nav-item"><a href="#" @click="recentArticle" data-recent="3">三月以内</a></li>
+						<li class="nav-item"><a href="#" @click="recentArticle" data-recent="6">半年以内</a></li>
+						<li class="nav-item"><a href="#" @click="recentArticle" data-recent="0">查看全部</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="col-8 view-full d-none" >
+			<div class="col-9 view-part">
+				<div class="head">
+					<ul>
+						<li v-for="(val, key) in show"><a href="#" class="text-primary" onclick="viewArticle($('#content_1'), $(this).data('url'));" :data-url="val" v-text="key"></a></li>
+					</ul>
+					<p v-show="nlen === 0">无满足满足要求的内容</p>
+					<ul class="pagination text-center" v-show="nlen > 1">
+						<!-- <li><a class="page-link btn-small" href="#">&laquo;</a><li> -->
+						<li><a class="page-link btn-small" href="#content_1" @click="movePage" data-index="-1">&lt;</a><li>
+						<li v-for="pn in page"><a class="page-link btn-small" href="#content_1" @click="gotoPage" :data-index="pn" v-text="pn+1"></a><li>
+						<li><a class="page-link btn-small" href="#content_1" @click="movePage" data-index="1">&gt;</a><li>
+						<!-- <li><a class="page-link btn-small" href="#">&raquo;</a><li> -->
+					</ul>
+					<!-- <p v-text="show"></p> -->
+				</div>
+			</div>
+			<div class="col-9 view-full d-none" >
 			</div>
 		</div>
 
@@ -229,7 +257,7 @@ Felix Chou，中级会计师、注册数据分析师，Python爱好者，致力�
 		<div class="row content d-none" id="content_2">
 			<div class="col-12">
 				<div class="article">
-					点击访问我的<a href="https://github.com/sone92cn">GitHub</a>项目
+					点击访问我的<a href="https://github.com/sone92cn"  target="_blank">GitHub</a>项目
 				</div>
 			</div>
 		</div>

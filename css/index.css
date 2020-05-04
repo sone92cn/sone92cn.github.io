@@ -103,6 +103,46 @@ body {
 	clear: both;
 }
 
+/* ------------------menu------------------- */
+.menu {
+	color: #000000;
+	padding: 20px;
+	margin-bottom: 40px;
+	border: 1px solid #EEEEEE;
+}
+
+.menu > p {
+  margin-top: 0.5em;
+  margin-left: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.menu > ul {
+  margin-top: 0em;
+  margin-left: 2.5em;
+  margin-bottom: 0.5em;
+}
+
+.menu > ul > li.active {
+  text-decoration: underline;
+}
+
+/* ------------------head------------------ */
+.head {
+	color: #000000;
+	padding: 20px;
+	margin-bottom: 40px;
+	border: 1px solid #EEEEEE;
+}
+.head > .pagination {
+  margin-left: auto;
+  margin-right: auto;
+	/* color: black; */
+  /* font-family: 楷体, 宋体; */
+	/* font-style: italic; */
+}
+
+
 /* ------------------article------------------- */
 .article {
 	color: #2E2E2E;
@@ -195,7 +235,6 @@ body {
 .box .menu a{
 	text-decoration:none
 }
-
 
 /**/
 @media only screen and (min-width: 960px) {
