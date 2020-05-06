@@ -158,6 +158,10 @@ if __name__ == "__main__":
         else:
             raise Exception(f"文章<{key}>不存在！")
 
+    # 储存最近更新
+    with open("preview.pkl", "wb") as w:
+        pickle.dump(view_s, w)
+
     # 更新Index页面
     try:
         renderPage(model="index.html", title="My Local Page", recents={key: view_d[key] for key in view_k}, preview="\n".join(view_s.values()))
