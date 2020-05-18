@@ -147,10 +147,11 @@ if __name__ == "__main__":
         elif key in mkdn_d:
             try:
                 temp = []
-                with open(head_d[key], mode="r", encoding="utf-8") as r:
+                with open(mkdn_d[key], mode="r", encoding="utf-8") as r:
                     temp.append("<div class=\"article\">")
                     temp.append(re_copy.sub(copyAsset, markdown.markdown(getHeadLines(r.read(), 300), extensions=['markdown.extensions.tables', 'markdown.extensions.fenced_code'])))
-                    temp.append(f"<p><a href=\"javascript:viewArticle($('#content_0'), '/{html_d[temp]}/{key}.html');\">...</a></p>\n</div>")
+                    # print(f"<p><a href=\"javascript:viewArticle($('#content_0'), '/{view_d[key]}/{key}.html');\">...</a></p>\n</div>")
+                    temp.append(f"<p><a href=\"javascript:viewArticle($('#content_0'), '/{view_d[key]}/{key}.html');\">...</a></p>\n</div>")
             except BaseException:
                 raise
             else:

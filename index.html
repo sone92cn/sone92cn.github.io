@@ -14,7 +14,7 @@
 					crossorigin="anonymous">
 
 		<!-- 自定义CSS -->
-		
+
 	<link rel="stylesheet" href="/css/index.css" charset="utf-8">
 
 
@@ -48,13 +48,13 @@
 						crossorigin="anonymous"></script>
 
 		<!-- 自定义js -->
-		
+
 	<script type="text/javascript" src="/js/index.js" charset="utf-8"></script>
 
 	</head>
 	<body>
 		<!-- 正文 -->
-		
+
 	<div class="container" id="container-main">
 		<div class="row" id="socials">
 				<div class="col-8">
@@ -92,7 +92,24 @@
 		<!-- Content 最近 -->
 		<div class="row content" id="content_0">
 			<div class="col-8 view-part" >
-				
+				<div class="article">
+<h1>删除Win10设备和驱动器项目</h1>
+<ol>
+<li>
+<p>打开注册表管理器<br />
+<img alt="" src="/img/assets/markdown-img-paste-2020051809212349.png" /></p>
+</li>
+<li>
+<p>定位到HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace<br />
+<img alt="" src="/img/assets/markdown-img-paste-20200518092238153.png" /></p>
+</li>
+<li>
+<p>删除“默认”以外的不需要的项目</p>
+</li>
+</ol>
+<p><a href="javascript:viewArticle($('#content_0'), '/html/90.其它内容/2020-05-18 删除Win10设备和驱动器项目.html/2020-05-18 删除Win10设备和驱动器项目.html');">...</a></p>
+</div>
+
 <div class="article">
 <h1>PostgreSQL密码修改</h1>
 <h2>方式1：</h2>
@@ -168,21 +185,6 @@ pip install virtualenvwrapper-win
 <p><a href="javascript:viewArticle($('#content_0'), '/html/70.专业工具/2019-12-06 Python虚拟环境.html');">...</a></p>
 </div>
 
-
-<div class="article">
-<h1>CMD编码修改</h1>
-<h2>一、临时修改：</h2>
-<p>只作用于当前窗口，先进入cmd命令窗口（快捷键win键+R）直接输入“chcp 65001”，回车键执行，这时候该窗口编码已经是UTF-8编码了。</p>
-<h2>一、永久修改：</h2>
-<ol>
-<li>win键+R，输入regedit，确定。</li>
-<li>按顺序找到HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor。</li>
-<li>点击右键-新建，选择“字符串值”。</li>
-<li>命名为“autorun”, 点击右击修改，数值数据填写“chcp 65001”，确定。</li>
-</ol>
-<p><a href="javascript:viewArticle($('#content_0'), '/html/90.其它内容/2019-11-20 CMD编码修改.html');">...</a></p>
-</div>
-
 			</div>
 			<div class="col-8 view-full d-none" >
 			</div>
@@ -200,37 +202,37 @@ Felix Chou，中级会计师、注册数据分析师，Python爱好者，致力�
 	<h2 onclick="javascript:viewHead('#content_0','null');">最近更新</h2>
 </div>
 <div class="menu">
-	
+
+	<div class="post">
+		<img src="img/img4.jpg" width="50px"/>
+		<h4><a href="javascript:viewArticle($('#content_0'), 'html/90.其它内容/2020-05-18 删除Win10设备和驱动器项目.html');">删除Win10设备和驱动器项目</a></h4>
+		<p>2020-05-18</p>
+	</div>
+
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
 		<h4><a href="javascript:viewArticle($('#content_0'), 'html/70.专业工具/2020-03-31 PostgreSQL密码修改.html');">PostgreSQL密码修改</a></h4>
 		<p>2020-03-31</p>
 	</div>
-	
+
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
 		<h4><a href="javascript:viewArticle($('#content_0'), 'html/70.专业工具/2019-12-14 MongoDB安装.html');">MongoDB安装</a></h4>
 		<p>2019-12-14</p>
 	</div>
-	
+
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
 		<h4><a href="javascript:viewArticle($('#content_0'), 'html/70.专业工具/2019-12-06 Superset安装.html');">Superset安装</a></h4>
 		<p>2019-12-06</p>
 	</div>
-	
+
 	<div class="post">
 		<img src="img/img4.jpg" width="50px"/>
 		<h4><a href="javascript:viewArticle($('#content_0'), 'html/70.专业工具/2019-12-06 Python虚拟环境.html');">Python虚拟环境</a></h4>
 		<p>2019-12-06</p>
 	</div>
-	
-	<div class="post">
-		<img src="img/img4.jpg" width="50px"/>
-		<h4><a href="javascript:viewArticle($('#content_0'), 'html/90.其它内容/2019-11-20 CMD编码修改.html');">CMD编码修改</a></h4>
-		<p>2019-11-20</p>
-	</div>
-	
+
 </div>
 				</div>
 			</div>
